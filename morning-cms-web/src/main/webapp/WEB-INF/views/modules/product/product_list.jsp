@@ -48,13 +48,13 @@
                     <tr>
                       <th data-field="productId" data-halign="center" data-align="center" data-sortable="true">商品ID</th>
                       <th data-field="name" data-halign="center" data-align="center" data-sortable="true">商品名称</th>
-                      <th data-field="showPrice" data-halign="center" data-align="center" data-sortable="true">单价</th>
-                      <th data-field="introduce" data-halign="center" data-align="center" data-sortable="true">描述</th>
-                      <th data-field="createTime" data-formatter="timeFormatter" data-halign="center" data-align="center" data-sortable="true">创建时间</th>
-                      <th data-field="createBy" data-halign="center" data-align="center" data-sortable="true">创建者</th>
-                      <th data-field="updateTime" data-formatter="timeFormatter" data-halign="center" data-align="center" data-sortable="true">更新时间</th>
-                      <th data-field="updateBy" data-halign="center" data-align="center" data-sortable="true">更新者</th>
-                      <%--<th data-field="remarks" data-halign="center" data-align="center" data-sortable="true">备注</th>--%>
+                      <th data-field="showPrice" data-halign="center" data-align="center" data-sortable="true">显示价格</th>
+                      <th data-field="introduce" data-halign="center" data-align="center" data-sortable="true">商品简介</th>
+                      <th data-field="description" data-halign="center" data-align="center" data-sortable="true">商品描述</th>
+                      <th data-field="picImg" data-halign="center" data-align="center" data-sortable="true">展示图片</th>
+                      <th data-field="labelName" data-halign="center" data-align="center" data-sortable="true">标签名称</th>
+                      <th data-field="commentNumber" data-halign="center" data-align="center" data-sortable="true">评论数量</th>
+                    <%--<th data-field="remarks" data-halign="center" data-align="center" data-sortable="true">备注</th>--%>
                       <th data-formatter="actionFormatter" data-events="actionEvents" data-halign="center" data-align="center" data-sortable="true">操作</th>
                     </tr>
                     </thead>
