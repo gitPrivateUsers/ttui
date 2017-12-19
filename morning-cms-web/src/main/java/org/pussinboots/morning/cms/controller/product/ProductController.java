@@ -64,7 +64,7 @@ public class ProductController extends BaseController {
 	 */
 	@ApiOperation(value = "获取商品列表", notes = "根据分页信息/搜索内容")
 	@RequiresPermissions("product:list:view")
-	@GetMapping(value = "/")
+	@GetMapping(value = "/list")
 	@ResponseBody
 	public Object listProduct(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search) {
 		BasePageDTO<Product> basePageDTO = productService.listByPage(pageInfo, search);

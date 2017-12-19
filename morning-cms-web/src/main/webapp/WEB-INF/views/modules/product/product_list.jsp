@@ -22,7 +22,7 @@
               <div class="example-wrap">
                 <div class="example">
                   <div id="toolbar" class="btn-group m-t-sm">
-                    <shiro:hasPermission name="administrator:role:create">
+                    <shiro:hasPermission name="product:list:view">
                       <button type="button" class="btn btn-default"  title="创建商品" onclick="layer_show('创建商品','${ctx}/administrator/role/create','1000','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
                     </shiro:hasPermission>
                   </div>
@@ -35,7 +35,7 @@
                          data-show-export="true"
                          data-show-pagination-switch="true"
                          data-show-columns="true"
-                         data-url="${ctx}/product/detail/"
+                         data-url="${ctx}/product/detail/list"
                          data-pagination="true"
                          data-page-size="20"
                          data-page-list="[20, 50, 100, 200]"
@@ -50,12 +50,12 @@
                       <th data-field="name" data-halign="center" data-align="center" data-sortable="true">商品名称</th>
                       <th data-field="showPrice" data-halign="center" data-align="center" data-sortable="true">单价</th>
                       <th data-field="introduce" data-halign="center" data-align="center" data-sortable="true">描述</th>
-                      <%--<th data-field="createTime" data-formatter="timeFormatter" data-halign="center" data-align="center" data-sortable="true">创建时间</th>--%>
-                      <%--<th data-field="createBy" data-halign="center" data-align="center" data-sortable="true">创建者</th>--%>
-                      <%--<th data-field="updateTime" data-formatter="timeFormatter" data-halign="center" data-align="center" data-sortable="true">更新时间</th>--%>
-                      <%--<th data-field="updateBy" data-halign="center" data-align="center" data-sortable="true">更新者</th>--%>
+                      <th data-field="createTime" data-formatter="timeFormatter" data-halign="center" data-align="center" data-sortable="true">创建时间</th>
+                      <th data-field="createBy" data-halign="center" data-align="center" data-sortable="true">创建者</th>
+                      <th data-field="updateTime" data-formatter="timeFormatter" data-halign="center" data-align="center" data-sortable="true">更新时间</th>
+                      <th data-field="updateBy" data-halign="center" data-align="center" data-sortable="true">更新者</th>
                       <%--<th data-field="remarks" data-halign="center" data-align="center" data-sortable="true">备注</th>--%>
-                      <%--<th data-formatter="actionFormatter" data-events="actionEvents" data-halign="center" data-align="center" data-sortable="true">操作</th>--%>
+                      <th data-formatter="actionFormatter" data-events="actionEvents" data-halign="center" data-align="center" data-sortable="true">操作</th>
                     </tr>
                     </thead>
                   </table>
