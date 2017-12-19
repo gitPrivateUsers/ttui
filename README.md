@@ -1,31 +1,5 @@
 ## 拓语网络 
 
-> 但行好事，莫问前程。（基于SSM框架的公益B2C网上商城的设计与实现）<br>
-QQ群：558243903 <a target="_blank" href="https://jq.qq.com/?_wv=1027&k=454hcs1"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="拓语网络技术讨论" title="拓语网络技术讨论"></a>
-![拓语网络技术讨论群二维码](http://git.oschina.net/uploads/images/2017/0217/213032_75339153_755773.png "拓语网络技术讨论群二维码")
-
-## 紧急求助
-本人大四马上毕业了，专业电子商务，非科班生，大三自学Java，急需一份工作，哪位大佬可以推荐下！╰(￣▽￣)╮，小的不甚感激，工作地点：杭州，工作方向：Java开发攻城狮。
-
-## 项目背景
-据相关统计，2015年有2.7亿网友通过阿里系平台（不含支付宝）参与公益30亿次，累计产生捐赠1.9亿元。淘宝公益突破了传统的公益模式，开创了适合企业自身的公益道路，以“授人以渔”的方式将公益与自身商业模式捆绑销售，加速了“人人公益”时代的到来，让公众看到了中国公益事业的巨大改变和影响。
-
-## 平台简介
-拓语网络公益商城是中国公益性在线电子商城，以商城B2C模式运营的公益在线商城，是一家致力于将传统公益商城互联网化的创新公益商城。
-
-该网上商城系统分为**电子商城系统**、**公益商城系统**、**后台管理系统**，使用Maven对项目进行模块化管理，搭建多模块企业级项目。	
-
-Morning是在Spring Framework基础上搭建的一个Java基础开发平台，以Spring MVC为模型视图控制器，MyBatis为数据访问层，Apache Shiro为权限授权层，SLF4J+Log4j2为日志管理，Ehcahe对常用数据进行缓存，采用Dubbo分布式服务框架进行分布式系统开发。
-
-Morning系統目前包括以下三大系统，电子商城系统、公益商城系统、后台管理系统。
-
- **后台管理系统（CMS）** ，包括管理员管理模块、会员管理模块、产品管理模块、交易管理模块、系统管理模块等。
-
- **电子商城系统（OS）** ，包括用户登录模块、商品游览模块、商品购买模块、在线评论模块、在线提问模块、个人中心模块、账户管理模块等。
- 
- **公益商城系统（DS）** ，包括公益申请模块、积分捐赠模块、进度查看模块、在线评论模块等。（未搭建）
-
- 
 ## 技术选型
 
 1、后端
@@ -98,34 +72,6 @@ Morning系統目前包括以下三大系统，电子商城系统、公益商城�
 
 3.对于Dubbo分布式服务框架进行分布式系统开发，目前一直在弄业务逻辑，感兴趣的朋友可以参考2.0.0-SNAPSHOT版本，自己去改下。
 https://git.oschina.net/Morning_/Morning/tree/2.0.0-SNAPSHOT/
-
-
-## 特别说明
-
-1.本人是自学的Java Web，如果系统中存在严重Bug，或者存在严重缺陷的问题，希望各位多提宝贵意见，小弟不胜感激。
-
-2.QQ：810170512  Email：<chenxingxing1994@foxmail.com>  欢迎各位大佬的指导。
-
-3.如有不足之处，请提出，我会尽快修正。
-
-4.马上毕业了，目前要忙着找工作，(/ □ \)，应该又没什么时间弄了。
-
-5.电子商城只是大概的走了一遍流程，还有很多细节的地方没有仔细去实现，见谅！
-
-
-## 特别鸣谢
-
-1.[因酷 / inxedu](https://git.oschina.net/inxeduopen/inxedu)   因酷在线教育平台
-
-2.[ThinkGem 王震/JeeSite](https://git.oschina.net/thinkgem/jeesite)   JeeSite 企业信息化快速开发平台
-
-3.[青苗 / SpringWind](https://git.oschina.net/juapk/SpringWind)   spring-wind
-
-4.[轩少 / spring-shiro-training](https://git.oschina.net/wangzhixuan/spring-shiro-training)   spring-shiro-training
-
-5.[iBase4J / iBase4J](https://git.oschina.net/iBase4J/iBase4J)   iBase4J
-
-6.[zheng / zheng](https://git.oschina.net/shuzheng/zheng)   zheng
 
 
 <br>
