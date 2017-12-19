@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>创建组织 - 猫宁Morning</title>
+<title>创建组织 - 拓语网络</title>
 <link rel="stylesheet" href="${ctxsta}/common/icheck/flat/green.css" />
 </head>
 

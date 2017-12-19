@@ -38,7 +38,7 @@ public interface IUserService extends IService<User> {
 	 * @return
 	 */
 	User getByLoginName(String loginName);
-	
+
 	/**
 	 * 根据管理员ID查找管理员信息
 	 * @param userId 管理员ID

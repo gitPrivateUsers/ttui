@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>导航栏管理 - 猫宁Morning</title>
+<title>导航栏管理 - 拓语网络</title>
 <link rel="stylesheet" href="${ctxsta}/common/bootstrap-table/bootstrap-table.min.css" />
 </head>
 

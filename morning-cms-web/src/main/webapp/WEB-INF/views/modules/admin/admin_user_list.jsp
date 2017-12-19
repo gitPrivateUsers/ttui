@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>管理员列表 - 猫宁Morning</title>
+<title>管理员列表 - 拓语网络</title>
 <link rel="stylesheet" href="${ctxsta}/common/bootstrap-table/bootstrap-table.min.css" />
 </head>
 
@@ -47,6 +47,7 @@
                     <thead>
                       <tr>
                         <th data-field="userName" data-formatter="nameFormatter" data-halign="center" data-align="center" data-sortable="true">昵称</th>
+                        <th data-field="loginName" data-sortable="true" data-halign="center" data-align="center">用户名</th>
                         <th data-field="realName" data-halign="center" data-align="center" data-sortable="true">姓名</th>
                         <th data-field="telephone" data-halign="center" data-align="center" data-sortable="true">手机</th>
                         <th data-field="email" data-halign="center" data-align="center" data-sortable="true">邮箱</th>

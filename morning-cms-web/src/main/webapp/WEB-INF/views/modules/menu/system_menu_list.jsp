@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>菜单管理 - 猫宁Morning</title>
+<title>菜单管理 - 拓语网络</title>
 <link rel="stylesheet" href="${ctxsta}/common/treeTable/themes/vsStyle/treeTable.min.css" />
 </head>
 

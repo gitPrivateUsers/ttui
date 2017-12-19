@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>创建广告详情 - 猫宁Morning</title>
+<title>创建广告详情 - 拓语网络</title>
 <link rel="stylesheet" href="${ctxsta}/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
 <link rel="stylesheet" href="${ctxsta}/common/icheck/flat/green.css" />
 </head>

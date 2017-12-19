@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>创建管理员 - 猫宁Morning</title>
+<title>创建管理员 - 拓语网络</title>
 <link rel="stylesheet" href="${ctxsta}/common/icheck/flat/green.css" />
 </head>
 

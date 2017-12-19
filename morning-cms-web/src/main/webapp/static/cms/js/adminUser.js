@@ -41,22 +41,22 @@ $(function() {
 				validators : {
 					notEmpty : {
 						message : '移动电话不能为空'
-					},
+					}/*,
 					regexp : {
 						regexp : /^1[3|4|5|7|8]\d{9}$/,
 						message : '手机号码格式不正确'
-					}
+					}*/
 				}
 			},
 			'email' : {
 				validators : {
 					notEmpty : {
 						message : '电子邮箱不能为空'
-					},
+					}/*,
 					regexp : {
 						regexp : /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
 						message : '电子邮箱格式不正确'
-					}
+					}*/
 				}
 			}
 		}

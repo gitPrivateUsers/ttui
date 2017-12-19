@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>个人信息 - 猫宁Morning</title>
+<title>个人信息 - 拓语网络</title>
 <link rel="stylesheet" href="${ctxsta}/common/bootstrap-table/bootstrap-table.min.css" />
 <link rel="stylesheet" href="${ctxsta}/common/icheck/flat/green.css" />
 </head>

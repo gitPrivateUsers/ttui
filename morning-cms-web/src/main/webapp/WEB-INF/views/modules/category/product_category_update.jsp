@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>更新类目 - 猫宁Morning</title>
+<title>更新类目 - 拓语网络</title>
 <link rel="stylesheet" href="${ctxsta}/common/icheck/flat/green.css" />
 <link rel="stylesheet" href="${ctxsta}/common/switchery/switchery.min.css" />
 </head>

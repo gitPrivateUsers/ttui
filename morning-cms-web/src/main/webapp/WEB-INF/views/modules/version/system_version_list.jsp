@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>版本日志 - 猫宁Morning</title>
+<title>版本日志 - 拓语网络</title>
 </head>
 
 <body class="gray-bg">

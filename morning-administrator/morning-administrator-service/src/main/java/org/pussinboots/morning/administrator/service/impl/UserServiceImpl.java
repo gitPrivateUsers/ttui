@@ -78,7 +78,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 		}
 		return count;
 	}
-	
+
 	@Override
 	public User getByLoginName(String loginName) {
 		User user = new User();
