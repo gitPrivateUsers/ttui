@@ -17,8 +17,8 @@
             <ul class="dropdown-menu animated fadeInRight m-t-xs">
               <%--<li><a class="J_menuItem" href="${ctx}/administrator/info/avatar">修改头像</a> </li>--%>
               <li><a class="J_menuItem" href="${ctx}/administrator/list/${user.userId}">个人资料</a> </li>
-              <li><a class="J_menuItem" href="contacts.html">联系我们</a> </li>
-              <li><a class="J_menuItem" href="mailbox.html">信箱</a> </li>
+              <%--<li><a class="J_menuItem" href="contacts.html">联系我们</a> </li>--%>
+              <%--<li><a class="J_menuItem" href="mailbox.html">信箱</a> </li>--%>
               <li class="divider"></li>
               <li><a href="${ctx}/logout">安全退出</a> </li>
             </ul>
