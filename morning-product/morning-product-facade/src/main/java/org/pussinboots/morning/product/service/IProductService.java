@@ -1,5 +1,7 @@
 package org.pussinboots.morning.product.service;
 
+import org.pussinboots.morning.common.base.BasePageDTO;
+import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.Product;
 import org.pussinboots.morning.product.pojo.vo.ProductVO;
 
@@ -23,5 +25,6 @@ public interface IProductService extends IService<Product> {
 	 * @return
 	 */
 	ProductVO getByNumber(Long productNumber, Integer status);
-	
+
+	BasePageDTO<Product> listByPage(PageInfo pageInfo, String search);
 }

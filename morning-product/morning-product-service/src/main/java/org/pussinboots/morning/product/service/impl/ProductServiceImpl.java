@@ -1,5 +1,8 @@
 package org.pussinboots.morning.product.service.impl;
 
+import com.baomidou.mybatisplus.plugins.Page;
+import org.pussinboots.morning.common.base.BasePageDTO;
+import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.Product;
 import org.pussinboots.morning.product.mapper.ProductMapper;
 import org.pussinboots.morning.product.pojo.vo.ProductVO;
@@ -8,6 +11,8 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 
@@ -28,5 +33,15 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 	public ProductVO getByNumber(Long productNumber, Integer status) {
 		return productMapper.getByNumber(productNumber, status);
 	}
-	
+
+	@Override
+	public BasePageDTO<Product> listByPage(PageInfo pageInfo, String search) {
+
+
+		Page<Product> page = new Page<>(pageInfo.getCurrent(), pageInfo.getLimit());
+		List<Product> products = productMapper.listByPage(pageInfo, search, page);
+		pageInfo.setTotal(page.getTotal());
+		return new BasePageDTO<Product>(pageInfo, products);
+	}
+
 }

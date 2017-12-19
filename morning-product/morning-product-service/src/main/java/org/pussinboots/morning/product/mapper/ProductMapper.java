@@ -1,10 +1,15 @@
 package org.pussinboots.morning.product.mapper;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
+import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.Product;
 import org.pussinboots.morning.product.pojo.vo.ProductVO;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
  * 
@@ -24,4 +29,7 @@ public interface ProductMapper extends BaseMapper<Product> {
 	 * @return
 	 */
 	ProductVO getByNumber(@Param("productNumber") Long productNumber, @Param("status") Integer status);
+
+
+	List<Product> listByPage( @Param("pageInfo") PageInfo pageInfo,  @Param("search") String search, RowBounds rowBounds);
 }
