@@ -27,26 +27,26 @@
       </dl>
       <dl class="col-links ">
         <dt>猫宁之家</dt>
-        <dd><a rel="nofollow" href="#">猫宁之家</a></dd>
+        <dd><a rel="nofollow" href="#">拓语之家</a></dd>
         <dd><a rel="nofollow" href="#">服务网点</a></dd>
         <dd><a rel="nofollow" href="#">预约服务</a></dd>
       </dl>
       <dl class="col-links ">
         <dt>关于猫宁</dt>
-        <dd><a rel="nofollow" href="#">了解猫宁</a></dd>
-        <dd><a rel="nofollow" href="#">加入猫宁</a></dd>
+        <dd><a rel="nofollow" href="#">了解拓语</a></dd>
+        <dd><a rel="nofollow" href="#">加入拓语</a></dd>
         <dd><a rel="nofollow" href="#">联系我们</a></dd>
       </dl>
       <dl class="col-links ">
         <dt>关注我们</dt>
         <dd><a rel="nofollow" href="#">新浪微博</a></dd>
-        <dd><a rel="nofollow" href="#">猫宁部落</a></dd>
+        <dd><a rel="nofollow" href="#">拓语部落</a></dd>
         <dd><a rel="nofollow" href="#">官方微信</a></dd>
       </dl>
       <dl class="col-links ">
         <dt>特色服务</dt>
         <dd><a rel="nofollow" href="#">F 码通道</a></dd>
-        <dd><a rel="nofollow" href="#">猫宁移动</a></dd>
+        <dd><a rel="nofollow" href="#">拓语移动</a></dd>
         <dd><a rel="nofollow" href="#">防伪查询</a></dd>
       </dl>
       <div class="col-contact">
@@ -73,7 +73,7 @@
     </div>
     <div class="info-links"> <a href="#"><img src="${ctxsta}/os/images/v-logo-2.png" alt="诚信网站"></a> <a href="#"><img src="${ctxsta}/os/images/v-logo-1.png" alt="可信网站"></a> <a href="#"><img src="${ctxsta}/os/images/v-logo-3.png" alt="网上交易保障中心"></a> </div>
   </div>
-  <div class="word">但知行好事，莫要问前程</div>
+  <div class="word">拓语科技，不二选择.</div>
 </div>
 <!--     公司链接  end         --> 
 

@@ -21,7 +21,7 @@
             <li><a rel="nofollow" href="${ctx}/uc/user/portal" target="_blank">个人中心</a></li>
             <li><a rel="nofollow" href="${ctx}/uc/order/comment" target="_blank">评价晒单</a></li>
             <li><a rel="nofollow" href="${ctx}/uc/user/favorite" target="_blank">我的喜欢</a></li>
-            <li><a rel="nofollow" href="" target="_blank">猫宁账户</a></li>
+            <li><a rel="nofollow" href="" target="_blank">拓语账户</a></li>
             <li><a rel="nofollow" href="${ctx}/pass/logout">退出登录</a></li>
           </ul>
           </span><span class="sep">|</span><span class="message"><a rel="nofollow" href="">消息通知<i class="J_miMessageTotal"></i></a></span><span class="sep">|</span><a rel="nofollow" class="link link-order" href="${ctx}/uc/order/list" target="_blank">我的订单</a></div>

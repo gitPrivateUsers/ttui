@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>找回密码 | 猫宁网 - 但行好事，莫问前程</title>
+<title>找回密码 | 拓语Language- 拓语科技，不二选择.</title>
 <meta name="author" content="拓语网络. - 但行好事，莫问前程。" />
-<meta name="keywords" content="猫宁商城,拓语网络,猫宁公益商城,公益,电子商城,猫宁社区,公益商城,在线购物,社会责任">
-<meta name="description" content="拓语网络公益商城是中国公益性在线电子商城，以商城B2C模式运营的公益在线商城，是一家致力于将传统公益商城互联网化的创新公益商城。">
+<meta name="keywords" content="拓语商城,拓语Language,拓语网络商城,网络,电子商城,拓语社区,网络商城,在线购物,社会责任">
+<meta name="description" content="拓语Language网络商城是中国网络性在线电子商城，以商城B2C模式运营的网络在线商城，是一家致力于将传统网络商城互联网化的创新网络商城。">
 <link rel="shortcut icon" href="${ctximg}/default/ico/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="${ctxsta}/common/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${ctxsta}/os/user/css/gloab.css" />
@@ -16,7 +16,7 @@
 <body class="bgf4">
 <script zIndex="-1" src="${ctxsta}/os/user/js/canvas-nest.min.js"></script>
 <div class="login-box">
-  <div class="container-nav"> <a class="navbar-brand">但行好事,莫问前程.</a>
+  <div class="container-nav"> <a class="navbar-brand">拓语科技,不二选择.</a>
     <ul class="navbar-nav-right">
     <c:forEach items="${loginTop}" var="loginTop">
        <li><a href="${loginTop.href}" target="${loginTop.target}">${loginTop.name }</a></li>   
