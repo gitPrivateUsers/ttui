@@ -4,9 +4,9 @@
 <html>
   <head>
     <title>403 - Not found</title>
-	<meta name="author" content="拓语网络. - 但行好事,莫问前程." />
-	<meta name="keywords" content="猫宁商城,拓语网络,猫宁公益商城,公益,电子商城,猫宁社区,公益商城,在线购物,社会责任">
-	<meta name="description" content="拓语网络公益商城是中国公益性在线电子商城，以商城B2C模式运营的公益在线商城，是一家致力于将传统公益商城互联网化的创新公益商城。">
+	<meta name="author" content="拓语Language. - 拓语科技，不二选择." />
+	<meta name="keywords" content="猫宁商城,拓语Language,猫宁网络商城,网络,电子商城,猫宁社区,网络商城,在线购物,社会责任">
+	<meta name="description" content="拓语Language网络商城是中国网络性在线电子商城，以商城B2C模式运营的网络在线商城，是一家致力于将传统网络商城互联网化的创新网络商城。">
 	<link rel="shortcut icon" href="${ctx}/favicon.ico" type="image/x-icon" />
 	<link rel="stylesheet" href="${ctxsta}/common/error/css/main.css" /> <!-- main stylesheet -->
 	<link rel="stylesheet" href="${ctxsta}/common/error/css/tipsy.css" /> <!-- Tipsy implementation -->

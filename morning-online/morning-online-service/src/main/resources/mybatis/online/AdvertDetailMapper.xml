@@ -38,8 +38,8 @@
 		WHERE
 			advert_id = #{advertId}	
 		AND status = #{status}
-		AND begin_time &lt;= #{date}
-		AND end_time &gt;= #{date}
+		<!-- AND begin_time &lt;= #{date}
+		AND end_time &gt;= #{date} -->
 		ORDER BY 
 			sort
 		LIMIT ${defultNumber}	

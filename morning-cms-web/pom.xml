@@ -65,7 +65,19 @@
 			<groupId>org.pussinboots.morning</groupId>
 			<artifactId>morning-support-service</artifactId>
 			<version>${morning.version}</version>
-		</dependency>		
+		</dependency>	
+		<!--start 添加订单接口依赖 -->
+		<dependency>
+			<groupId>org.pussinboots.morning</groupId>
+			<artifactId>morning-order-service</artifactId>
+			<version>${morning.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.pussinboots.morning</groupId>
+			<artifactId>morning-order-facade</artifactId>
+			<version>${morning.version}</version>
+		</dependency>
+		<!--end 添加订单接口依赖  -->	
 		<!-- Morning相关依赖 end -->
 
 		<!-- 7.安全框架SECURITY:shiro begin -->

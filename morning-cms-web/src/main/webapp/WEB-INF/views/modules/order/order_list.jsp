@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>角色管理 - 拓语网络</title>
+  <title>订单管理 - 拓语网络</title>
   <link rel="stylesheet" href="${ctxsta}/common/bootstrap-table/bootstrap-table.min.css" />
 </head>
 
@@ -13,7 +13,7 @@
     <div class="col-sm-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>商品管理</h5>
+          <h5>订单管理</h5>
           <div class="ibox-tools"> <a class="collapse-link"><i class="fa fa-chevron-up"></i></a> <a class="close-link"><i class="fa fa-times"></i></a> </div>
         </div>
         <div class="ibox-content">
@@ -21,11 +21,11 @@
             <div class="col-sm-12">
               <div class="example-wrap">
                 <div class="example">
-                  <div id="toolbar" class="btn-group m-t-sm">
+              <%--     <div id="toolbar" class="btn-group m-t-sm">
                     <shiro:hasPermission name="product:list:view">
                       <button type="button" class="btn btn-default"  title="创建商品" onclick="layer_show('创建商品','${ctx}/administrator/role/create','1000','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
                     </shiro:hasPermission>
-                  </div>
+                  </div> --%>
                   <table id="table"
                          data-toggle="table"
                          data-height="600"
@@ -35,27 +35,28 @@
                          data-show-export="true"
                          data-show-pagination-switch="true"
                          data-show-columns="true"
-                         data-url="${ctx}/product/detail/list" <!-- 查询路径 -->
-                         data-pagination="true"
+                         data-url="${ctx}/system/order/list" <!-- 查询路径 -->
+                         <!-- data-pagination="true"
                          data-page-size="20"
                          data-page-list="[20, 50, 100, 200]"
                          data-side-pagination="server"
                          data-striped="true"
                          data-pagination="true"
                          data-sort-order="desc"
-                         data-toolbar="#toolbar">
+                         data-toolbar="#toolbar"> -->
                     <thead>
                     <tr>
-                      <th data-field="productId" data-halign="center" data-align="center" data-sortable="true">商品ID</th>
-                      <th data-field="name" data-halign="center" data-align="center" data-sortable="true">商品名称</th>
-                      <th data-field="showPrice" data-halign="center" data-align="center" data-sortable="true">显示价格</th>
-                      <th data-field="introduce" data-halign="center" data-align="center" data-sortable="true">商品简介</th>
-                      <th data-field="description" data-halign="center" data-align="center" data-sortable="true">商品描述</th>
-                      <th data-field="picImg" data-halign="center" data-align="center" data-sortable="true">展示图片</th>
-                      <th data-field="labelName" data-halign="center" data-align="center" data-sortable="true">标签名称</th>
-                      <th data-field="commentNumber" data-halign="center" data-align="center" data-sortable="true">评论数量</th>
-                    <%--<th data-field="remarks" data-halign="center" data-align="center" data-sortable="true">备注</th>--%>
-                      <th data-formatter="actionFormatter" data-events="actionEvents" data-halign="center" data-align="center" data-sortable="true">操作</th>
+                      <th data-field="orderId" data-halign="center" data-align="center" data-sortable="true">订单ID</th>
+                      <th data-field="orderNumber" data-halign="center" data-align="center" data-sortable="true">订单编号</th>
+                      <th data-field="userId" data-halign="center" data-align="center" data-sortable="true">用户ID</th>
+                      <th data-field="name" data-halign="center" data-align="center" data-sortable="true">支付方式</th>
+                      <th data-field="shipment_time" data-halign="center" data-align="center" data-sortable="true">显示内容</th>
+                      <th data-field="shipment_type" data-halign="center" data-align="center" data-sortable="true">显示内容</th>
+                      <th data-field="shipment_amount" data-halign="center" data-align="center" data-sortable="true">显示内容</th>
+                <!--  <th data-field="remarks" data-halign="center" data-align="center" data-sortable="true">显示内容</th>
+                      <th data-field="remarks" data-halign="center" data-align="center" data-sortable="true">备注</th>
+                      <th data-formatter="actionFormatter" data-events="actionEvents" data-halign="center" data-align="center" data-sortable="true">操作</th> 
+                 -->
                     </tr>
                     </thead>
                   </table>
@@ -75,7 +76,7 @@
   <script src="${ctxsta}/common/bootstrap-table/tableExport.js"></script>
   <script src="${ctxsta}/common/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
   <!-- 自定义js -->
-  <script src="${ctxsta}/cms/js/productList.js"></script>
+  <script src="${ctxsta}/cms/js/orderList.js"></script>
 </myfooter>
 </body>
 </html>
