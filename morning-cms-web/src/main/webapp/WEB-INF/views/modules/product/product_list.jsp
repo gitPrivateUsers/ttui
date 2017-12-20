@@ -22,8 +22,8 @@
               <div class="example-wrap">
                 <div class="example">
                   <div id="toolbar" class="btn-group m-t-sm">
-                    <shiro:hasPermission name="product:list:view">
-                      <button type="button" class="btn btn-default"  title="创建商品" onclick="layer_show('创建商品','${ctx}/administrator/role/create','1000','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
+                    <shiro:hasPermission name="product:detail:create">
+                      <button type="button" class="btn btn-default"  title="创建商品" onclick="layer_show('创建商品','${ctx}/product/detail/create','800','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
                     </shiro:hasPermission>
                   </div>
                   <table id="table"
@@ -50,7 +50,7 @@
                       <th data-field="name" data-halign="center" data-align="center" data-sortable="true">商品名称</th>
                       <th data-field="showPrice" data-halign="center" data-align="center" data-sortable="true">显示价格</th>
                       <th data-field="introduce" data-halign="center" data-align="center" data-sortable="true">商品简介</th>
-                      <th data-field="description" data-halign="center" data-align="center" data-sortable="true">商品描述</th>
+                      <th data-field="pageDescription" data-halign="center" data-align="center" data-sortable="true">商品描述</th>
                       <th data-field="picImg" data-halign="center" data-align="center" data-sortable="true">展示图片</th>
                       <th data-field="labelName" data-halign="center" data-align="center" data-sortable="true">标签名称</th>
                       <th data-field="commentNumber" data-halign="center" data-align="center" data-sortable="true">评论数量</th>

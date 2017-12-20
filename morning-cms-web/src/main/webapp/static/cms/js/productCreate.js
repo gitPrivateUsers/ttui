@@ -61,7 +61,7 @@ window.actionEvents = {
 		status_start(index, row.productId);
 	},
 	'click .edit' : function(e, value, row, index) {
-		layer_show("修改商品详情", baselocation + '/product/detail/' + row.productId + '/edit', 900, 650)
+		layer_show(row.name, baselocation + '/product/detail/' + row.productId + '/edit', 900, 650)
 	},
 	'click .remove' : function(e, value, row, index) {
 		admin_delete(index, row.productId);
@@ -192,68 +192,68 @@ $(function() {
  */
 $(function() {
 	$('#form').bootstrapValidator({
-			container : 'tooltip',
-			message : 'This value is not valid',
-			feedbackIcons : {
-				valid : 'glyphicon glyphicon-ok',
-				invalid : 'glyphicon glyphicon-remove',
-				validating : 'glyphicon glyphicon-refresh'
+		container : 'tooltip',
+		message : 'This value is not valid',
+		feedbackIcons : {
+			valid : 'glyphicon glyphicon-ok',
+			invalid : 'glyphicon glyphicon-remove',
+			validating : 'glyphicon glyphicon-refresh'
+		},
+		fields : {
+			'name' : {
+				message : '广告名称验证失败',
+				validators : {
+					notEmpty : {
+						message : '广告名称不能为空'
+					}
+				}
 			},
-			fields : {
-				'name' : {
-					message : '广告名称验证失败',
-					validators : {
-						notEmpty : {
-							message : '广告名称不能为空'
-						}
+			'code' : {
+				message : '广告标志验证失败',
+				validators : {
+					notEmpty : {
+						message : '广告标志不能为空'
 					}
-				},
-				'code' : {
-					message : '广告标志验证失败',
-					validators : {
-						notEmpty : {
-							message : '广告标志不能为空'
-						}
-					}
-				},
-				'showNumber' : {
-					message : '显示数量验证失败',
-					validators : {
-						notEmpty : {
-							message : '广告栏显示数量不能为空'
-						},
-						regexp: {
-							regexp: /^[0-9]*$/,
-							message: '广告栏显示数量只能为数字'
-						}
-					}
-				},
-				'width' : {
-					message : '宽度验证失败',
-					validators : {
-						notEmpty : {
-							message : '宽度不能为空'
-						},
-						regexp: {
-							regexp: /^[0-9]*$/,
-							message: '宽度只能为数字'
-						}
-					}
-				},
-				'height' : {
-					message : '高度验证失败',
-					validators : {
-						notEmpty : {
-							message : '高度不能为空'
-						},
-						regexp: {
-							regexp: /^[0-9]*$/,
-							message: '高度只能为数字'
-						}
-					}
-				},
-			}
-		})
+				}
+			},	
+			'showNumber' : {
+				message : '显示数量验证失败',
+				validators : {
+					notEmpty : {
+						message : '广告栏显示数量不能为空'
+					},
+		            regexp: {
+		                regexp: /^[0-9]*$/,
+		                message: '广告栏显示数量只能为数字'
+		            }
+				}
+			},
+			'width' : {
+				message : '宽度验证失败',
+				validators : {
+					notEmpty : {
+						message : '宽度不能为空'
+					},
+		            regexp: {
+		                regexp: /^[0-9]*$/,
+		                message: '宽度只能为数字'
+		            }
+				}
+			},	
+			'height' : {
+				message : '高度验证失败',
+				validators : {
+					notEmpty : {
+						message : '高度不能为空'
+					},
+		            regexp: {
+		                regexp: /^[0-9]*$/,
+		                message: '高度只能为数字'
+		            }
+				}
+			},				
+		}
+	})
 		.on('success.form.bv', function(e) {
 			// Prevent form submission
 			e.preventDefault();
@@ -263,7 +263,7 @@ $(function() {
 
 			// Get the BootstrapValidator instance
 			var bv = $form.data('bootstrapValidator');
-
+			
 			var method = $('#form').attr('data-method');
 			// Use Ajax to submit form data
 			if (method == 'put') {
@@ -274,7 +274,7 @@ $(function() {
 					url : $form.attr('action'),
 					success : function(result) {
 						if (result.code == 1) {
-							parent.layer.msg("更新商品详情成功!", {
+							parent.layer.msg("更新广告成功!", {
 								shade : 0.3,
 								time : 1500
 							}, function() {
@@ -296,7 +296,7 @@ $(function() {
 					url : $form.attr('action'),
 					success : function(result) {
 						if (result.code == 1) {
-							parent.layer.msg("创建商品信息成功!", {
+							parent.layer.msg("创建广告成功!", {
 								shade : 0.3,
 								time : 1500
 							}, function() {
