@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-xs-offset-1 control-label">显示价格：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="code" value="${product.showPrice}">
+                                <input type="text" class="form-control" name="showPrice" value="${product.showPrice}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
