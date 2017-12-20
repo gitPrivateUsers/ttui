@@ -71,6 +71,67 @@ public class ProductController extends BaseController {
 		return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
 	}
 
+	/**
+	 * GET 创建product
+	 * @return
+	 */
+	@ApiOperation(value = "创建商品", notes = "创建广告页面")
+	@RequiresPermissions("product:detail:create")
+	@GetMapping(value = "/create")
+	public String getInsertPage(Model model) {
+		return "/modules/product/product_create";
+	}
 
+	/**
+	 * POST 创建商品
+	 * @return
+	 */
+	@ApiOperation(value = "创建商品", notes = "创建商品")
+	@RequiresPermissions("product:detail:create")
+	@PostMapping(value = "")
+	@ResponseBody
+	public Object insert(Product product) {
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+			Integer count = productService.insertProduct(product, authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
 
+	/**
+	 * GET 更新商品信息
+	 * @return
+	 */
+	@ApiOperation(value = "更新商品信息", notes = "更新商品信息")
+	@RequiresPermissions("product:detail:edit")
+	@GetMapping(value = "/{productId}/edit")
+	public String getUpdatePage(Model model, @PathVariable("productId") Long productId) {
+		// 广告信息
+		Product product = productService.selectById(productId);
+		model.addAttribute("product", product);
+
+		return "/modules/product/product_update";
+	}
+
+	/**
+	 * PUT 更新商品信息
+	 * @return
+	 */
+	@ApiOperation(value = "更新商品信息", notes = "根据ID修改")
+	@RequiresPermissions("product:detail:edit")
+	@PutMapping(value = "/{productId}")
+	@ResponseBody
+	public Object update(Product product, @PathVariable("productId") Long productId) {
+
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+			// 更新用户及广告记录
+			Integer count = productService.updateProduct(product, authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
 }

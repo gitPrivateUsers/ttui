@@ -27,4 +27,14 @@ public interface IProductService extends IService<Product> {
 	ProductVO getByNumber(Long productNumber, Integer status);
 
 	BasePageDTO<Product> listByPage(PageInfo pageInfo, String search);
+
+	Integer insertProduct(Product product, String userName);
+
+	/**
+	 * 根据id及信息修改商品
+	 * @param product
+	 * @param userName
+     * @return
+     */
+	Integer updateProduct(Product product, String userName);
 }
