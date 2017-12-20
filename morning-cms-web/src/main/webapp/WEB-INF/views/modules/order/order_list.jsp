@@ -22,11 +22,12 @@
                         <div class="col-sm-12">
                             <div class="example-wrap">
                                 <div class="example">
-                                    <%--     <div id="toolbar" class="btn-group m-t-sm">
+                                <!-- 订单添加按钮 -->
+                                 <%-- <div id="toolbar" class="btn-group m-t-sm">
                                           <shiro:hasPermission name="product:list:view">
-                                            <button type="button" class="btn btn-default"  title="创建商品" onclick="layer_show('创建商品','${ctx}/administrator/role/create','1000','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
+                                            <button type="button" class="btn btn-default"  title="创建订单" onclick="layer_show('创建订单','${ctx}/administrator/role/create','1000','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
                                           </shiro:hasPermission>
-                                        </div> --%>
+                                  </div> --%>
                                     <table id="table"
                                            data-toggle="table"
                                            data-height="600"
@@ -56,21 +57,26 @@
                                             <th data-field="userId" data-halign="center" data-align="center"
                                                 data-sortable="true">用户ID
                                             </th>
-                                            <th data-field="name" data-halign="center" data-align="center"
+                                            <th data-field="payType" data-halign="center" data-align="center"
                                                 data-sortable="true">支付方式
                                             </th>
-                                            <th data-field="shipment_time" data-halign="center" data-align="center"
-                                                data-sortable="true">显示内容
+                                            <th data-field="shipmentTime" data-halign="center" data-align="center"
+                                                data-sortable="true">配送时间
                                             </th>
-                                            <th data-field="shipment_type" data-halign="center" data-align="center"
-                                                data-sortable="true">显示内容
+                                            <th data-formatter="statusFormatter" data-field="orderStatus" data-halign="center" data-align="center"
+                                                data-sortable="true">订单状态
                                             </th>
-                                            <th data-field="shipment_amount" data-halign="center" data-align="center"
-                                                data-sortable="true">显示内容
+                                            <th data-formatter="timeFormatter"data-field="createTime" data-halign="center" data-align="center" 
+                                                data-sortable="true">创建时间
                                             </th>
-                                            <!--  <th data-field="remarks" data-halign="center" data-align="center" data-sortable="true">显示内容</th>
+                                            <th data-field="orderAmount" data-halign="center" data-align="center"
+                                                data-sortable="true">订单金额
+                                            </th>
+                                            <th data-formatter="actionFormatter" data-events="actionEvents" data-halign="center" 
+                                                data-align="center" data-sortable="true">修改订单信息
+                                            </th>
+                                            <!-- 
                                                   <th data-field="remarks" data-halign="center" data-align="center" data-sortable="true">备注</th>
-                                                  <th data-formatter="actionFormatter" data-events="actionEvents" data-halign="center" data-align="center" data-sortable="true">操作</th>
                                              -->
                                         </tr>
                                         </thead>

@@ -6,166 +6,47 @@ function timeFormatter(value) {
 }
 function statusFormatter(value) {
 	if (value == 1) {
-		return '<span class="label label-primary">显示</span>'
-	} else if (value == 0) {
-		return '<span class="label label-danger">隐藏</span>'
-	}
+		return '<span  class="">已提交</span>'
+	} 
+	if (value == 2) {
+		return '<span  class="">待付款</span>'
+	} 
+	if (value == 3) {
+		return '<span  class="">已取消</span>'
+	} 
+	if (value == 4) {
+		return '<span  class="">已付款</span>'
+	} 
+	if (value == 5) {
+		return '<span  class="">配送中</span>'
+	} 
+	if (value == 6) {
+		return '<span  class="">已完成</span>'
+	} 
 }
-function typeFormatter(value) {
+/*function typeFormatter(value) {
 	if (value == 1) {
 		return '<span class="label label-primary">图片</span>'
 	} else if (value == 0) {
 		return '<span class="label label-danger">文本</span>'
 	}
-}
+}*/
 
 function actionFormatter(value, row, index) {
-	if (row.status == 1) {
-		return [
-			'<a class="freeze m-r-sm text-info" href="javascript:void(0)" title="隐藏">',
-			'<i class="glyphicon glyphicon-pause"></i>',
-			'</a>',
+	 return [ 
 			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
 			'<i class="glyphicon glyphicon-edit"></i>',
-			'</a>',
-			'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
-			'<i class="glyphicon glyphicon-remove"></i>',
-			'</a>',
-			'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="广告详情">',
-			'<i class="glyphicon glyphicon-sort-by-attributes-alt"></i>',
-			'</a>',
-		].join('');
-	} else {
-		return [
-			'<a class="normal m-r-sm text-info" href="javascript:void(0)" title="显示">',
-			'<i class="glyphicon glyphicon-play"></i>',
-			'</a>',
-			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
-			'<i class="glyphicon glyphicon-edit"></i>',
-			'</a>',
-			'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
-			'<i class="glyphicon glyphicon-remove"></i>',
-			'</a>',
-			'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="广告详情">',
-			'<i class="glyphicon glyphicon-sort-by-attributes-alt"></i>',
-			'</a>',
-		].join('');
-	}
+			'</a>' 
+		].join(''); 
 }
 
-window.actionEvents = {
-	'click .freeze' : function(e, value, row, index) {
-		status_stop(index, row.productId);
-	},
-	'click .normal' : function(e, value, row, index) {
-		status_start(index, row.productId);
-	},
+window.actionEvents = { 
 	'click .edit' : function(e, value, row, index) {
-		//layer_show(row.name, baselocation + '/online/advert/' + row.advertId + '/edit', 900, 650)
-	},
-	'click .remove' : function(e, value, row, index) {
-		//admin_delete(index, row.productId);
-	},
-	'click .log' : function(e, value, row, index) {
-		//window.location.href = baselocation + '/online/advert/' + row.advertId + '/detail/view';
-	}
+		 layer_show(row.name, baselocation + '/order/list/' + row.advertId + '/edit', 900, 650)
+ 	}, 
 };
 
-/**
- * 隐藏广告
- */
-function status_stop(index, value) {
-	layer.confirm('确认要隐藏该广告吗？', {
-		btn : [ '确定', '取消' ] //按钮
-	}, function() {
-		$.ajax({
-			dataType : 'json',
-			type : 'put',
-			url : baselocation + '/online/advert/' + value + '/audit',
-			success : function(result) {
-				if (result.code == 1) {
-					$('#table').bootstrapTable('updateRow', {
-						index : index,
-						row : {
-							status : 0,
-						}
-					});
-					layer.msg('该广告隐藏成功!', {
-						icon : 5,
-						time : 1000
-					});
-				} else {
-					layer.alert(result.message, {
-						icon : 2
-					});
-				}
-			}
-		})
-	});
-}
 
-/**
- * 显示广告
- */
-function status_start(index, value) {
-	layer.confirm('确认要显示该广告吗？', {
-		btn : [ '确定', '取消' ] //按钮
-	}, function() {
-		$.ajax({
-			dataType : 'json',
-			type : 'put',
-			url : baselocation + '/online/advert/' + value + '/audit',
-			success : function(result) {
-				if (result.code == 1) {
-					$('#table').bootstrapTable('updateRow', {
-						index : index,
-						row : {
-							status : 1,
-						}
-					});
-					layer.msg('该广告显示成功!', {
-						icon : 6,
-						time : 1000
-					});
-				} else {
-					layer.alert(result.message, {
-						icon : 2
-					});
-				}
-			}
-		})
-	});
-}
-
-/**
- * 删除广告
- */
-function admin_delete(index, value) {
-	layer.confirm('确认要删除该广告吗？', {
-		btn : [ '确定', '取消' ] //按钮
-	}, function() {
-		$.ajax({
-			type : 'delete',
-			dataType : 'json',
-			url : baselocation + '/online/advert/' + value,
-			success : function(result) {
-				if (result.code == 1) {
-					$('#table').bootstrapTable('hideRow', {
-						index : index
-					});
-					layer.msg('该广告删除成功!', {
-						icon : 1,
-						time : 1000
-					});
-				} else {
-					layer.alert(result.message, {
-						icon : 2
-					});
-				}
-			}
-		})
-	});
-}
 
 /**
  * 多选框插件
