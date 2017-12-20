@@ -86,5 +86,25 @@
 				ORDER BY ${pageInfo.sort} ${pageInfo.order}
 			</if>
 		</where>
+	</select>	<!-- 根据分页信息/搜索内容查找广告列表222222222 -->
+	<select id="listByPage2" resultType="org.pussinboots.morning.product.entity.Product">
+		SELECT
+		product_id AS productId, product_number AS productNumber, label_id AS labelId, name, show_price AS showPrice, introduce, pic_img AS picImg, show_in_top AS showInTop, show_in_nav AS showInNav, show_in_hot AS showInHot, show_in_shelve AS showInShelve, create_time AS createTime, create_by AS createBy, shelve_time AS shelveTime, shelve_by AS shelveBy, update_time AS updateTime, update_by AS updateBy, search_key AS searchKey, page_title AS pageTitle, page_description AS pageDescription, page_keyword AS pageKeyword, remarks
+
+		FROM
+		os_product
+		<where>
+			1=1
+			<if test="search != null">
+				AND (
+				name LIKE '%' #{search} '%'
+				OR create_by LIKE '%' #{search} '%'
+				OR update_by LIKE '%' #{search} '%'
+				)
+			</if>
+			<if test="pageInfo.sort != null">
+				ORDER BY ${pageInfo.sort} ${pageInfo.order}
+			</if>
+		</where>
 	</select>
 </mapper>

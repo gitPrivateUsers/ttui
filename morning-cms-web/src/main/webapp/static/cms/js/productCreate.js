@@ -22,33 +22,33 @@ function typeFormatter(value) {
 function actionFormatter(value, row, index) {
 	if (row.status == 1) {
 		return [
-			'<a class="freeze m-r-sm text-info" href="javascript:void(0)" title="隐藏">',
-			'<i class="glyphicon glyphicon-pause"></i>',
-			'</a>',
+			//'<a class="freeze m-r-sm text-info" href="javascript:void(0)" title="隐藏">',
+			//'<i class="glyphicon glyphicon-pause"></i>',
+			//'</a>',
 			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
 			'<i class="glyphicon glyphicon-edit"></i>',
-			'</a>',
-			'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
-			'<i class="glyphicon glyphicon-remove"></i>',
-			'</a>',
-			'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="广告详情">',
-			'<i class="glyphicon glyphicon-sort-by-attributes-alt"></i>',
-			'</a>',
+			//'</a>',
+			//'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
+			//'<i class="glyphicon glyphicon-remove"></i>',
+			//'</a>',
+			//'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="广告详情">',
+			//'<i class="glyphicon glyphicon-sort-by-attributes-alt"></i>',
+			//'</a>',
 		].join('');
 	} else {
 		return [
-			'<a class="normal m-r-sm text-info" href="javascript:void(0)" title="显示">',
-			'<i class="glyphicon glyphicon-play"></i>',
-			'</a>',
+			//'<a class="normal m-r-sm text-info" href="javascript:void(0)" title="显示">',
+			//'<i class="glyphicon glyphicon-play"></i>',
+			//'</a>',
 			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
 			'<i class="glyphicon glyphicon-edit"></i>',
-			'</a>',
-			'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
-			'<i class="glyphicon glyphicon-remove"></i>',
-			'</a>',
-			'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="广告详情">',
-			'<i class="glyphicon glyphicon-sort-by-attributes-alt"></i>',
-			'</a>',
+			//'</a>',
+			//'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
+			//'<i class="glyphicon glyphicon-remove"></i>',
+			//'</a>',
+			//'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="广告详情">',
+			//'<i class="glyphicon glyphicon-sort-by-attributes-alt"></i>',
+			//'</a>',
 		].join('');
 	}
 }

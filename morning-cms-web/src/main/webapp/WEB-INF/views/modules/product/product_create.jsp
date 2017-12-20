@@ -40,23 +40,54 @@
             </div>
             <div class="hr-line-dashed"></div>    
             <div class="form-group">
-              <label class="col-sm-2 col-xs-offset-1 control-label">评论数：</label>
+              <label class="col-sm-2 col-xs-offset-1 control-label">商品编码：</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" name="commentNumber">
+                <input type="text" class="form-control" name="productNumber">
               </div>
             </div>
             <div class="hr-line-dashed"></div>            
             <div class="form-group">
               <label class="col-sm-2 col-xs-offset-1 control-label">图片：</label>
               <div class="col-sm-7">
-                <input type="text" maxlength="10" class="form-control" name="picImg">
+                <input type="text"   class="form-control" name="picImg">
               </div>
             </div>
-            <div class="hr-line-dashed"></div>            
+
+
+
+            <div class="hr-line-dashed"></div>
             <div class="form-group">
-              <label class="col-sm-2  col-xs-offset-1 control-label">描述：</label>
+              <label class="col-sm-2  col-xs-offset-1 control-label">搜索关键词：</label>
               <div class="col-sm-7">
-                <textarea class="form-control" rows="2" name="pageDescription" placeholder="请输入消息..."></textarea>
+                <textarea class="form-control" rows="2" name="searchKey" placeholder="请输入搜索关键词..."></textarea>
+              </div>
+            </div>
+
+
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+              <label class="col-sm-2  col-xs-offset-1 control-label">页面标题：</label>
+              <div class="col-sm-7">
+                <textarea class="form-control" rows="2" name="pageTitle" placeholder="请输入页面标题..."></textarea>
+              </div>
+            </div>
+
+
+
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+              <label class="col-sm-2  col-xs-offset-1 control-label">页面关键词：</label>
+              <div class="col-sm-7">
+                <textarea class="form-control" rows="2" name="pageKeyword" placeholder="请输入页面关键词..."></textarea>
+              </div>
+            </div>
+
+
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+              <label class="col-sm-2  col-xs-offset-1 control-label">页面描述：</label>
+              <div class="col-sm-7">
+                <textarea class="form-control" rows="2" name="pageDescription" placeholder="请输入页面描述..."></textarea>
               </div>
             </div>
             <div class="hr-line-dashed"></div>

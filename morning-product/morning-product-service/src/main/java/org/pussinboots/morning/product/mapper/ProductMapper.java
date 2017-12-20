@@ -32,4 +32,5 @@ public interface ProductMapper extends BaseMapper<Product> {
 
 
 	List<Product> listByPage( @Param("pageInfo") PageInfo pageInfo,  @Param("search") String search, RowBounds rowBounds);
+	List<Product> listByPage2( @Param("pageInfo") PageInfo pageInfo,  @Param("search") String search, RowBounds rowBounds);
 }

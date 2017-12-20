@@ -50,7 +50,8 @@ public class ProductVO implements Serializable{
 	 * 商品描述 
 	 */
 	private String description;
-	
+	private String pageDescription;
+
     /**
      * 展示图片
      */

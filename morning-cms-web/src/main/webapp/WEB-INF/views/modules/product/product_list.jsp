@@ -47,13 +47,14 @@
                     <thead>
                     <tr>
                       <th data-field="productId" data-halign="center" data-align="center" data-sortable="true">商品ID</th>
+                      <th data-field="productNumber" data-halign="center" data-align="center" data-sortable="true">商品编号</th>
                       <th data-field="name" data-halign="center" data-align="center" data-sortable="true">商品名称</th>
                       <th data-field="showPrice" data-halign="center" data-align="center" data-sortable="true">显示价格</th>
                       <th data-field="introduce" data-halign="center" data-align="center" data-sortable="true">商品简介</th>
                       <th data-field="pageDescription" data-halign="center" data-align="center" data-sortable="true">商品描述</th>
                       <th data-field="picImg" data-halign="center" data-align="center" data-sortable="true">展示图片</th>
-                      <th data-field="labelName" data-halign="center" data-align="center" data-sortable="true">标签名称</th>
-                      <th data-field="commentNumber" data-halign="center" data-align="center" data-sortable="true">评论数量</th>
+                      <th data-field="searchKey" data-halign="center" data-align="center" data-sortable="true">搜索关键词</th>
+                      <th data-field="createBy" data-halign="center" data-align="center" data-sortable="true">创建人</th>
                     <%--<th data-field="remarks" data-halign="center" data-align="center" data-sortable="true">备注</th>--%>
                       <th data-formatter="actionFormatter" data-events="actionEvents" data-halign="center" data-align="center" data-sortable="true">操作</th>
                     </tr>

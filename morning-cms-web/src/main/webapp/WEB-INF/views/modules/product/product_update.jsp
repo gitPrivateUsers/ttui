@@ -44,14 +44,45 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">商品编码：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="productNumber" value="${product.productNumber}">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
                             <label class="col-sm-2 col-xs-offset-1 control-label">图片：</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" name="picImg" value="${product.picImg}">
                             </div>
                         </div>
+
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2  col-xs-offset-1 control-label">描述：</label>
+                            <label class="col-sm-2  col-xs-offset-1 control-label">搜索关键词：</label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" rows="2" name="searchKey"
+                                          placeholder="请输入消息...">${product.searchKey}</textarea>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">页面标题：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="pageTitle" value="${product.pageTitle}">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">页面关键词：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="pageKeyword" value="${product.pageKeyword}">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2  col-xs-offset-1 control-label">页面描述：</label>
                             <div class="col-sm-7">
                                 <textarea class="form-control" rows="2" name="pageDescription"
                                           placeholder="请输入消息...">${product.pageDescription}</textarea>

@@ -55,7 +55,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
 
         Page<Product> page = new Page<>(pageInfo.getCurrent(), pageInfo.getLimit());
-        List<Product> products = productMapper.listByPage(pageInfo, search, page);
+        List<Product> products = productMapper.listByPage2(pageInfo, search, page);
         pageInfo.setTotal(page.getTotal());
         return new BasePageDTO<Product>(pageInfo, products);
     }
