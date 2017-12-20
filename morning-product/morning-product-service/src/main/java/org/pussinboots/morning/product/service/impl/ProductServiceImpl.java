@@ -64,6 +64,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     public Integer insertProduct(Product product, String userName) {
         product.setCreateBy(userName);
         product.setCreateTime(new Date());
+        int h = productMapper.insert(product);
         //商品详情初始化
         ProductDetail pd = new ProductDetail();
         pd.setDescription(product.getPageDescription());
@@ -110,7 +111,6 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         int e = productCategoryMapper.insert(pc);
         int f = productRecommendMapper.insert(pr);
 //        int g = productSpecificationMapper.insert(ps);
-        int h = productMapper.insert(product);
         return a+b+c+d+e+f+h==7?1:0;
     }
 
