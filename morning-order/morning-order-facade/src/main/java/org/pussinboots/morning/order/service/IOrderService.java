@@ -48,7 +48,7 @@ public interface IOrderService extends IService<Order> {
 	 * @param orderNumber 订单编号
 	 * @return
 	 */
-	BasePageDTO<OrderVO> getOrder(Long userId, Long orderNumber);
+	OrderVO getOrder(Long userId, Long orderNumber);
 	
 	/**
 	 * 根据订单编号,用户ID,订单状态查找订单信息
