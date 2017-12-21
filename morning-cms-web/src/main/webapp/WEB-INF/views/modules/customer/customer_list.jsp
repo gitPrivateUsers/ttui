@@ -23,7 +23,7 @@
                 <div class="example">
                   <div id="toolbar" class="btn-group m-t-sm">
                     <shiro:hasPermission name="customer:detail:create">
-                      <button type="button" class="btn btn-default"  title="创建用户" onclick="layer_show('添加用户','${ctx}/customer/detail/create','800','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
+                      <button type="button" class="btn btn-default"   onclick="layer_show('添加用户','${ctx}/customer/detail/create','800','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
                     </shiro:hasPermission>
                   </div>
                   <table id="table"

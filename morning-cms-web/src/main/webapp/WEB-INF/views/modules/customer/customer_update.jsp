@@ -26,49 +26,56 @@
                         <div class="form-group m-t">
                             <label class="col-sm-2 col-xs-offset-1 control-label">昵称：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="name" value="${customer.userName}">
+                                <input type="text" class="form-control" name="userName" value="${customer.userName}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
-                        <div class="form-group m-t">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">登录密码：</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" name="name" value="${customer.loginPassword}">
-                            </div>
-                        </div>
+                        <%--<div class="form-group m-t">--%>
+                            <%--<label class="col-sm-2 col-xs-offset-1 control-label">登录密码：</label>--%>
+                            <%--<div class="col-sm-7">--%>
+                                <%--<input type="text" class="form-control" name="userName" value="${customer.loginPassword}">--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group m-t">
                             <label class="col-sm-2 col-xs-offset-1 control-label">真实姓名：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="name" value="${customer.realName}">
+                                <input type="text" class="form-control" name="realName" value="${customer.realName}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group m-t">
                             <label class="col-sm-2 col-xs-offset-1 control-label">性别：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="name" value="${customer.sex}">
+                                <input type="text" class="form-control" name="sex" value="${customer.sex}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group m-t">
                             <label class="col-sm-2 col-xs-offset-1 control-label">年龄：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="name" value="${customer.age}">
+                                <input type="text" class="form-control" name="age" value="${customer.age}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group m-t">
                             <label class="col-sm-2 col-xs-offset-1 control-label">电子邮箱：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="name" value="${customer.email}">
+                                <input type="text" class="form-control" name="email" value="${customer.email}">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group m-t">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">手机号码：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="telephone" value="${customer.telephone}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group m-t">
                             <label class="col-sm-2 col-xs-offset-1 control-label">状态：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="name" value="${customer.status}">
+                                <input type="text" class="form-control" name="status" value="${customer.status}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>

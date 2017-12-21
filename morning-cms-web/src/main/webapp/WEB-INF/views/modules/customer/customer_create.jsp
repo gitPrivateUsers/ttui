@@ -61,6 +61,13 @@
             </div>
             <div class="hr-line-dashed"></div>
             <div class="form-group m-t">
+              <label class="col-sm-2 col-xs-offset-1 control-label">手机号码：</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" name="telephone">
+              </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group m-t">
               <label class="col-sm-2 col-xs-offset-1 control-label">状态：</label>
               <div class="col-sm-7">
                 <input type="text" class="form-control" name="status">
