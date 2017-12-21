@@ -2,8 +2,11 @@ package org.pussinboots.morning.administrator.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 import org.pussinboots.morning.administrator.entity.Customer;
 import org.pussinboots.morning.administrator.pojo.vo.CustomerVO;
+import org.pussinboots.morning.administrator.pojo.vo.UserVO;
 import org.pussinboots.morning.common.support.page.PageInfo;
 
 import java.util.List;
@@ -33,5 +36,6 @@ public interface CustomerMapper extends BaseMapper<Customer> {
 	 */
 	CustomerVO getById(Long userId);
 
-	List<Customer> listByPage(PageInfo pageInfo, String search, Page<Customer> page);
+	List<Customer> listByPage(@Param("pageInfo") PageInfo pageInfo, @Param("search") String search, RowBounds rowBounds);
+
 }
