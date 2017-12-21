@@ -58,14 +58,14 @@
                       <%--<th data-field="emailIsActive" data-halign="center" data-align="center" data-sortable="true">邮箱激活</th>--%>
                         <th data-field="email" data-halign="center" data-align="center" data-sortable="true">电子邮箱</th>
                         <th data-field="telephone" data-halign="center" data-align="center" data-sortable="true">手机号码</th>
-                        <th data-field="lastLoginTime" data-halign="center" data-align="center" data-sortable="true">最后登录时间</th>
+                        <th data-formatter="timeFormatter"data-field="lastLoginTime" data-halign="center" data-align="center" data-sortable="true">最后登录时间</th>
                     <%--<th data-field="lastLoginIP" data-halign="center" data-align="center" data-sortable="true">最后登录IP</th>--%>
                         <th data-field="loginNumber" data-halign="center" data-align="center" data-sortable="true">登录次数</th>
-                        <th data-field="regeistTime" data-halign="center" data-align="center" data-sortable="true">注册时间</th>
+                        <th data-formatter="timeFormatter" data-field="regeistTime" data-halign="center" data-align="center" data-sortable="true">注册时间</th>
                     <%--<th data-field="createBy" data-halign="center" data-align="center" data-sortable="true">创建者</th>--%>
                     <%--<th data-field="updateTime" data-halign="center" data-align="center" data-sortable="true">更新时间</th>--%>
                     <%--<th data-field="updateBy" data-halign="center" data-align="center" data-sortable="true">更新者</th>--%>
-                        <th data-field="status" data-halign="center" data-align="center" data-sortable="true">状态</th>
+                        <th data-formatter="statusFormatter" data-field="status" data-halign="center" data-align="center" data-sortable="true">状态</th>
                         <%--<th data-field="amount" data-halign="center" data-align="center" data-sortable="true">消费额</th>--%>
                       <%--<th data-field="rankId" data-halign="center" data-align="center" data-sortable="true">会员等级ID</th>--%>
                       <%--<th data-field="score" data-halign="center" data-align="center" data-sortable="true">会员积分</th>--%>
