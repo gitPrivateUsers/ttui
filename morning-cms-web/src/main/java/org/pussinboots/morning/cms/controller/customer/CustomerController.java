@@ -50,7 +50,7 @@ public class CustomerController extends BaseController {
      * GET 管理员列表
      * @return
      */
-    @ApiOperation(value = "获取用户列表", notes = "根据分页信息/搜索内容获取用户列表")
+    @ApiOperation(value = "获取用户列表", notes = "根据分页信息获取用户列表")
     @RequiresPermissions("customer:list:view")
     @GetMapping(value = "/info")
     @ResponseBody
