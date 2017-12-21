@@ -5,6 +5,15 @@ function timeFormatter(value) {
     return new Date(value).Format("yyyy-MM-dd HH:mm:ss");
 }
 
+function statusFormatter(value){
+	if(value == 0){
+		return '<span  class="">冻结</span>'
+	} 
+	if(value == 1){
+		return '<span  class="">正常</span>'
+	}
+	
+}
 function actionFormatter(value, row, index) {
     return [
         '<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
@@ -16,7 +25,7 @@ function actionFormatter(value, row, index) {
 
 window.actionEvents = {
     'click .edit' : function(e, value, row, index) {
-        layer_show("修改商品详情", baselocation + '/product/detail/' + row.productId + '/edit', 900, 650)
+        layer_show("修改用户信息", baselocation + '/customer/detail/' + row.productId + '/edit', 900, 650)
     }
 };
 
@@ -54,10 +63,10 @@ $(function() {
             },
             fields : {
                 'name' : {
-                    message : '商品名称验证失败',
+                    message : '用户名验证失败',
                     validators : {
                         notEmpty : {
-                            message : '商品名称不能为空'
+                            message : '用户名不能为空'
                         }
                     }
                 },
@@ -84,7 +93,7 @@ $(function() {
                     url : $form.attr('action'),
                     success : function(result) {
                         if (result.code == 1) {
-                            parent.layer.msg("更新商品详情成功!", {
+                            parent.layer.msg("更新用户信息成功!", {
                                 shade : 0.3,
                                 time : 1500
                             }, function() {
@@ -106,7 +115,7 @@ $(function() {
                     url : $form.attr('action'),
                     success : function(result) {
                         if (result.code == 1) {
-                            parent.layer.msg("创建商品信息成功!", {
+                            parent.layer.msg("创建用户信息成功!", {
                                 shade : 0.3,
                                 time : 1500
                             }, function() {
