@@ -117,7 +117,7 @@
       <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="" frameborder="0" data-id="" seamless></iframe>
     </div>
     <div class="footer">
-      <div class="pull-right">© 2016-2017<a href="http://wpa.qq.com/msgrd?v=3&uin=810170512&site=qq&menu=yes" target="_Blank"> 穿鞋子的猫 </a>
+      <div class="pull-right">© 2016-2017<a href="#" target="_Blank"> 拓语商城 </a>
     </div>
   </div>
   <!--右侧部分结束--> 

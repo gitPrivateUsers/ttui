@@ -130,7 +130,7 @@
   </div>
 </div>
 <footer class="footer clear">
-  <div class="footer_copyright"> © 2016<a href="https://git.oschina.net/Morning_/Morning" target="_blank"> 穿鞋子的猫 </a>/ <span id="showsectime"></span> / <span id="TimeShow"></span> </div>
+  <div class="footer_copyright"> © 2016<a href="#" target="_blank"> 拓语科技 </a>/ <span id="showsectime"></span> / <span id="TimeShow"></span> </div>
 </footer>
 <script src="${ctxsta}/common/jquery/jquery-2.1.4.min.js"></script> 
 <script src="${ctxsta}/common/bootstrap/js/bootstrap.min.js"></script> 

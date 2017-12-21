@@ -71,8 +71,48 @@
 	     WHERE
 	     	user_id = #{userId}
     </select>
-	<!-- 根据分页信息/搜索内容查找管理员列表 -->
+	<!-- 根据分页信息/搜索内容查找用户列表 -->
 	<select id="listByPage" resultType="org.pussinboots.morning.user.pojo.vo.UserVO">
-
+    	<!-- SELECT
+	    	user_id AS userId, 
+	    	user_number AS userNumber, 
+	    	user_name AS userName, 
+	    	login_password AS loginPassword, 
+		    salt, 
+	    	real_name AS realName, 
+	    	sex, 
+	    	age, 
+	    	pic_img AS picImg, 
+	    	status,
+		    email_is_active AS emailIsActive,
+	    	email, 
+	    	telephone, 
+	    	last_login_time AS lastLoginTime, 
+	    	last_login_ip AS lastLoginIp, 
+			login_number AS loginNumber,
+			regeist_time AS registTime,
+			create_by AS createBy,
+			update_time AS updateTime,
+			update_by AS updateBy,
+			amount,
+			rank_id AS rankId,
+			score
+	    FROM
+	    	os_user 
+	   <where>
+    		1=1
+    		<if test="search != null">
+				AND (
+					 user_number LIKE '%' #{search} '%'
+					OR user_name LIKE '%' #{search} '%' 
+					OR real_name LIKE '%' #{search} '%' 
+					OR telephone LIKE '%' #{search} '%'
+					OR email LIKE '%' #{search} '%'
+				)
+			</if>
+			<if test="pageInfo.sort != null">
+				ORDER BY ${pageInfo.sort} ${pageInfo.order}
+			</if>   		   		 		
+    	</where>    -->
 	</select>
 </mapper>

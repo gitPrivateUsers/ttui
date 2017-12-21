@@ -16,7 +16,7 @@
 <body class="bgf4">
 <script zIndex="-1" src="${ctxsta}/os/user/js/canvas-nest.min.js"></script>
 <div class="login-box">
-  <div class="container-nav"> <a class="navbar-brand">但行好事,莫问前程.</a>
+  <div class="container-nav"> <a class="navbar-brand">拓语科技,不二选择.</a>
     <ul class="navbar-nav-right">
       <c:forEach items="${loginTop}" var="loginTop">
         <li><a href="${loginTop.href}" target="${loginTop.target }">${loginTop.name }</a></li>
@@ -67,7 +67,7 @@
   </div>
 </div>
 <footer class="footer clear">
-  <div class="footer_copyright"> © 2016<a href="https://git.oschina.net/Morning_/Morning" target="_blank"> 穿鞋子的猫 </a>/ <span id="showsectime"></span> / <span id="TimeShow"></span> </div>
+  <div class="footer_copyright"> © 2016<a href="#"> 拓语科技 </a>/ <span id="showsectime"></span> / <span id="TimeShow"></span> </div>
 </footer>
 <script src="${ctxsta}/common/jquery/jquery-2.1.4.min.js"></script> 
 <script src="${ctxsta}/common/bootstrap/js/bootstrap.min.js"></script> 
