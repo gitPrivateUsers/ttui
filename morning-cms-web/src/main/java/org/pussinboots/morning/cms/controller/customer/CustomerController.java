@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.pussinboots.morning.administrator.entity.User;
 import org.pussinboots.morning.administrator.pojo.dto.CustomerPageDTO;
+import org.pussinboots.morning.administrator.service.ICustomerService;
 import org.pussinboots.morning.administrator.service.IUserService;
 import org.pussinboots.morning.cms.common.result.CmsPageResult;
 import org.pussinboots.morning.common.base.BaseController;
@@ -27,11 +28,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 @Controller
-@RequestMapping(value = "/administrator/list")
+@RequestMapping(value = "/customer/list")
 @Api(value = "管理员列表", description = "管理员列表")
 public class CustomerController extends BaseController {
     @Autowired
-    private IUserService customerService;
+    private ICustomerService customerService;
 
     /**
      * GET 管理员列表页面

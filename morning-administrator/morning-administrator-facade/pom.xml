@@ -20,7 +20,7 @@
 			<artifactId>morning-common</artifactId>
 			<version>${morning.version}</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.pussinboots.morning</groupId>
 			<artifactId>morning-user-facade</artifactId>
 			<version>${morning.version}</version>
@@ -29,7 +29,7 @@
 			<groupId>org.pussinboots.morning</groupId>
 			<artifactId>morning-user-service</artifactId>
 			<version>${morning.version}</version>
-		</dependency>
+		</dependency>-->
 		<!-- Morning相关依赖 end -->
 
 		<!-- 4.MYBATIS 持久层框架 begin -->

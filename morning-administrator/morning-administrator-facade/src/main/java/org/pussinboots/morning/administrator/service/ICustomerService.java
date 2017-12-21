@@ -1,8 +1,8 @@
 package org.pussinboots.morning.administrator.service;
 
 import com.baomidou.mybatisplus.service.IService;
+import org.pussinboots.morning.administrator.entity.Customer;
 import org.pussinboots.morning.administrator.pojo.dto.CustomerPageDTO;
-import org.pussinboots.morning.user.entity.User;
 import org.pussinboots.morning.common.support.page.PageInfo;
 
 
@@ -14,7 +14,7 @@ import org.pussinboots.morning.common.support.page.PageInfo;
 * 创建人：zhancl
 *
  */
-public interface ICustomerService extends IService<User> {
+public interface ICustomerService extends IService<Customer> {
 	
 
 	/**

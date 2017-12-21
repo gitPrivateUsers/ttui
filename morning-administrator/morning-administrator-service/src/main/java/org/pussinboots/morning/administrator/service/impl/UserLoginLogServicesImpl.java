@@ -23,7 +23,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 *
  */
 @Service
-public class UserLoginLogServiceImpl extends ServiceImpl<UserLoginLogMapper, UserLoginLog> implements IUserLoginLogService {
+public class UserLoginLogServicesImpl extends ServiceImpl<UserLoginLogMapper, UserLoginLog> implements IUserLoginLogService {
 	
 	@Autowired
 	private UserLoginLogMapper userLoginLogMapper;

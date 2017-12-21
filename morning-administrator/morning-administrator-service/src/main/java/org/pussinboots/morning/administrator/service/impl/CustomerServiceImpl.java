@@ -2,12 +2,12 @@ package org.pussinboots.morning.administrator.service.impl;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.pussinboots.morning.administrator.entity.Customer;
+import org.pussinboots.morning.administrator.mapper.CustomerMapper;
 import org.pussinboots.morning.administrator.pojo.dto.CustomerPageDTO;
+import org.pussinboots.morning.administrator.pojo.vo.CustomerVO;
 import org.pussinboots.morning.administrator.service.ICustomerService;
-import org.pussinboots.morning.user.entity.User;
-import org.pussinboots.morning.user.mapper.UserMapper;
 import org.pussinboots.morning.common.support.page.PageInfo;
-import org.pussinboots.morning.user.pojo.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,16 +22,16 @@ import java.util.List;
 *
  */
 @Service
-public class CustomerServiceImpl extends ServiceImpl<UserMapper, User> implements ICustomerService {
+public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> implements ICustomerService {
 	
 	@Autowired
-	private UserMapper userMapper;
+	private CustomerMapper userMapper;
 	
 
 	@Override
 	public CustomerPageDTO listByPage(PageInfo pageInfo, String search) {
-		Page<UserVO> page = new Page<>(pageInfo.getCurrent(), pageInfo.getLimit());
-		List<UserVO> userVOs = userMapper.listByPage(pageInfo, search, page);
+		Page<CustomerVO> page = new Page<>(pageInfo.getCurrent(), pageInfo.getLimit());
+		List<CustomerVO> userVOs = userMapper.listByPage(pageInfo, search, page);
 		pageInfo.setTotal(page.getTotal());
 		return new CustomerPageDTO(userVOs, pageInfo);
 	}

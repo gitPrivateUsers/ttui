@@ -95,7 +95,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 	public List<UserVO> listByUser(UserVO userVo) {
 		return userMapper.listByUser(userVo);
 	}
-	
+
 	@Override
 	public UserPageDTO listByPage(PageInfo pageInfo, String search) {
 		Page<UserVO> page = new Page<>(pageInfo.getCurrent(), pageInfo.getLimit());
@@ -103,7 +103,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 		pageInfo.setTotal(page.getTotal());
 		return new UserPageDTO(userVOs, pageInfo);
 	}
-	
+
 	@Override
 	public List<UserVO> listByOrganizationId(Long organizationId) {
 		// TODO 对该sql语句进行整合
