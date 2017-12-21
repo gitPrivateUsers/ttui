@@ -25,4 +25,7 @@ public interface ICustomerService extends IService<Customer> {
 	 */
 	CustomerPageDTO listByPage (PageInfo pageInfo, String search);
 
+	Integer insertCustomer(Customer customer, String userName);
+
+	Integer updateUserId(Customer customer, String userName);
 }

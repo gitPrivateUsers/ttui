@@ -21,11 +21,11 @@
             <div class="col-sm-12">
               <div class="example-wrap">
                 <div class="example">
-                  <%--<div id="toolbar" class="btn-group m-t-sm">--%>
-                    <%--<shiro:hasPermission name="product:detail:create">--%>
-                      <%--<button type="button" class="btn btn-default"  title="创建用户" onclick="layer_show('添加用户','${ctx}/user/message/create','800','700')"> <i class="glyphicon glyphicon-plus"></i> </button>--%>
-                    <%--</shiro:hasPermission>--%>
-                  <%--</div>--%>
+                  <div id="toolbar" class="btn-group m-t-sm">
+                    <shiro:hasPermission name="customer:detail:create">
+                      <button type="button" class="btn btn-default"  title="创建用户" onclick="layer_show('添加用户','${ctx}/customer/detail/create','800','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
+                    </shiro:hasPermission>
+                  </div>
                   <table id="table"
                          data-toggle="table"
                          data-height="600"

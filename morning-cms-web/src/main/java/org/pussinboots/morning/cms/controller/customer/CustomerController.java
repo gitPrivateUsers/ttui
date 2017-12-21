@@ -3,18 +3,20 @@ package org.pussinboots.morning.cms.controller.customer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.pussinboots.morning.administrator.entity.Customer;
 import org.pussinboots.morning.administrator.pojo.dto.CustomerPageDTO;
 import org.pussinboots.morning.administrator.service.ICustomerService;
 import org.pussinboots.morning.cms.common.result.CmsPageResult;
+import org.pussinboots.morning.cms.common.result.CmsResult;
+import org.pussinboots.morning.cms.common.security.AuthorizingUser;
+import org.pussinboots.morning.cms.common.util.SingletonLoginUtils;
 import org.pussinboots.morning.common.base.BaseController;
+import org.pussinboots.morning.common.constant.CommonReturnCode;
 import org.pussinboots.morning.common.support.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -27,7 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping(value = "/customer/detail")
-@Api(value = "管理员列表", description = "管理员列表")
+@Api(value = "用户管理", description = "用户管理")
 public class CustomerController extends BaseController {
     @Autowired
     private ICustomerService customerService;
@@ -56,4 +58,70 @@ public class CustomerController extends BaseController {
         CustomerPageDTO customerPageDTO = customerService.listByPage(pageInfo, search);
         return new CmsPageResult(customerPageDTO.getUserVOs(), customerPageDTO.getPageInfo().getTotal());
     }
+
+
+    /**
+     * GET 创建product
+     * @return
+     */
+    @ApiOperation(value = "创建用户", notes = "创建用户")
+    @RequiresPermissions("customer:detail:create")
+    @GetMapping(value = "/create")
+    public String getInsertPage(Model model) {
+        return "/modules/customer/customer_create";
+    }
+
+    /**
+     * POST 创建商品
+     * @return
+     */
+    @ApiOperation(value = "创建用户", notes = "创建用户")
+    @RequiresPermissions("customer:detail:create")
+    @PostMapping(value = "")
+    @ResponseBody
+    public Object insert(Customer customer) {
+        AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+        if (authorizingUser != null) {
+            Integer count = customerService.insertCustomer(customer, authorizingUser.getUserName());
+            return new CmsResult(CommonReturnCode.SUCCESS, count);
+        } else {
+            return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+        }
+    }
+
+    /**
+     * GET 更新商品信息
+     * @return
+     */
+    @ApiOperation(value = "更新用户信息", notes = "更新用户信息")
+    @RequiresPermissions("customer:detail:edit")
+    @GetMapping(value = "/{customer}/edit")
+    public String getUpdatePage(Model model, @PathVariable("userId") Long userId) {
+        // 广告信息
+        Customer customer = customerService.selectById(userId);
+        model.addAttribute("customer", customer);
+
+        return "/modules/product/product_update";
+    }
+
+    /**
+     * PUT 更新商品信息
+     * @return
+     */
+    @ApiOperation(value = "更新用户信息", notes = "根据ID修改")
+    @RequiresPermissions("product:detail:edit")
+    @PutMapping(value = "/{userId}")
+    @ResponseBody
+    public Object update(Customer customer, @PathVariable("userId") Long userId) {
+
+        AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+        if (authorizingUser != null) {
+            // 更新用户记录
+            Integer count = customerService.updateUserId(customer, authorizingUser.getUserName());
+            return new CmsResult(CommonReturnCode.SUCCESS, count);
+        } else {
+            return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+        }
+    }
+
 }

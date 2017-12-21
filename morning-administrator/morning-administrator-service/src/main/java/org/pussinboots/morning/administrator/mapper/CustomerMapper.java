@@ -38,4 +38,5 @@ public interface CustomerMapper extends BaseMapper<Customer> {
 
 	List<Customer> listByPage(@Param("pageInfo") PageInfo pageInfo, @Param("search") String search, RowBounds rowBounds);
 
+
 }
