@@ -33,5 +33,5 @@ public interface CustomerMapper extends BaseMapper<Customer> {
 	 */
 	CustomerVO getById(Long userId);
 
-	List<CustomerVO> listByPage(PageInfo pageInfo, String search, Page<CustomerVO> page);
+	List<Customer> listByPage(PageInfo pageInfo, String search, Page<Customer> page);
 }

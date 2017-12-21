@@ -25,13 +25,13 @@ import java.util.List;
 public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> implements ICustomerService {
 	
 	@Autowired
-	private CustomerMapper userMapper;
+	private CustomerMapper customerMapper;
 	
 
 	@Override
 	public CustomerPageDTO listByPage(PageInfo pageInfo, String search) {
-		Page<CustomerVO> page = new Page<>(pageInfo.getCurrent(), pageInfo.getLimit());
-		List<CustomerVO> userVOs = userMapper.listByPage(pageInfo, search, page);
+		Page<Customer> page = new Page<>(pageInfo.getCurrent(), pageInfo.getLimit());
+		List<Customer> userVOs = customerMapper.listByPage(pageInfo, search, page);
 		pageInfo.setTotal(page.getTotal());
 		return new CustomerPageDTO(userVOs, pageInfo);
 	}

@@ -23,6 +23,6 @@ public interface ICustomerService extends IService<Customer> {
 	 * @param search 搜索内容
 	 * @return
 	 */
-	CustomerPageDTO listByPage(PageInfo pageInfo, String search);
+	CustomerPageDTO listByPage (PageInfo pageInfo, String search);
 
 }

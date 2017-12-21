@@ -3,10 +3,8 @@ package org.pussinboots.morning.cms.controller.customer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.pussinboots.morning.administrator.entity.User;
 import org.pussinboots.morning.administrator.pojo.dto.CustomerPageDTO;
 import org.pussinboots.morning.administrator.service.ICustomerService;
-import org.pussinboots.morning.administrator.service.IUserService;
 import org.pussinboots.morning.cms.common.result.CmsPageResult;
 import org.pussinboots.morning.common.base.BaseController;
 import org.pussinboots.morning.common.support.page.PageInfo;
@@ -54,7 +52,7 @@ public class CustomerController extends BaseController {
     @RequiresPermissions("customer:list:view")
     @GetMapping(value = "/info")
     @ResponseBody
-    public Object listUser(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search) {
+    public Object customerList(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search) {
         CustomerPageDTO customerPageDTO = customerService.listByPage(pageInfo, search);
         return new CmsPageResult(customerPageDTO.getUserVOs(), customerPageDTO.getPageInfo().getTotal());
     }

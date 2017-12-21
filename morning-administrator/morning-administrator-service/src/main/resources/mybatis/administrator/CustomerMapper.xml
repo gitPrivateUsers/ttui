@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.pussinboots.morning.user.mapper.UserMapper">
+<mapper namespace="org.pussinboots.morning.administrator.mapper.CustomerMapper">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="org.pussinboots.morning.administrator.entity.Customer">
@@ -72,31 +72,14 @@
 	     	user_id = #{userId}
     </select>
     <!-- 根据分页信息/搜索内容查找管理员列表 -->
-    <select id="listByPage" resultType="org.pussinboots.morning.administrator.pojo.vo.CustomerVO">
+    <select id="listByPage" resultType="org.pussinboots.morning.administrator.entity.Customer">
         SELECT
-        user_id AS userId,
-        user_number AS userNumber,
-        user_name AS userName,
-        login_password AS loginPassword,
-        salt,
-        real_name AS realName,
-        sex,
-        age,
-        pic_img AS picImg,
-        status,
-        email_is_active AS emailIsActive,
-        email,
-        telephone,
-        last_login_time AS lastLoginTime,
-        last_login_ip AS lastLoginIp,
-        login_number AS loginNumber,
-        regeist_time AS registTime,
-        create_by AS createBy,
-        update_time AS updateTime,
-        update_by AS updateBy,
-        amount,
-        rank_id AS rankId,
+        user_id AS userId, user_number AS userNumber, user_name AS userName, login_password AS loginPassword, salt,
+        real_name AS realName, sex, age, pic_img AS picImg, status, email_is_active AS emailIsActive, email, telephone,
+        last_login_time AS lastLoginTime, last_login_ip AS lastLoginIp, login_number AS loginNumber, regeist_time AS
+        regeistTime, create_by AS createBy, update_time AS updateTime, update_by AS updateBy, amount, rank_id AS rankId,
         score
+
         FROM
         os_user
         <where>
