@@ -20,72 +20,55 @@
                             class="close-link"><i class="fa fa-times"></i></a></div>
                 </div>
                 <div class="ibox-content">
-                    <form id="form" class="form-horizontal" action="${ctx}/product/detail/${product.productId}"
+                    <form id="form" class="form-horizontal" action="${ctx}/customer/detail/${customer.userId}"
                           data-method="put">
+
                         <div class="form-group m-t">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">商品名称：</label>
+                            <label class="col-sm-2 col-xs-offset-1 control-label">昵称：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="name" value="${product.name}">
+                                <input type="text" class="form-control" name="name" value="${customer.userName}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">显示价格：</label>
+                        <div class="form-group m-t">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">登录密码：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="showPrice" value="${product.showPrice}">
+                                <input type="text" class="form-control" name="name" value="${customer.loginPassword}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">商品简介：</label>
+                        <div class="form-group m-t">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">真实姓名：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="introduce" value="${product.introduce}">
+                                <input type="text" class="form-control" name="name" value="${customer.realName}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">商品编码：</label>
+                        <div class="form-group m-t">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">性别：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="productNumber" value="${product.productNumber}">
+                                <input type="text" class="form-control" name="name" value="${customer.sex}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">图片：</label>
+                        <div class="form-group m-t">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">年龄：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="picImg" value="${product.picImg}">
-                            </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2  col-xs-offset-1 control-label">搜索关键词：</label>
-                            <div class="col-sm-7">
-                                <textarea class="form-control" rows="2" name="searchKey"
-                                          placeholder="请输入消息...">${product.searchKey}</textarea>
+                                <input type="text" class="form-control" name="name" value="${customer.age}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">页面标题：</label>
+                        <div class="form-group m-t">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">电子邮箱：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="pageTitle" value="${product.pageTitle}">
+                                <input type="text" class="form-control" name="name" value="${customer.email}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">页面关键词：</label>
+                        <div class="form-group m-t">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">状态：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="pageKeyword" value="${product.pageKeyword}">
-                            </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2  col-xs-offset-1 control-label">页面描述：</label>
-                            <div class="col-sm-7">
-                                <textarea class="form-control" rows="2" name="pageDescription"
-                                          placeholder="请输入消息...">${product.pageDescription}</textarea>
+                                <input type="text" class="form-control" name="name" value="${customer.status}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -102,7 +85,7 @@
 </div>
 <myfooter>
     <!-- 自定义js -->
-    <script src="${ctxsta}/cms/js/productList.js"></script>
+    <script src="${ctxsta}/cms/js/customerList.js"></script>
 </myfooter>
 </body>
 </html>

@@ -95,13 +95,13 @@ public class CustomerController extends BaseController {
      */
     @ApiOperation(value = "更新用户信息", notes = "更新用户信息")
     @RequiresPermissions("customer:detail:edit")
-    @GetMapping(value = "/{customer}/edit")
+    @GetMapping(value = "/{userId}/edit")
     public String getUpdatePage(Model model, @PathVariable("userId") Long userId) {
         // 广告信息
         Customer customer = customerService.selectById(userId);
         model.addAttribute("customer", customer);
 
-        return "/modules/product/product_update";
+        return "/modules/customer/customer_update";
     }
 
     /**
@@ -109,7 +109,7 @@ public class CustomerController extends BaseController {
      * @return
      */
     @ApiOperation(value = "更新用户信息", notes = "根据ID修改")
-    @RequiresPermissions("product:detail:edit")
+    @RequiresPermissions("customer:detail:edit")
     @PutMapping(value = "/{userId}")
     @ResponseBody
     public Object update(Customer customer, @PathVariable("userId") Long userId) {
