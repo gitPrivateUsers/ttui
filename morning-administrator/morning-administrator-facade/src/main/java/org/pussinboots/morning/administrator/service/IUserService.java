@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.pussinboots.morning.administrator.entity.User;
 import org.pussinboots.morning.administrator.entity.UserLoginLog;
+import org.pussinboots.morning.administrator.pojo.dto.CustomerPageDTO;
 import org.pussinboots.morning.administrator.pojo.dto.UserPageDTO;
 import org.pussinboots.morning.administrator.pojo.vo.UserVO;
 import org.pussinboots.morning.common.exception.ValidateException;
@@ -59,7 +60,7 @@ public interface IUserService extends IService<User> {
 	 * @param search 搜索内容
 	 * @return
 	 */
-	UserPageDTO listByPage(PageInfo pageInfo, String search);
+	CustomerPageDTO listByPage(PageInfo pageInfo, String search);
 	
 	/**
 	 * 根据组织ID查找管理员列表

@@ -20,6 +20,16 @@
 			<artifactId>morning-administrator-facade</artifactId>
 			<version>${morning.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.pussinboots.morning</groupId>
+			<artifactId>morning-user-facade</artifactId>
+			<version>${morning.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.pussinboots.morning</groupId>
+			<artifactId>morning-user-service</artifactId>
+			<version>${morning.version}</version>
+		</dependency>
 		<!-- Morning相关依赖 end -->
 
 		<!-- 1.TEST:单元测试框架 begin -->

@@ -11,7 +11,7 @@
         <li> <a rel="nofollow" href="#"><span class="glyphicon glyphicon-gift"></span>满150元包邮</a> </li>
         <li> <a rel="nofollow" href="#"><span class="glyphicon glyphicon-map-marker"></span>520余家售后网点</a> </li>
       </ul>
-    </div>
+    </div><%--
     <div class="footer-links clearfix">
       <dl class="col-links col-links-first">
         <dt>帮助中心</dt>
@@ -54,7 +54,7 @@
         <p> <span class="J_serviceTime-normal" style="">周一至周日 8:00-18:00</span> <span class="J_serviceTime-holiday" style="display: none;">2月7日至13日服务时间 9:00-18:00</span><br>
           （仅收市话费） </p>
         <a rel="nofollow" class="btn btn-line-primary btn-small" href="#"><span class="glyphicon glyphicon-earphone"></span> 24小时在线客服</a> </div>
-    </div>
+    </div>--%>
   </div>
 </div>
 <!--     底部信息  end         --> 

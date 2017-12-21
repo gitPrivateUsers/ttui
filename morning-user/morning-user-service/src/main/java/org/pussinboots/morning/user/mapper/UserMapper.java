@@ -1,9 +1,13 @@
 package org.pussinboots.morning.user.mapper;
 
+import com.baomidou.mybatisplus.plugins.Page;
+import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.user.entity.User;
 import org.pussinboots.morning.user.pojo.vo.UserVO;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
  * 
@@ -29,4 +33,6 @@ public interface UserMapper extends BaseMapper<User> {
 	 * @return
 	 */
 	UserVO getById(Long userId);
+
+	List<UserVO> listByPage(PageInfo pageInfo, String search, Page<UserVO> page);
 }
