@@ -21,11 +21,11 @@
             <div class="col-sm-12">
               <div class="example-wrap">
                 <div class="example">
-                  <div id="toolbar" class="btn-group m-t-sm">
-                    <shiro:hasPermission name="product:detail:create">
-                      <button type="button" class="btn btn-default"  title="创建用户" onclick="layer_show('添加用户','${ctx}/user/message/create','800','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
-                    </shiro:hasPermission>
-                  </div>
+                  <%--<div id="toolbar" class="btn-group m-t-sm">--%>
+                    <%--<shiro:hasPermission name="product:detail:create">--%>
+                      <%--<button type="button" class="btn btn-default"  title="创建用户" onclick="layer_show('添加用户','${ctx}/user/message/create','800','700')"> <i class="glyphicon glyphicon-plus"></i> </button>--%>
+                    <%--</shiro:hasPermission>--%>
+                  <%--</div>--%>
                   <table id="table"
                          data-toggle="table"
                          data-height="600"
@@ -35,7 +35,7 @@
                          data-show-export="true"
                          data-show-pagination-switch="true"
                          data-show-columns="true"
-                         data-url="${ctx}/user/message/list"
+                         data-url="${ctx}/customer/detail/info"
                          data-pagination="true"
                          data-page-size="20"
                          data-page-list="[20, 50, 100, 200]"
@@ -90,7 +90,7 @@
   <script src="${ctxsta}/common/bootstrap-table/tableExport.js"></script>
   <script src="${ctxsta}/common/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
   <!-- 自定义js -->
-  <script src="${ctxsta}/cms/js/productList.js"></script>
+  <script src="${ctxsta}/cms/js/customerList.js"></script>
 </myfooter>
 </body>
 </html>

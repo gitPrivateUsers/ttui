@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 @Controller
-@RequestMapping(value = "/customer/list")
+@RequestMapping(value = "/customer/detail")
 @Api(value = "管理员列表", description = "管理员列表")
 public class CustomerController extends BaseController {
     @Autowired
@@ -51,8 +51,8 @@ public class CustomerController extends BaseController {
      * @return
      */
     @ApiOperation(value = "获取用户列表", notes = "根据分页信息/搜索内容获取用户列表")
-    @RequiresPermissions("customer:info:view")
-    @GetMapping(value = "/list")
+    @RequiresPermissions("customer:list:view")
+    @GetMapping(value = "/info")
     @ResponseBody
     public Object listUser(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search) {
         CustomerPageDTO customerPageDTO = customerService.listByPage(pageInfo, search);
