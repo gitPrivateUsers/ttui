@@ -1,7 +1,11 @@
 package org.pussinboots.morning.product.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
+import com.baomidou.mybatisplus.plugins.Page;
+import org.pussinboots.morning.common.base.BasePageDTO;
+import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.ProductParameter;
 import org.pussinboots.morning.product.mapper.ProductParameterMapper;
 import org.pussinboots.morning.product.service.IProductParameterService;
@@ -34,5 +38,26 @@ public class ProductParameterServiceImpl extends ServiceImpl<ProductParameterMap
 		productParameter.setStatus(status);
 		return productParameterMapper
 				.selectList(new EntityWrapper<ProductParameter>(productParameter).orderBy("sort", true));
+	}
+
+	@Override
+	public Integer updateProductParameter(ProductParameter productParameter, String userName, Long productParameterId) {
+		if (productParameterId > 0) {
+			return productParameterMapper.updateById(productParameter);
+		}
+		productParameter.setCreateTime(new Date());
+		productParameter.setCreateBy(userName);
+		return productParameterMapper.insert(productParameter);
+
+	}
+
+	@Override
+	public BasePageDTO<ProductParameter> listByPage(PageInfo pageInfo, String search,Long productId) {
+
+
+		Page<ProductParameter> page = new Page<>(pageInfo.getCurrent(), pageInfo.getLimit());
+		List<ProductParameter> products = productParameterMapper.listByPage(pageInfo, search, page,productId);
+		pageInfo.setTotal(page.getTotal());
+		return new BasePageDTO<ProductParameter>(pageInfo, products);
 	}
 }

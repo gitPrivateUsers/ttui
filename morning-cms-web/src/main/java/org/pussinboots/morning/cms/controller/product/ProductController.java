@@ -178,6 +178,14 @@ public class ProductController extends BaseController {
         }
     }
 
+//	@ApiOperation(value = "商品参数页面", notes = "商品参数页面")
+//	@RequiresPermissions("product:list:view")
+//	@GetMapping(value = "/{productId}/categoryList")
+//	public String getProducCategoryPage(Model model, @PathVariable("productId") Long productId) {
+//
+//		model.addAttribute("productId", productId);
+//		return "/modules/product/product_Category_list";
+//	}
 
 	/**
 	 * GET 创建product

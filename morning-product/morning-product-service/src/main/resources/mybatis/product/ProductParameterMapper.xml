@@ -18,7 +18,31 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        product_parameter_id AS productParameterId, product_id AS productId, name, value, status, sort, create_time AS createTime, create_by AS createBy, update_time AS updateTime, update_by AS updateBy
+        product_parameter_id AS productParameterId,product_id AS productId, name, value, status, sort, create_time AS createTime, create_by AS createBy, update_time AS updateTime, update_by AS updateBy
     </sql>
+
+	<!-- 根据分页信息/搜索内容查找广告列表 -->
+	<select id="listByPage" resultType="org.pussinboots.morning.product.entity.ProductParameter">
+		SELECT
+		product_parameter_id AS productParameterId,product_id AS productId,
+		product_id AS productId, name, value,status,sort, create_time AS createTime,
+		create_by AS createBy, update_time AS updateTime,update_by AS updateBy
+		FROM
+		os_product_parameter
+		<where>
+			1=1
+			<if test="search != null">
+				AND (
+				name LIKE '%' #{search} '%'
+				OR create_by LIKE '%' #{search} '%'
+				OR update_by LIKE '%' #{search} '%' and product_id=#{productId}
+				)
+			</if>
+			<if test="pageInfo.sort != null">
+				ORDER BY ${pageInfo.sort} ${pageInfo.order}
+			</if>
+		</where>
+	</select>
+
 
 </mapper>

@@ -2,6 +2,8 @@ package org.pussinboots.morning.product.service;
 
 import java.util.List;
 
+import org.pussinboots.morning.common.base.BasePageDTO;
+import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.ProductParameter;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -23,5 +25,8 @@ public interface IProductParameterService extends IService<ProductParameter> {
 	 * @return List<ProductParameter>
 	 */
 	List<ProductParameter> listByProductId(Long productId, Integer status);
-	
+
+	Integer updateProductParameter(ProductParameter productParameter, String userName, Long productParameterId);
+
+	BasePageDTO<ProductParameter> listByPage(PageInfo pageInfo, String search, Long parentId);
 }
