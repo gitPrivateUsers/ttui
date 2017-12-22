@@ -1,5 +1,6 @@
 package org.pussinboots.morning.product.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.pussinboots.morning.product.entity.ProductDetail;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
@@ -14,4 +15,5 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface ProductDetailMapper extends BaseMapper<ProductDetail> {
 
+    ProductDetail selectByProductId(@Param("productId") Long productId);
 }

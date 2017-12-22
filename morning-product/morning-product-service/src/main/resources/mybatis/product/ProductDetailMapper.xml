@@ -18,4 +18,16 @@
         product_detail_id AS productDetailId, product_id AS productId, description, create_time AS createTime, create_by AS createBy, update_time AS updateTime, update_by AS updateBy
     </sql>
 
+
+	<!-- 根据商品ID查找商品详情 -->
+	<select id="selectByProductId" resultType="org.pussinboots.morning.product.entity.ProductDetail">
+		SELECT
+	      product_detail_id AS productDetailId, product_id AS productId, description, create_time AS createTime, create_by AS createBy, update_time AS updateTime, update_by AS updateBy
+
+		FROM
+		os_product_detail
+		WHERE
+		product_id = #{productId}
+	</select>
+
 </mapper>
