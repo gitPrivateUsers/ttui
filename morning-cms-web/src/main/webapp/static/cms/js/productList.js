@@ -7,8 +7,11 @@ function timeFormatter(value) {
 
 function actionFormatter(value, row, index) {
 		return [
-			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
+			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑产品列表">',
 			'<i class="glyphicon glyphicon-edit"></i>',
+			'</a>',
+			'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="修改商品分类">',
+			'<i class="glyphicon glyphicon-list-alt"></i>',
 			'</a>'
 		].join('');
 
@@ -17,7 +20,10 @@ function actionFormatter(value, row, index) {
 window.actionEvents = {
 	'click .edit' : function(e, value, row, index) {
 		layer_show("修改商品详情", baselocation + '/product/detail/' + row.productId + '/edit', 900, 650)
-	}
+	},
+	'click .log' : function(e, value, row, index) {
+		window.location.href = baselocation + '/product/detail/'  + row.productId + '/update';
+	}　
 };
 
 /**
