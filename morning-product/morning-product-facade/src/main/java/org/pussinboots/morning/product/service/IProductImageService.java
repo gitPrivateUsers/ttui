@@ -34,4 +34,6 @@ public interface IProductImageService extends IService<ProductImage> {
 	Integer updateProductImage(ProductImage productImage, String userName, Long picImgId);
 
 	List<ProductImage> selectByProductId(Long productId);
+
+	Integer insertProductImage(ProductImage productImage, String userName);
 }

@@ -12,6 +12,7 @@ import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
 import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.Product;
+import org.pussinboots.morning.product.entity.ProductImage;
 import org.pussinboots.morning.product.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,12 +65,51 @@ public class ProductController extends BaseController {
 	 */
 	@ApiOperation(value = "获取商品列表", notes = "根据分页信息/搜索内容")
 	@RequiresPermissions("product:list:view")
-	@GetMapping(value = "/list")
+	@GetMapping(value = "/")
 	@ResponseBody
 	public Object listProduct(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search) {
 		BasePageDTO<Product> basePageDTO = productService.listByPage(pageInfo, search);
 		return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
 	}
+
+
+
+	/**
+	 * GET 商品图片页面
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "商品图片页面", notes = "商品图片页面")
+	@RequiresPermissions("product:list:view")
+	@GetMapping(value = "/{productId}/list")
+	public String getProductImagePage(Model model, @PathVariable("productId") Long productId) {
+
+		model.addAttribute("productId", productId);
+		return "/modules/product/product_image_list";
+	}
+
+	/**
+	 * GET 商品图片页面,
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "获取商品图片页面列表", notes = "根据分页信息/搜索内容")
+	@RequiresPermissions("product:list:view")
+	@GetMapping(value = "/{productId}/lists")
+	@ResponseBody
+	public Object listProductImage(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search, @PathVariable("productId") Long productId) {
+
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+
+		if (authorizingUser != null) {
+			BasePageDTO<ProductImage> basePageDTO = productImageService.listByPage(pageInfo, search, productId);
+			return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
+
+
 
 	/**
 	 * GET 创建product
@@ -138,4 +178,5 @@ public class ProductController extends BaseController {
  //ProductDetailController
 //	=============================os_product_image==============================================
 	//ProductImageController
+
 }

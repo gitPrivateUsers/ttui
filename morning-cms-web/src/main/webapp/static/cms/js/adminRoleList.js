@@ -66,7 +66,7 @@ window.actionEvents = {
 	'click .remove' : function(e, value, row, index) {
 		admin_delete(index, row.roleId);
 	},
-	'click .log' : function(e, value, row, index) {
+	'click .update' : function(e, value, row, index) {
 		layer_show(row.roleName, baselocation + '/administrator/role/' + row.roleId + '/list', 1000, 650)
 	}
 };

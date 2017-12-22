@@ -35,7 +35,7 @@
                          data-show-export="true"
                          data-show-pagination-switch="true"
                          data-show-columns="true"
-                         data-url="${ctx}/product/detail/list"
+                         data-url="${ctx}/product/detail/"
                          data-pagination="true"
                          data-page-size="20"
                          data-page-list="[20, 50, 100, 200]"

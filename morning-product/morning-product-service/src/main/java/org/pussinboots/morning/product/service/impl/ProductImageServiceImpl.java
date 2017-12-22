@@ -50,6 +50,13 @@ public class ProductImageServiceImpl extends ServiceImpl<ProductImageMapper, Pro
 	}
 
 	@Override
+	public Integer insertProductImage(ProductImage productImage, String userName) {
+		productImage.setCreateBy(userName);
+		productImage.setCreateTime(new Date());
+		return productImageMapper.insert(productImage);
+	}
+
+	@Override
 	public Integer updateProductImage(ProductImage productImage, String userName, Long picImgId) {
 		if (picImgId > 0) {
 			return productImageMapper.updateById(productImage);
