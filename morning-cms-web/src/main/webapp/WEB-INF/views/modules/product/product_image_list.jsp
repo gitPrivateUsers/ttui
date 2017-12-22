@@ -22,10 +22,10 @@
               <div class="example-wrap">
                 <div class="example">
                   <div id="toolbar" class="btn-group m-t-sm">
-                    <shiro:hasPermission name="online:navigation:create">
-                      <button type="button" class="btn btn-default"  title="创建商品图片地址" onclick="layer_show('创建商品图片地址','${ctx}/product/detail/${product.productId}/create','1000','1000')"> <i class="glyphicon glyphicon-plus"></i> </button>
+                    <shiro:hasPermission name="product:detail:create">
+                      <button type="button" class="btn btn-default"  title="创建商品图片地址" onclick="layer_show('创建商品图片地址','${ctx}/product/detail/${productId}/createImg','1200','680')"> <i class="glyphicon glyphicon-plus"></i> </button>
                     </shiro:hasPermission>
-                 	<button type="button" class="btn btn-default"  title="返回上一页" onclick="javascript:window.history.back();"> <i class="glyphicon glyphicon-circle-arrow-left"></i> </button>
+                 	<%--<button type="button" class="btn btn-default"  title="返回上一页" onclick="javascript:window.close();"> <i class="glyphicon glyphicon-circle-arrow-left"></i> </button>--%>
                   </div>
                   <table id="table"
                          data-toggle="table"

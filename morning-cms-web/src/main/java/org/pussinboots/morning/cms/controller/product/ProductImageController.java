@@ -26,7 +26,7 @@
 // * 创建时间：2017年5月20日 下午3:08:25
 // */
 //@Controller
-//@RequestMapping(value = "/product/detail/")
+//@RequestMapping(value = "/product/detail/{productId}/createImg")
 //@Api(value = "商品图片管理", description = "商品图片管理")
 //public class ProductImageController extends BaseController {
 //
@@ -34,40 +34,40 @@
 //    private IProductImageService productImageService;
 //
 //
-//    /**
-//     * GET 商品图片页面
-//     *
-//     * @return
-//     */
-//    @ApiOperation(value = "商品图片页面", notes = "商品图片页面")
-//    @RequiresPermissions("product:detail:view")
-//    @GetMapping(value = "/{productId}/imgView")
-//    public String getProductImagePage(Model model, @PathVariable("productId") Long productId) {
-//
-//        model.addAttribute("productId", productId);
-//        return "/modules/product/product_image_list";
-//    }
-//
-//    /**
-//     * GET 商品图片页面,
-//     *
-//     * @return
-//     */
-//    @ApiOperation(value = "获取商品图片页面列表", notes = "根据分页信息/搜索内容")
-//    @RequiresPermissions("product:list:view")
-//    @GetMapping(value = "/{productId}/lists")
-//    @ResponseBody
-//    public Object listProductImage(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search, @PathVariable("productId") Long productId) {
-//
-//        AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
-//
-//        if (authorizingUser != null) {
-//            BasePageDTO<ProductImage> basePageDTO = productImageService.listByPage(pageInfo, search, productId);
-//            return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
-//        } else {
-//            return new CmsResult(CommonReturnCode.UNAUTHORIZED);
-//        }
-//    }
+////    /**
+////     * GET 商品图片页面
+////     *
+////     * @return
+////     */
+////    @ApiOperation(value = "商品图片页面", notes = "商品图片页面")
+////    @RequiresPermissions("product:detail:view")
+////    @GetMapping(value = "/{productId}/imgView")
+////    public String getProductImagePage(Model model, @PathVariable("productId") Long productId) {
+////
+////        model.addAttribute("productId", productId);
+////        return "/modules/product/product_image_list";
+////    }
+////
+////    /**
+////     * GET 商品图片页面,
+////     *
+////     * @return
+////     */
+////    @ApiOperation(value = "获取商品图片页面列表", notes = "根据分页信息/搜索内容")
+////    @RequiresPermissions("product:list:view")
+////    @GetMapping(value = "/{productId}/lists")
+////    @ResponseBody
+////    public Object listProductImage(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search, @PathVariable("productId") Long productId) {
+////
+////        AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+////
+////        if (authorizingUser != null) {
+////            BasePageDTO<ProductImage> basePageDTO = productImageService.listByPage(pageInfo, search, productId);
+////            return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
+////        } else {
+////            return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+////        }
+////    }
 //
 //
 //    /**
@@ -76,7 +76,7 @@
 //     * @return
 //     */
 //    @ApiOperation(value = "创建商品图片地址", notes = "创建商品图片地址")
-//    @RequiresPermissions("product:detail:createImg")
+//    @RequiresPermissions("product:detail:create")
 //    @GetMapping(value = "/createImg")
 //    public String getInsertProductImgPage(Model model) {
 //        return "/modules/product/product_image_create";

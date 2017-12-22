@@ -11,27 +11,27 @@ function statusFormatter(value) {
 function actionFormatter(value, row, index) {
 	if (row.status == 1) {
 		return [
-			'<a class="freeze m-r-sm text-info" href="javascript:void(0)" title="隐藏">',
-			'<i class="glyphicon glyphicon-pause"></i>',
-			'</a>',
+			//'<a class="freeze m-r-sm text-info" href="javascript:void(0)" title="隐藏">',
+			//'<i class="glyphicon glyphicon-pause"></i>',
+			//'</a>',
 			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
 			'<i class="glyphicon glyphicon-edit"></i>',
 			'</a>',
-			'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
-			'<i class="glyphicon glyphicon-remove"></i>',
-			'</a>',
+			//'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
+			//'<i class="glyphicon glyphicon-remove"></i>',
+			//'</a>',
 		].join('');
 	} else {
 		return [
-			'<a class="normal m-r-sm text-info" href="javascript:void(0)" title="显示">',
-			'<i class="glyphicon glyphicon-play"></i>',
-			'</a>',
+			//'<a class="normal m-r-sm text-info" href="javascript:void(0)" title="显示">',
+			//'<i class="glyphicon glyphicon-play"></i>',
+			//'</a>',
 			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
 			'<i class="glyphicon glyphicon-edit"></i>',
 			'</a>',
-			'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
-			'<i class="glyphicon glyphicon-remove"></i>',
-			'</a>',
+			//'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
+			//'<i class="glyphicon glyphicon-remove"></i>',
+			//'</a>',
 		].join('');
 	}
 }
@@ -46,8 +46,9 @@ window.actionEvents = {
 		status_start(index, row.picImgId, url);
 	},
 	'click .edit' : function(e, value, row, index) {
-		var url = $('#table').attr('data-url');
-		layer_show(row.name, url + row.picImgId + '/edit', 900, 650)
+		//var url = $('#table').attr('data-url');
+		//layer_show(row.name, url + row.picImgId + '/updateImg', 900, 650)
+		layer_show("修改商品图片详情", baselocation + '/product/detail/' + row.picImgId + '/updateImg', 900, 650)
 	},
 	'click .remove' : function(e, value, row, index) {
 		var url = $('#table').attr('data-url');
@@ -220,7 +221,6 @@ $(function() {
 
 			// Get the form instance
 			var $form = $(e.target);
-
 			// Get the BootstrapValidator instance
 			var bv = $form.data('bootstrapValidator');
 			

@@ -109,6 +109,74 @@ public class ProductController extends BaseController {
 		}
 	}
 
+	/**
+	 * GET 创建product
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "创建商品图片地址", notes = "创建商品图片地址")
+	@RequiresPermissions("product:detail:create")
+	@GetMapping(value = "/{productId}/createImg")
+	public String getInsertProductImgPage(Model model, @PathVariable("productId") Long productId) {
+		model.addAttribute("productId", productId);
+		return "/modules/product/product_image_create";
+	}
+
+	/**
+	 * POST 创建商品
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "创建商品图片地址", notes = "创建商品图片地址")
+	@RequiresPermissions("product:detail:create")
+	@PostMapping(value = "/{productId}/addImg")
+	@ResponseBody
+	public Object insertimg(ProductImage productImage) {
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+			Integer count = productImageService.insertProductImage(productImage, authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
+
+    /**
+     * GET 修改商品图片详情信息
+     *
+     * @return
+     */
+    @ApiOperation(value = "修改商品图片详情信息", notes = "修改商品图片详情信息")
+    @RequiresPermissions("product:detail:edit")
+    @GetMapping(value = "/{picImgId}/updateImg")
+    public String getUpdateProductImagelPage(Model model, @PathVariable("picImgId") Long picImgId) {
+
+        ProductImage productImage = productImageService.selectById(picImgId);
+        model.addAttribute("productImage", productImage);
+
+        return "/modules/product/product_image_update";
+    }
+
+    /**
+     * PUT 修改商品图片详情信息
+     *
+     * @return
+     */
+    @ApiOperation(value = "修改商品图片详情信息", notes = "根据productId修改")
+    @RequiresPermissions("product:detail:edit")
+    @PutMapping(value = "/{picImgId}")
+    @ResponseBody
+    public Object updateProductImage(ProductImage productImage, @PathVariable("picImgId") Long picImgId) {
+
+        AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+        if (authorizingUser != null) {
+
+            Integer count = productImageService.updateProductImage(productImage, authorizingUser.getUserName(), picImgId);
+            return new CmsResult(CommonReturnCode.SUCCESS, count);
+        } else {
+            return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+        }
+    }
 
 
 	/**
@@ -139,6 +207,7 @@ public class ProductController extends BaseController {
 			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
 		}
 	}
+
 
 	/**
 	 * GET 更新商品信息
