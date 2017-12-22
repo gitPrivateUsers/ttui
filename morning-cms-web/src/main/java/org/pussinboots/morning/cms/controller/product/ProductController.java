@@ -144,8 +144,8 @@ public class ProductController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "更新商品详情信息", notes = "更新商品详情信息")
-	@RequiresPermissions("product:osDetail:edit")
-	@GetMapping(value = "/{productId}/edit")
+	@RequiresPermissions("product:osDetail:update")
+	@GetMapping(value = "/{productId}/update")
 	public String getUpdateProductDetailPage(Model model, @PathVariable("productId") Long productId) {
 		// 广告信息
 		ProductDetail productDetail = productDetailService.selectByProductId(productId);
@@ -159,7 +159,7 @@ public class ProductController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "更新商品详情信息", notes = "根据productId修改")
-	@RequiresPermissions("product:osDetail:edit")
+	@RequiresPermissions("product:osDetail:update")
 	@PutMapping(value = "/{productDetailId}")
 	@ResponseBody
 	public Object updateProductDetail(ProductDetail productDetail, @PathVariable("productDetailId") Long productDetailId) {
@@ -179,8 +179,8 @@ public class ProductController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "商品图片页面", notes = "商品图片页面")
-	@RequiresPermissions("product:image:view")
-	@GetMapping(value = "/view")
+	@RequiresPermissions("product:image:viewInfo")
+	@GetMapping(value = "/viewInfo")
 	public String getProductImagePage(Model model) {
 		return "/modules/product/productImage_list";
 	}
@@ -190,10 +190,10 @@ public class ProductController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "获取商品图片页面列表", notes = "根据分页信息/搜索内容")
-	@RequiresPermissions("product:image:view")
-	@GetMapping(value = "/list")
+	@RequiresPermissions("product:image:viewInfo")
+	@GetMapping(value = "/info")
 	@ResponseBody
-	public Object listProductImage(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search, @RequestParam(required = true, value = "productId") Long productId) {
+	public Object listProductImage(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search, @PathVariable("productId") Long productId) {
 		BasePageDTO<ProductImage> basePageDTO = productImageService.listByPage(pageInfo, search,productId);
 		return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
 	}
@@ -202,8 +202,8 @@ public class ProductController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "修改商品图片详情信息", notes = "修改商品图片详情信息")
-	@RequiresPermissions("product:image:edit")
-	@GetMapping(value = "/{picImgId}/edit")
+	@RequiresPermissions("product:image:editInfo")
+	@GetMapping(value = "/{picImgId}/editInfo")
 	public String getUpdateProductImagelPage(Model model, @PathVariable("picImgId") Long picImgId) {
 
 		ProductImage productImage = productImageService.selectById(picImgId);
@@ -217,7 +217,7 @@ public class ProductController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "修改商品图片详情信息", notes = "根据productId修改")
-	@RequiresPermissions("product:image:edit")
+	@RequiresPermissions("product:image:editInfo")
 	@PutMapping(value = "/{productImgId}")
 	@ResponseBody
 	public Object updateProductImage(ProductImage productImage, @PathVariable("picImgId") Long picImgId) {
