@@ -178,6 +178,17 @@ public class ProductController extends BaseController {
             return new CmsResult(CommonReturnCode.UNAUTHORIZED);
         }
     }
+	/**
+	 * DELETE 商品图片
+	 * @return
+	 */
+	@ApiOperation(value = "删除商品图片", notes = "根据url传过来的商品图片编号删除商品图片")
+	@DeleteMapping(value = "/delete/{picImgId}")
+	@ResponseBody
+	public Object favoriteDelete(@PathVariable("picImgId") Long picImgId) {
+		Integer count = productImageService.deleteByPicImgId( picImgId);
+		return new CmsResult(CommonReturnCode.SUCCESS, count);
+	}
 
 //	@ApiOperation(value = "商品参数页面", notes = "商品参数页面")
 //	@RequiresPermissions("product:list:view")

@@ -17,9 +17,9 @@ function actionFormatter(value, row, index) {
 			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
 			'<i class="glyphicon glyphicon-edit"></i>',
 			'</a>',
-			//'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
-			//'<i class="glyphicon glyphicon-remove"></i>',
-			//'</a>',
+			'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
+			'<i class="glyphicon glyphicon-remove"></i>',
+			'</a>',
 		].join('');
 	} else {
 		return [
@@ -29,9 +29,9 @@ function actionFormatter(value, row, index) {
 			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
 			'<i class="glyphicon glyphicon-edit"></i>',
 			'</a>',
-			//'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
-			//'<i class="glyphicon glyphicon-remove"></i>',
-			//'</a>',
+			'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
+			'<i class="glyphicon glyphicon-remove"></i>',
+			'</a>',
 		].join('');
 	}
 }
@@ -51,84 +51,20 @@ window.actionEvents = {
 		layer_show("修改商品图片详情", baselocation + '/product/detail/' + row.picImgId + '/updateImg', 900, 650)
 	},
 	'click .remove' : function(e, value, row, index) {
-		var url = $('#table').attr('data-url');
+		var url =  baselocation + '/product/detail/delete/';
 		admin_delete(index, row.picImgId, url);
 	},
 };
 
-/**
- * 隐藏导航栏
- */
-function status_stop(index, value, url) {
-	layer.confirm('确认要隐藏该导航栏吗？', {
-		btn : [ '确定', '取消' ] //按钮
-	}, function() {
-		$.ajax({
-			dataType : 'json',
-			type : 'put',
-			url : url + value + '/audit',
-			success : function(result) {
-				if (result.code == 1) {
-					$('#table').bootstrapTable('updateRow', {
-						index : index,
-						row : {
-							status : 0,
-						}
-					});
-					layer.msg('该导航隐藏栏成功!', {
-						icon : 5,
-						time : 1000
-					});
-				} else {
-					layer.alert(result.message, {
-						icon : 2
-					});
-				}
-			}
-		})
-	});
-}
 
 /**
- * 显示导航栏
- */
-function status_start(index, value, url) {
-	layer.confirm('确认要显示该导航栏吗？', {
-		btn : [ '确定', '取消' ] //按钮
-	}, function() {
-		$.ajax({
-			dataType : 'json',
-			type : 'put',
-			url : url + value + '/audit',
-			success : function(result) {
-				if (result.code == 1) {
-					$('#table').bootstrapTable('updateRow', {
-						index : index,
-						row : {
-							status : 1,
-						}
-					});
-					layer.msg('该导航显示栏成功!', {
-						icon : 6,
-						time : 1000
-					});
-				} else {
-					layer.alert(result.message, {
-						icon : 2
-					});
-				}
-			}
-		})
-	});
-}
-
-/**
- * 删除导航
+ * 删除
  */
 function admin_delete(index, value, url) {
-	layer.confirm('确认要删除该导航栏吗？', {
+	layer.confirm('确认要删除该条商品的图片吗？', {
 		btn : [ '确定', '取消' ] //按钮
 	}, function() {
+		debugger
 		$.ajax({
 			type : 'delete',
 			dataType : 'json',
@@ -138,7 +74,7 @@ function admin_delete(index, value, url) {
 					$('#table').bootstrapTable('hideRow', {
 						index : index
 					});
-					layer.msg('该导航栏删除成功!', {
+					layer.msg('该条商品的图片删除成功!', {
 						icon : 1,
 						time : 1000
 					});

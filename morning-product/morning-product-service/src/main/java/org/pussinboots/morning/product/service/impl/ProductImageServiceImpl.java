@@ -3,6 +3,7 @@ package org.pussinboots.morning.product.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.support.page.PageInfo;
@@ -54,6 +55,11 @@ public class ProductImageServiceImpl extends ServiceImpl<ProductImageMapper, Pro
 		productImage.setCreateBy(userName);
 		productImage.setCreateTime(new Date());
 		return productImageMapper.insert(productImage);
+	}
+
+	@Override
+	public Integer deleteByPicImgId(Long picImgId) {
+		return productImageMapper.deleteById(picImgId);
 	}
 
 	@Override
