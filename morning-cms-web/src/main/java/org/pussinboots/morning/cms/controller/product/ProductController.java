@@ -12,6 +12,7 @@ import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
 import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.Product;
+import org.pussinboots.morning.product.entity.ProductDetail;
 import org.pussinboots.morning.product.entity.ProductImage;
 import org.pussinboots.morning.product.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -251,6 +252,47 @@ public class ProductController extends BaseController {
 			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
 		}
 	}
+	/**
+	 * GET 更新商品详情信息
+	 * @return
+	 */
+	@ApiOperation(value = "更新商品详情信息", notes = "更新商品详情信息")
+	@RequiresPermissions("product:detail:edit")
+	@GetMapping(value = "/{productId}/update")
+	public String getUpdateProductDetailPage(Model model, @PathVariable("productId") Long productId) {
+		// 广告信息
+		ProductDetail productDetail = productDetailService.selectByProductId(productId);
+		if(productDetail!=null){
+
+			model.addAttribute("productDetail", productDetail);
+		} else{
+			ProductDetail pd=new ProductDetail();
+			pd.setProductId(productId);
+			model.addAttribute("productDetail", pd);
+		}
+
+		return "/modules/product/product_detail_update";
+	}
+
+	/**
+	 * PUT 更新商品详情信息
+	 * @return
+	 */
+	@ApiOperation(value = "更新商品详情信息", notes = "根据productId修改")
+	@RequiresPermissions("product:detail:edit")
+	@PutMapping(value = "/update")
+	@ResponseBody
+	public Object updateProductDetail(ProductDetail productDetail) {
+
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+			Integer count = productDetailService.updateProductDetail(productDetail, authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
+
 //	=============================os_product_detail==============================================
  //ProductDetailController
 //	=============================os_product_image==============================================

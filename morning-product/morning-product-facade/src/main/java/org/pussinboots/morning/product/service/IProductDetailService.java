@@ -14,7 +14,7 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IProductDetailService extends IService<ProductDetail> {
 
-    Integer updateProductDetail(ProductDetail productDetail, String userName, Long productDetailId);
+    Integer updateProductDetail(ProductDetail productDetail, String userName);
 
     ProductDetail selectByProductId(Long productId);
 }

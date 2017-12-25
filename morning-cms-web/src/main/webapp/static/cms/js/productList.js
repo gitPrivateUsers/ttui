@@ -15,6 +15,9 @@ function actionFormatter(value, row, index) {
 			'</a>',
 			'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="查看商品分类">',
 			'<i class="glyphicon glyphicon-list-alt"></i>',
+			'</a>',
+			'<a class="detailUpdate m-r-sm text-primary" href="javascript:void(0)" title="商品详情修改">',
+			'<i class="glyphicon glyphicon-tree-deciduous"></i>',
 			'</a>'
 		].join('');
 
@@ -31,6 +34,12 @@ window.actionEvents = {
 	'click .update' : function(e, value, row, index) {
 		debugger
 		layer_show("商品分类列表", baselocation + '/product/detail/' + row.productId + '/categoryList', 900, 720)
+	},
+	'click .detailUpdate' : function(e, value, row, index) {
+		debugger
+		layer_show("商品详情修改", baselocation + '/product/detail/' + row.productId + '/update', 900, 720)
+
+
 	}
 };
 
@@ -136,4 +145,6 @@ $(function() {
 				})
 			}
 		});
+
+
 })

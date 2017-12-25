@@ -23,8 +23,8 @@ public class ProductDetailServiceImpl extends ServiceImpl<ProductDetailMapper, P
     private ProductDetailMapper productDetailMapper;
 
     @Override
-    public Integer updateProductDetail(ProductDetail productDetail, String userName, Long productDetailId) {
-        if (productDetailId > 0) {
+    public Integer updateProductDetail(ProductDetail productDetail, String userName) {
+        if (productDetail.getProductDetailId() !=null) {
             productDetail.setUpdateBy(userName);
             productDetail.setUpdateTime(new Date());
             return productDetailMapper.updateById(productDetail);
