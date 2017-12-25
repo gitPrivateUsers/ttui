@@ -20,28 +20,28 @@
                             class="close-link"><i class="fa fa-times"></i></a></div>
                 </div>
                 <div class="ibox-content">
-                    <form id="form" class="form-horizontal" action="${ctx}/product/detail/update"
+                    <form id="form" class="form-horizontal" action="${ctx}/product/detail/categoryUpdate"
                           data-method="put">
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">分类ID：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="productCategoryId" readonly="readonly" value="${productCategory.productCategoryId}">
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label class="col-sm-2 col-xs-offset-1 control-label">商品ID：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="productId" readonly="readonly" value="${productDetail.productId}">
+                                <input type="text" class="form-control" name="productId" readonly="readonly" value="${productCategory.productId}">
                             </div>
                         </div>
 
                         <div class="hr-line-dashed"></div>
                         <div class="form-group m-t">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">商品编号：</label>
+                            <label class="col-sm-2 col-xs-offset-1 control-label">商品分类ID ：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="productNumber"  readonly="readonly" value="${productDetail.productNumber}">
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">分类ID：</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" name="categoryId" ${productDetail.categoryId}>
+                                <input type="text" class="form-control" name="categoryId" value="${productCategory.categoryId}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>

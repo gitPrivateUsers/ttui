@@ -14,13 +14,10 @@ function actionFormatter(value, row, index) {
 			'<i class="glyphicon glyphicon-picture"></i>',
 			'</a>',
 			'<a class="categoryUpdate m-r-sm text-primary" href="javascript:void(0)" title="更新商品分类">',
-			'<i class="glyphicon glyphicon-list-alt"></i>',
+			'<i class="glyphicon glyphicon-th-list"></i>',
 			'</a>',
 			'<a class="detailUpdate m-r-sm text-primary" href="javascript:void(0)" title="商品详情修改">',
-			'<i class="glyphicon glyphicon-tree-deciduous"></i>',
-			'<a class="update m-r-sm text-primary" href="javascript:void(0)" title="查看商品分类">',
-			'<i class="glyphicon glyphicon-th-list"></i>',
-			'</a>'
+			'<i class="glyphicon glyphicon-tree-deciduous"></i>'
 		].join('');
 
 }

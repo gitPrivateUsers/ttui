@@ -108,4 +108,6 @@ public interface ProductCategoryMapper extends BaseMapper<ProductCategory> {
      */
 	List<Category> listByProductId(@Param("pageInfo") PageInfo pageInfo,@Param("search") String search,
 								   @Param("productId") Long productId);
+
+	ProductCategory selectByProductId(@Param("productId") Long productId);
 }

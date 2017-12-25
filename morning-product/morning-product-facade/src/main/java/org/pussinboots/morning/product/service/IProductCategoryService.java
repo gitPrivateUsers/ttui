@@ -35,4 +35,8 @@ public interface IProductCategoryService extends IService<ProductCategory> {
 	BasePageDTO<ProductVO> listBySearch(String search, PageInfo pageInfo);
 
 	BasePageDTO<ProductVO> listByProductId(Long productId,String search, PageInfo pageInfo);
+
+	ProductCategory selectByProductId(Long productId);
+
+	Integer updateProductCategory(ProductCategory productCategory, String userName);
 }

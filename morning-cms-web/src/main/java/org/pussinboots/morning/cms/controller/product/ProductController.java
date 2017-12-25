@@ -11,15 +11,14 @@ import org.pussinboots.morning.common.base.BaseController;
 import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
 import org.pussinboots.morning.common.support.page.PageInfo;
-import org.pussinboots.morning.product.entity.Category;
-import org.pussinboots.morning.product.entity.Product;
-import org.pussinboots.morning.product.entity.ProductDetail;
-import org.pussinboots.morning.product.entity.ProductImage;
+import org.pussinboots.morning.product.entity.*;
 import org.pussinboots.morning.product.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 
 /**
@@ -119,28 +118,44 @@ public class ProductController extends BaseController {
 	@RequiresPermissions("product:detail:edit")
 	@GetMapping(value = "/{productId}/categoryUpdate")
 	public String getCategoryPage(Model model, @PathVariable("productId") Long productId) {
-		model.addAttribute("productId", productId);
+		ProductCategory productCategory = productCategoryService.selectByProductId(productId);
+		if(productCategory!=null){
+			model.addAttribute("productCategory", productCategory);
+		} else{
+
+			AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+			ProductCategory pc=new ProductCategory();
+			pc.setProductId(productId);
+			pc.setCreateTime(new Date());
+			if(authorizingUser!=null)
+				pc.setCreateBy(authorizingUser.getRealName());
+			model.addAttribute("productCategory", pc);
+		}
 		return "/modules/product/product_category_update";
 	}
 
+
+
 	/**
-	 * POST 更新分类
-	 *
+	 * PUT 更新商品详情信息
 	 * @return
 	 */
-	@ApiOperation(value = "获取分类列表", notes = "根据分页信息/搜索内容/商品ID获取分类列表")
-	@RequiresPermissions("product:category:view")
-	@PostMapping(value = "/{productId}/categoryLists")
+	@ApiOperation(value = "更新商品详情信息", notes = "根据productId修改")
+	@RequiresPermissions("product:detail:edit")
+	@PutMapping(value = "/categoryUpdate")
 	@ResponseBody
-	public Object listCategory(PageInfo pageInfo,@RequestParam(required = false, value = "search") String search,
-							   @PathVariable("productId") Long productId) {
-//		BasePageDTO<Category> basePageDTO = productCategoryService.listByProductId(productId,search,pageInfo);
-//		return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
-		return null;
+	public Object updateProductCategory(ProductCategory productCategory) {
 
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+			Integer count = productCategoryService.updateProductCategory(productCategory, authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
 	}
 
-    /**
+	/**
      * GET 修改商品图片详情信息
      *
      * @return

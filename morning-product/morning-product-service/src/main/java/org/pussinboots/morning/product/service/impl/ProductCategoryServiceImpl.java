@@ -1,5 +1,6 @@
 package org.pussinboots.morning.product.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.pussinboots.morning.common.base.BasePageDTO;
@@ -60,5 +61,22 @@ public class ProductCategoryServiceImpl extends ServiceImpl<ProductCategoryMappe
 	@Override
 	public BasePageDTO<ProductVO> listByProductId(Long productId,String seerch, PageInfo pageInfo) {
 		return null;
+	}
+
+	@Override
+	public ProductCategory selectByProductId(Long productId) {
+		return productCategoryMapper.selectByProductId(productId);
+	}
+
+	@Override
+	public Integer updateProductCategory(ProductCategory productCategory, String userName) {
+
+		if (productCategory.getProductCategoryId() !=null) {
+			return productCategoryMapper.updateById(productCategory);
+		}
+		productCategory.setCreateTime(new Date());
+		productCategory.setCreateBy(userName);
+		return productCategoryMapper.insert(productCategory);
+
 	}
 }
