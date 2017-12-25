@@ -38,6 +38,24 @@
                 <input type="text" class="form-control" name="introduce">
               </div>
             </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+              <label class="col-sm-2 col-xs-offset-1 control-label">设置：</label>
+              <div class="col-sm-9">
+                <label class="radio-inline">
+                  <input type="checkbox" class="js-switch" name="showInTop" value="1" ${product.showInTop eq '1'?'checked="checked"':''}/>
+                  是否置顶</label>
+                <label class="radio-inline">
+                  <input type="checkbox" class="js-switch" name="showInNav" value="1" ${product.showInNav eq '1'?'checked="checked"':''}/>
+                  是否导航</label>
+                <label class="radio-inline">
+                  <input type="checkbox" class="js-switch" name="showInHot" value="1" ${product.showInHot eq '1'?'checked="checked"':''} />
+                  是否热门</label>
+                <label class="radio-inline">
+                  <input type="checkbox" class="js-switch" name="showInShelve" value="1" ${product.showInShelve eq '1'?'checked="checked"':''} />
+                  是否上架</label>
+              </div>
+            </div>
             <div class="hr-line-dashed"></div>    
             <div class="form-group">
               <label class="col-sm-2 col-xs-offset-1 control-label">商品编码：</label>
@@ -52,9 +70,6 @@
                 <input type="text"   class="form-control" name="picImg">
               </div>
             </div>
-
-
-
             <div class="hr-line-dashed"></div>
             <div class="form-group">
               <label class="col-sm-2  col-xs-offset-1 control-label">搜索关键词：</label>
