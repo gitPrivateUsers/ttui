@@ -111,6 +111,28 @@ public class ProductController extends BaseController {
 		}
 	}
 
+	@ApiOperation(value = "创建商品图片", notes = "创建商品图片")
+	@RequiresPermissions("product:detail:create")
+	@GetMapping(value = "/{productId}/addImg")
+	public String getInsertProductImagePage(Model model, @PathVariable("productId") Long productId) {
+		model.addAttribute("productId", productId);
+		return "/modules/product/product_image_create";
+	}
+
+
+	@ApiOperation(value = "创建商品图片", notes = "创建商品图片")
+	@RequiresPermissions("product:detail:create")
+	@PostMapping(value = "/addImg")
+	@ResponseBody
+	public Object insertProductImage(ProductImage productImage) {
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+			Integer count = productImageService.insertProductImage(productImage, authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
 	/**
 	 * GET 分类管理页面
 	 *
