@@ -11,7 +11,7 @@ function actionFormatter(value, row, index) {
 			'<i class="glyphicon glyphicon-edit"></i>',
 			'</a>',
 			'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="商品图片列表">',
-			'<i class="glyphicon glyphicon-list-alt"></i>',
+			'<i class="glyphicon glyphicon-picture"></i>',
 			'</a>',
 			'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="查看商品分类">',
 			'<i class="glyphicon glyphicon-list-alt"></i>',

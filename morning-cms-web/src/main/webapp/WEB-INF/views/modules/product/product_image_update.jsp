@@ -20,13 +20,13 @@
                             class="close-link"><i class="fa fa-times"></i></a></div>
                 </div>
                 <div class="ibox-content">
-                    <form id="form" class="form-horizontal" action="${ctx}/product/detail/${productImage.picImgId}"
+                    <form id="form" class="form-horizontal" action="${ctx}/product/detail/${productImage.picImgId}/updateImg"
                           data-method="put">
 
                         <div class="form-group">
                             <label class="col-sm-2 col-xs-offset-1 control-label">图片ID：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="picImg" value="${productImage.picImgId}">
+                                <input type="text" class="form-control" name="picImgId"  readonly="readonly" value="${productImage.picImgId}">
                             </div>
                         </div>
 
@@ -34,28 +34,28 @@
                         <div class="form-group m-t">
                             <label class="col-sm-2 col-xs-offset-1 control-label">商品ID：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="name" value="${productImage.productId}">
+                                <input type="text" class="form-control" name="productId"  readonly="readonly" value="${productImage.productId}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <label class="col-sm-2 col-xs-offset-1 control-label">图片：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="showPrice" value="${productImage.picImg}">
+                                <input type="text" class="form-control" name="picImg" value="${productImage.picImg}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <label class="col-sm-2 col-xs-offset-1 control-label">排序：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="introduce" value="${productImage.sort}">
+                                <input type="text" class="form-control" name="sort" value="${productImage.sort}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <label class="col-sm-2 col-xs-offset-1 control-label">状态：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="productNumber" value="${productImage.status}">
+                                <input type="text" class="form-control" name="status" value="${productImage.status}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>

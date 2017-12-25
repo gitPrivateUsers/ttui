@@ -164,7 +164,7 @@ public class ProductController extends BaseController {
      */
     @ApiOperation(value = "修改商品图片详情信息", notes = "根据productId修改")
     @RequiresPermissions("product:detail:edit")
-    @PutMapping(value = "/{picImgId}")
+    @PutMapping(value = "/{picImgId}/updateImg")
     @ResponseBody
     public Object updateProductImage(ProductImage productImage, @PathVariable("picImgId") Long picImgId) {
 
