@@ -361,13 +361,64 @@ public class ProductController extends BaseController {
 		BasePageDTO<ProductParameter> basePageDTO = productParameterService.listByPage(pageInfo, search, productId);
 		return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
 	}
-}
 
-	/*@ApiOperation(value = "创建商品", notes = "创建广告页面")
+	@ApiOperation(value = "创建商品参数", notes = "创建商品参数")
 	@RequiresPermissions("product:detail:create")
-	@GetMapping(value = "/create")
-	public String getInsertPage(Model model) {
-		return "/modules/product/product_create";
+	@GetMapping(value = "/{productId}/createProductParameter")
+	public String getInsertProductParameterPage(Model model, @PathVariable("productId") Long productId) {
+		model.addAttribute("productId", productId);
+		return "/modules/product/product_parameter_create";
 	}
 
-}*/
+
+	@ApiOperation(value = "创建商品参数", notes = "创建商品参数")
+	@RequiresPermissions("product:detail:create")
+	@PostMapping(value = "/createProductParameter")
+	@ResponseBody
+	public Object insertProductParameter(ProductParameter productParameter) {
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+			Integer count = productParameterService.insertProductParameter(productParameter, authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
+
+	/**
+	 * GET 更新商品信息
+	 * @return
+	 */
+	@ApiOperation(value = "修改参数页面", notes = "更新参数页面")
+	@RequiresPermissions("product:detail:edit")
+	@GetMapping(value = "/{productParameterId}/editProductParameter")
+	public String getUpdateProductParameterPage(Model model, @PathVariable("productParameterId") Long productParameterId) {
+		// 类目信息
+		ProductParameter productParameter = productParameterService.selectById(productParameterId);
+		model.addAttribute("productParameter", productParameter);
+
+		return "/modules/product/product_parameter_update";
+	}
+
+	/**
+	 * PUT 更新商品信息
+	 * @return
+	 */
+	@ApiOperation(value = "更新商品参数信息", notes = "根据ID修改")
+	@RequiresPermissions("product:detail:edit")
+	@PutMapping(value = "/editProductParameters")
+	@ResponseBody
+	public Object updateProductParameter(ProductParameter productParameter) {
+
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+
+			Integer count = productParameterService.updateProductParameter(productParameter, authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
+}
+
+

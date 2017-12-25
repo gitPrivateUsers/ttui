@@ -19,8 +19,8 @@ function actionFormatter(value, row, index) {
 
 window.actionEvents = {
 	'click .edit' : function(e, value, row, index) {
-		layer_show("修改商品参数", baselocation + '/product/parameter/' + row.productId + '/edit', 900, 650)
-	},
+		layer_show("修改商品参数", baselocation + '/product/detail/' + row.productParameterId + '/editProductParameter', 900, 650)
+	}
 	//'click .log' : function(e, value, row, index) {
 	//	window.location.href = baselocation + '/product/parameter/'  + row.productId + '/update';
 	//}　

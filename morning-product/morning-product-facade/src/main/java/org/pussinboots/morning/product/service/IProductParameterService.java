@@ -26,7 +26,9 @@ public interface IProductParameterService extends IService<ProductParameter> {
 	 */
 	List<ProductParameter> listByProductId(Long productId, Integer status);
 
-	Integer updateProductParameter(ProductParameter productParameter, String userName, Long productParameterId);
+	Integer updateProductParameter(ProductParameter productParameter, String userName);
 
 	BasePageDTO<ProductParameter> listByPage(PageInfo pageInfo, String search, Long parentId);
+
+	Integer insertProductParameter(ProductParameter productParameter, String userName);
 }
