@@ -31,7 +31,7 @@ function actionFormatter(value, row, index) {
 			//'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
 			//'<i class="glyphicon glyphicon-remove"></i>',
 			//'</a>',
-			//'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="广告详情">',
+			//'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="商品详情">',
 			//'<i class="glyphicon glyphicon-sort-by-attributes-alt"></i>',
 			//'</a>',
 		].join('');
@@ -46,7 +46,7 @@ function actionFormatter(value, row, index) {
 			//'<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
 			//'<i class="glyphicon glyphicon-remove"></i>',
 			//'</a>',
-			//'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="广告详情">',
+			//'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="商品详情">',
 			//'<i class="glyphicon glyphicon-sort-by-attributes-alt"></i>',
 			//'</a>',
 		].join('');
@@ -72,10 +72,10 @@ window.actionEvents = {
 };
 
 /**
- * 隐藏广告
+ * 隐藏商品
  */
 function status_stop(index, value) {
-	layer.confirm('确认要隐藏该广告吗？', {
+	layer.confirm('确认要隐藏该商品吗？', {
 		btn : [ '确定', '取消' ] //按钮
 	}, function() {
 		$.ajax({
@@ -90,7 +90,7 @@ function status_stop(index, value) {
 							status : 0,
 						}
 					});
-					layer.msg('该广告隐藏成功!', {
+					layer.msg('该商品隐藏成功!', {
 						icon : 5,
 						time : 1000
 					});
@@ -105,10 +105,10 @@ function status_stop(index, value) {
 }
 
 /**
- * 显示广告
+ * 显示商品
  */
 function status_start(index, value) {
-	layer.confirm('确认要显示该广告吗？', {
+	layer.confirm('确认要显示该商品吗？', {
 		btn : [ '确定', '取消' ] //按钮
 	}, function() {
 		$.ajax({
@@ -123,7 +123,7 @@ function status_start(index, value) {
 							status : 1,
 						}
 					});
-					layer.msg('该广告显示成功!', {
+					layer.msg('该商品显示成功!', {
 						icon : 6,
 						time : 1000
 					});
@@ -138,10 +138,10 @@ function status_start(index, value) {
 }
 
 /**
- * 删除广告
+ * 删除商品
  */
 function admin_delete(index, value) {
-	layer.confirm('确认要删除该广告吗？', {
+	layer.confirm('确认要删除该商品吗？', {
 		btn : [ '确定', '取消' ] //按钮
 	}, function() {
 		$.ajax({
@@ -153,7 +153,7 @@ function admin_delete(index, value) {
 					$('#table').bootstrapTable('hideRow', {
 						index : index
 					});
-					layer.msg('该广告删除成功!', {
+					layer.msg('该商品删除成功!', {
 						icon : 1,
 						time : 1000
 					});
@@ -201,18 +201,18 @@ $(function() {
 		},
 		fields : {
 			'name' : {
-				message : '广告名称验证失败',
+				message : '商品名称验证失败',
 				validators : {
 					notEmpty : {
-						message : '广告名称不能为空'
+						message : '商品名称不能为空'
 					}
 				}
 			},
 			'code' : {
-				message : '广告标志验证失败',
+				message : '商品标志验证失败',
 				validators : {
 					notEmpty : {
-						message : '广告标志不能为空'
+						message : '商品标志不能为空'
 					}
 				}
 			},	
@@ -220,11 +220,11 @@ $(function() {
 				message : '显示数量验证失败',
 				validators : {
 					notEmpty : {
-						message : '广告栏显示数量不能为空'
+						message : '商品栏显示数量不能为空'
 					},
 		            regexp: {
 		                regexp: /^[0-9]*$/,
-		                message: '广告栏显示数量只能为数字'
+		                message: '商品栏显示数量只能为数字'
 		            }
 				}
 			},
@@ -274,7 +274,7 @@ $(function() {
 					url : $form.attr('action'),
 					success : function(result) {
 						if (result.code == 1) {
-							parent.layer.msg("更新广告成功!", {
+							parent.layer.msg("更新商品成功!", {
 								shade : 0.3,
 								time : 1500
 							}, function() {
@@ -296,7 +296,7 @@ $(function() {
 					url : $form.attr('action'),
 					success : function(result) {
 						if (result.code == 1) {
-							parent.layer.msg("创建广告成功!", {
+							parent.layer.msg("创建商品成功!", {
 								shade : 0.3,
 								time : 1500
 							}, function() {

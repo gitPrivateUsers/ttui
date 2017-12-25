@@ -237,9 +237,17 @@ public class ProductController extends BaseController {
 	@RequiresPermissions("product:detail:create")
 	@PostMapping(value = "")
 	@ResponseBody
-	public Object insert(Product product) {
+	public Object insert(Product product,
+						 @RequestParam(value = "showInNav", defaultValue = "0") Integer showInNav,
+						 @RequestParam(value = "showInShelve", defaultValue = "0") Integer showInShelve,
+						 @RequestParam(value = "showInTop", defaultValue = "0") Integer showInTop,
+						 @RequestParam(value = "showInHot", defaultValue = "0") Integer showInHot) {
 		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
 		if (authorizingUser != null) {
+			product.setShowInHot(showInHot);
+			product.setShowInShelve(showInShelve);
+			product.setShowInNav(showInNav);
+			product.setShowInTop(showInTop);
 			Integer count = productService.insertProduct(product, authorizingUser.getUserName());
 			return new CmsResult(CommonReturnCode.SUCCESS, count);
 		} else {
