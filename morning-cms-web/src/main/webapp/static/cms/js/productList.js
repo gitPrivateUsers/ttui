@@ -4,6 +4,34 @@
 function timeFormatter(value) {
 	return new Date(value).Format("yyyy-MM-dd HH:mm:ss");
 }
+function navFormatter(value) {
+	if (value == 1) {
+		return '<span class="label label-primary">显示</span>'
+	} else if (value == 0) {
+		return '<span class="label label-danger">隐藏</span>'
+	}
+}
+function topFormatter(value) {
+	if (value == 1) {
+		return '<span class="label label-danger">置顶</span>'
+	} else if (value == 0) {
+		return '<span class="label label-primary">默认</span>'
+	}
+}
+function hotFormatter(value) {
+	if (value == 1) {
+		return '<span class="label label-danger">热门</span>'
+	} else if (value == 0) {
+		return '<span class="label label-primary">默认</span>'
+	}
+}
+function shelveFormatter(value) {
+	if (value == 1) {
+		return '<span class="label label-danger">上架</span>'
+	} else if (value == 0) {
+		return '<span class="label label-primary">下架</span>'
+	}
+}
 
 function actionFormatter(value, row, index) {
 		return [
@@ -40,6 +68,85 @@ window.actionEvents = {
 
 	}
 };
+
+//function detailFormatter(index, row, $detail) {
+//	InitSubTable(index, row, $detail);
+//}
+//
+////初始化子表格(无线循环)
+//InitSubTable = function(index, row, $detail) {
+//	var parentid = row.categoryId;
+//	var cur_table = $detail.html('<table></table>').find('table');
+//	$(cur_table).bootstrapTable({
+//		url : baselocation + '/product/category/gid/' + parentid,
+//		method : 'get',
+//		sidePagination : 'server',
+//		clickToSelect : true,
+//		uniqueId : "categoryId",
+//		pagination : true,
+//		pageSize : 10,
+//		pageList : [ 10, 25 ],
+//		pageNumber : 1,
+//		columns : [ {
+//			field : 'categoryId',
+//			title : '分类编号',
+//			halign : 'center',
+//			align : 'center',
+//			sortable : 'true'
+//		}, {
+//			field : 'name',
+//			title : '分类名称',
+//			halign : 'center',
+//			align : 'center',
+//			sortable : 'true'
+//		}, {
+//			field : 'sort',
+//			title : '排序',
+//			halign : 'center',
+//			align : 'center',
+//			sortable : 'true'
+//		}, {
+//			field : 'status',
+//			title : '状态',
+//			halign : 'center',
+//			align : 'center',
+//			sortable : 'true',
+//			formatter : 'statusFormatter'
+//		}, {
+//			field : 'showInNav',
+//			title : '是否导航',
+//			halign : 'center',
+//			align : 'center',
+//			sortable : 'true',
+//			formatter : 'navFormatter'
+//		}, {
+//			field : 'showInTop',
+//			title : '是否置顶',
+//			halign : 'center',
+//			align : 'center',
+//			sortable : 'true',
+//			formatter : 'topFormatter'
+//		}, {
+//			field : 'showInHot',
+//			title : '是否热门',
+//			halign : 'center',
+//			align : 'center',
+//			sortable : 'true',
+//			formatter : 'hotFormatter'
+//		}, {
+//			title : '操作',
+//			halign : 'center',
+//			align : 'center',
+//			sortable : 'true',
+//			formatter : 'actionFormatter',
+//			events : 'actionEvents'
+//		}, ],
+//		//无线循环取子表，直到子表里面没有记录
+//		onExpandRow : function(index, row, $Subdetail) {
+//			oInit.InitSubTable(index, row, $Subdetail);
+//		}
+//	});
+//};
 
 /**
  * 多选框插件
