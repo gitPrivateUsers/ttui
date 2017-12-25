@@ -35,7 +35,7 @@
                          data-show-export="true"
                          data-show-pagination-switch="true"
                          data-show-columns="true"
-                         data-url="${ctx}/product/parameter/list"
+                         data-url="${ctx}/product/detail/${productId}/parameterLists"
                          data-pagination="true"
                          data-page-size="20"
                          data-page-list="[20, 50, 100, 200]"
@@ -46,16 +46,14 @@
                          data-toolbar="#toolbar">
                     <thead>
                     <tr>
-                      <th data-field="productId" data-halign="center" data-align="center" data-sortable="true">商品参数ID</th>
-                      <th data-field="productNumber" data-halign="center" data-align="center" data-sortable="true">商品ID</th>
+                      <th data-field="productParameterId" data-halign="center" data-align="center" data-sortable="true">商品参数ID</th>
+                      <th data-field="productId" data-halign="center" data-align="center" data-sortable="true">商品ID</th>
                       <th data-field="name" data-halign="center" data-align="center" data-sortable="true">参数名称</th>
-                      <th data-field="showPrice" data-halign="center" data-align="center" data-sortable="true">参数值</th>
-                      <th data-field="introduce" data-halign="center" data-align="center" data-sortable="true">状态</th>
-                      <th data-field="pageDescription" data-halign="center" data-align="center" data-sortable="true">排序</th>
-                      <th data-field="picImg" data-halign="center" data-align="center" data-sortable="true">创建时间</th>
-                      <th data-field="searchKey" data-halign="center" data-align="center" data-sortable="true">创建者</th>
-                      <th data-field="createBy" data-halign="center" data-align="center" data-sortable="true">更新时间</th>
-                      <th data-field="createBy" data-halign="center" data-align="center" data-sortable="true">更新者</th>
+                      <th data-field="value" data-halign="center" data-align="center" data-sortable="true">参数值</th>
+                      <th data-field="status" data-halign="center" data-align="center" data-sortable="true">状态</th>
+                      <th data-field="sort" data-halign="center" data-align="center" data-sortable="true">排序</th>
+                      <th data-field="createTime" data-halign="center" data-align="center" data-sortable="true">创建时间</th>
+                      <th data-field="createBy" data-halign="center" data-align="center" data-sortable="true">创建者</th>
                     <%--<th data-field="remarks" data-halign="center" data-align="center" data-sortable="true">备注</th>--%>
                       <th data-formatter="actionFormatter" data-events="actionEvents" data-halign="center" data-align="center" data-sortable="true">操作</th>
                     </tr>

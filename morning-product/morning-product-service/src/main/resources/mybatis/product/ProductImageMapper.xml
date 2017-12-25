@@ -43,12 +43,9 @@
 		os_product_image
 		<where>
 			1=1
-			<if test="search != null">
-				AND (
-				name LIKE '%' #{search} '%'
-				OR create_by LIKE '%' #{search} '%'
-				OR update_by LIKE '%' #{search} '%' and product_id=#{productId}
-				)
+			<if test="productId != null">
+				and product_id=#{productId}
+
 			</if>
 			<if test="pageInfo.sort != null">
 				ORDER BY ${pageInfo.sort} ${pageInfo.order}

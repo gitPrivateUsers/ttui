@@ -51,6 +51,7 @@ public class ProductController extends BaseController {
 
 	/**
 	 * GET 商品管理页面
+	 *
 	 * @return
 	 */
 	@ApiOperation(value = "商品管理页面", notes = "商品管理页面")
@@ -59,9 +60,10 @@ public class ProductController extends BaseController {
 	public String getProductPage(Model model) {
 		return "/modules/product/product_list";
 	}
-	
+
 	/**
 	 * GET 商品列表,
+	 *
 	 * @return
 	 */
 	@ApiOperation(value = "获取商品列表", notes = "根据分页信息/搜索内容")
@@ -72,7 +74,6 @@ public class ProductController extends BaseController {
 		BasePageDTO<Product> basePageDTO = productService.listByPage(pageInfo, search);
 		return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
 	}
-
 
 
 	/**
@@ -112,6 +113,7 @@ public class ProductController extends BaseController {
 
 	/**
 	 * GET 分类管理页面
+	 *
 	 * @return
 	 */
 	@ApiOperation(value = "更新分类页面", notes = "更新分类页面")
@@ -119,15 +121,15 @@ public class ProductController extends BaseController {
 	@GetMapping(value = "/{productId}/categoryUpdate")
 	public String getCategoryPage(Model model, @PathVariable("productId") Long productId) {
 		ProductCategory productCategory = productCategoryService.selectByProductId(productId);
-		if(productCategory!=null){
+		if (productCategory != null) {
 			model.addAttribute("productCategory", productCategory);
-		} else{
+		} else {
 
 			AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
-			ProductCategory pc=new ProductCategory();
+			ProductCategory pc = new ProductCategory();
 			pc.setProductId(productId);
 			pc.setCreateTime(new Date());
-			if(authorizingUser!=null)
+			if (authorizingUser != null)
 				pc.setCreateBy(authorizingUser.getRealName());
 			model.addAttribute("productCategory", pc);
 		}
@@ -135,9 +137,9 @@ public class ProductController extends BaseController {
 	}
 
 
-
 	/**
 	 * PUT 更新商品详情信息
+	 *
 	 * @return
 	 */
 	@ApiOperation(value = "更新商品详情信息", notes = "根据productId修改")
@@ -156,50 +158,52 @@ public class ProductController extends BaseController {
 	}
 
 	/**
-     * GET 修改商品图片详情信息
-     *
-     * @return
-     */
-    @ApiOperation(value = "修改商品图片详情信息", notes = "修改商品图片详情信息")
-    @RequiresPermissions("product:detail:edit")
-    @GetMapping(value = "/{picImgId}/updateImg")
-    public String getUpdateProductImagelPage(Model model, @PathVariable("picImgId") Long picImgId) {
+	 * GET 修改商品图片详情信息
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "修改商品图片详情信息", notes = "修改商品图片详情信息")
+	@RequiresPermissions("product:detail:edit")
+	@GetMapping(value = "/{picImgId}/updateImg")
+	public String getUpdateProductImagelPage(Model model, @PathVariable("picImgId") Long picImgId) {
 
-        ProductImage productImage = productImageService.selectById(picImgId);
-        model.addAttribute("productImage", productImage);
+		ProductImage productImage = productImageService.selectById(picImgId);
+		model.addAttribute("productImage", productImage);
 
-        return "/modules/product/product_image_update";
-    }
+		return "/modules/product/product_image_update";
+	}
 
-    /**
-     * PUT 修改商品图片详情信息
-     *
-     * @return
-     */
-    @ApiOperation(value = "修改商品图片详情信息", notes = "根据productId修改")
-    @RequiresPermissions("product:detail:edit")
-    @PutMapping(value = "/{picImgId}/updateImg")
-    @ResponseBody
-    public Object updateProductImage(ProductImage productImage, @PathVariable("picImgId") Long picImgId) {
+	/**
+	 * PUT 修改商品图片详情信息
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "修改商品图片详情信息", notes = "根据productId修改")
+	@RequiresPermissions("product:detail:edit")
+	@PutMapping(value = "/{picImgId}/updateImg")
+	@ResponseBody
+	public Object updateProductImage(ProductImage productImage, @PathVariable("picImgId") Long picImgId) {
 
-        AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
-        if (authorizingUser != null) {
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
 
-            Integer count = productImageService.updateProductImage(productImage, authorizingUser.getUserName(), picImgId);
-            return new CmsResult(CommonReturnCode.SUCCESS, count);
-        } else {
-            return new CmsResult(CommonReturnCode.UNAUTHORIZED);
-        }
-    }
+			Integer count = productImageService.updateProductImage(productImage, authorizingUser.getUserName(), picImgId);
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
+
 	/**
 	 * DELETE 商品图片
+	 *
 	 * @return
 	 */
 	@ApiOperation(value = "删除商品图片", notes = "根据url传过来的商品图片编号删除商品图片")
 	@DeleteMapping(value = "/delete/{picImgId}")
 	@ResponseBody
 	public Object favoriteDelete(@PathVariable("picImgId") Long picImgId) {
-		Integer count = productImageService.deleteByPicImgId( picImgId);
+		Integer count = productImageService.deleteByPicImgId(picImgId);
 		return new CmsResult(CommonReturnCode.SUCCESS, count);
 	}
 
@@ -214,6 +218,7 @@ public class ProductController extends BaseController {
 
 	/**
 	 * GET 创建product
+	 *
 	 * @return
 	 */
 	@ApiOperation(value = "创建商品", notes = "创建广告页面")
@@ -225,6 +230,7 @@ public class ProductController extends BaseController {
 
 	/**
 	 * POST 创建商品
+	 *
 	 * @return
 	 */
 	@ApiOperation(value = "创建商品", notes = "创建商品")
@@ -244,6 +250,7 @@ public class ProductController extends BaseController {
 
 	/**
 	 * GET 更新商品信息
+	 *
 	 * @return
 	 */
 	@ApiOperation(value = "更新商品信息", notes = "更新商品信息")
@@ -259,25 +266,36 @@ public class ProductController extends BaseController {
 
 	/**
 	 * PUT 更新商品信息
+	 *
 	 * @return
 	 */
 	@ApiOperation(value = "更新商品信息", notes = "根据ID修改")
 	@RequiresPermissions("product:detail:edit")
 	@PutMapping(value = "/{productId}")
 	@ResponseBody
-	public Object update(Product product, @PathVariable("productId") Long productId) {
+	public Object update(Product product, @PathVariable("productId") Long productId,
+						 @RequestParam(value = "showInNav", defaultValue = "0") Integer showInNav,
+						 @RequestParam(value = "showInShelve", defaultValue = "0") Integer showInShelve,
+						 @RequestParam(value = "showInTop", defaultValue = "0") Integer showInTop,
+						 @RequestParam(value = "showInHot", defaultValue = "0") Integer showInHot) {
 
 		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
 		if (authorizingUser != null) {
 			// 更新商品信息
+			product.setShowInHot(showInHot);
+			product.setShowInShelve(showInShelve);
+			product.setShowInNav(showInNav);
+			product.setShowInTop(showInTop);
 			Integer count = productService.updateProduct(product, authorizingUser.getUserName());
 			return new CmsResult(CommonReturnCode.SUCCESS, count);
 		} else {
 			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
 		}
 	}
+
 	/**
 	 * GET 更新商品详情信息
+	 *
 	 * @return
 	 */
 	@ApiOperation(value = "更新商品详情信息", notes = "更新商品详情信息")
@@ -286,11 +304,11 @@ public class ProductController extends BaseController {
 	public String getUpdateProductDetailPage(Model model, @PathVariable("productId") Long productId) {
 		// 广告信息
 		ProductDetail productDetail = productDetailService.selectByProductId(productId);
-		if(productDetail!=null){
+		if (productDetail != null) {
 
 			model.addAttribute("productDetail", productDetail);
-		} else{
-			ProductDetail pd=new ProductDetail();
+		} else {
+			ProductDetail pd = new ProductDetail();
 			pd.setProductId(productId);
 			model.addAttribute("productDetail", pd);
 		}
@@ -300,6 +318,7 @@ public class ProductController extends BaseController {
 
 	/**
 	 * PUT 更新商品详情信息
+	 *
 	 * @return
 	 */
 	@ApiOperation(value = "更新商品详情信息", notes = "根据productId修改")
@@ -317,9 +336,38 @@ public class ProductController extends BaseController {
 		}
 	}
 
-//	=============================os_product_detail==============================================
- //ProductDetailController
-//	=============================os_product_image==============================================
-	//ProductImageController
 
+	/**
+	 * GET 商品参数页面
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "商品参数页面", notes = "商品参数页面")
+	@RequiresPermissions("product:list:view")
+	@GetMapping(value = "/{productId}/parameterView")
+	public String getProducParametertPage(Model model, @PathVariable("productId") Long productId) {
+
+		model.addAttribute("productId", productId);
+		return "/modules/product/product_parameter_list";
+	}
+
+
+	@ApiOperation(value = "获取商品参数列表", notes = "根据分页信息/搜索内容获取参数列表")
+	@RequiresPermissions("product:list:view")
+	@GetMapping(value = "/{productId}/parameterLists")
+	@ResponseBody
+	public Object listParameter(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search,
+								@PathVariable("productId") Long productId) {
+		BasePageDTO<ProductParameter> basePageDTO = productParameterService.listByPage(pageInfo, search, productId);
+		return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
+	}
 }
+
+	/*@ApiOperation(value = "创建商品", notes = "创建广告页面")
+	@RequiresPermissions("product:detail:create")
+	@GetMapping(value = "/create")
+	public String getInsertPage(Model model) {
+		return "/modules/product/product_create";
+	}
+
+}*/

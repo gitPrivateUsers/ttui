@@ -45,7 +45,9 @@ function actionFormatter(value, row, index) {
 			'<i class="glyphicon glyphicon-th-list"></i>',
 			'</a>',
 			'<a class="detailUpdate m-r-sm text-primary" href="javascript:void(0)" title="商品详情修改">',
-			'<i class="glyphicon glyphicon-tree-deciduous"></i>'
+			'<i class="glyphicon glyphicon-tree-deciduous"></i>',
+			'<a class="parameterView m-r-sm text-primary" href="javascript:void(0)" title="商品参数列表">',
+			'<i class="glyphicon glyphicon-object-align-horizontal"></i>',
 		].join('');
 
 }
@@ -65,6 +67,10 @@ window.actionEvents = {
 		debugger
 		layer_show("商品详情修改", baselocation + '/product/detail/' + row.productId + '/update', 900, 720)
 
+	},
+	'click .parameterView' : function(e, value, row, index) {
+		debugger
+		layer_show("商品参数列表", baselocation + '/product/detail/' + row.productId + '/parameterView', 900, 720)
 
 	}
 };
