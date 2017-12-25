@@ -11,6 +11,7 @@ import org.pussinboots.morning.common.base.BaseController;
 import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
 import org.pussinboots.morning.common.support.page.PageInfo;
+import org.pussinboots.morning.product.entity.Category;
 import org.pussinboots.morning.product.entity.Product;
 import org.pussinboots.morning.product.entity.ProductDetail;
 import org.pussinboots.morning.product.entity.ProductImage;
@@ -111,35 +112,32 @@ public class ProductController extends BaseController {
 	}
 
 	/**
-	 * GET 创建product
-	 *
+	 * GET 分类管理页面
 	 * @return
 	 */
-	@ApiOperation(value = "创建商品图片地址", notes = "创建商品图片地址")
-	@RequiresPermissions("product:detail:create")
-	@GetMapping(value = "/{productId}/createImg")
-	public String getInsertProductImgPage(Model model, @PathVariable("productId") Long productId) {
+	@ApiOperation(value = "更新分类页面", notes = "更新分类页面")
+	@RequiresPermissions("product:detail:edit")
+	@GetMapping(value = "/{productId}/categoryUpdate")
+	public String getCategoryPage(Model model, @PathVariable("productId") Long productId) {
 		model.addAttribute("productId", productId);
-		return "/modules/product/product_image_create";
+		return "/modules/product/product_category_update";
 	}
 
 	/**
-	 * POST 创建商品
+	 * POST 更新分类
 	 *
 	 * @return
 	 */
-	@ApiOperation(value = "创建商品图片地址", notes = "创建商品图片地址")
-	@RequiresPermissions("product:detail:create")
-	@PostMapping(value = "/{productId}/addImg")
+	@ApiOperation(value = "获取分类列表", notes = "根据分页信息/搜索内容/商品ID获取分类列表")
+	@RequiresPermissions("product:category:view")
+	@PostMapping(value = "/{productId}/categoryLists")
 	@ResponseBody
-	public Object insertimg(ProductImage productImage) {
-		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
-		if (authorizingUser != null) {
-			Integer count = productImageService.insertProductImage(productImage, authorizingUser.getUserName());
-			return new CmsResult(CommonReturnCode.SUCCESS, count);
-		} else {
-			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
-		}
+	public Object listCategory(PageInfo pageInfo,@RequestParam(required = false, value = "search") String search,
+							   @PathVariable("productId") Long productId) {
+//		BasePageDTO<Category> basePageDTO = productCategoryService.listByProductId(productId,search,pageInfo);
+//		return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
+		return null;
+
 	}
 
     /**

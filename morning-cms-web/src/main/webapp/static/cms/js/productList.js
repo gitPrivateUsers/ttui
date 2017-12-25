@@ -13,11 +13,13 @@ function actionFormatter(value, row, index) {
 			'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="商品图片列表">',
 			'<i class="glyphicon glyphicon-picture"></i>',
 			'</a>',
-			'<a class="log m-r-sm text-primary" href="javascript:void(0)" title="查看商品分类">',
+			'<a class="categoryUpdate m-r-sm text-primary" href="javascript:void(0)" title="更新商品分类">',
 			'<i class="glyphicon glyphicon-list-alt"></i>',
 			'</a>',
 			'<a class="detailUpdate m-r-sm text-primary" href="javascript:void(0)" title="商品详情修改">',
 			'<i class="glyphicon glyphicon-tree-deciduous"></i>',
+			'<a class="update m-r-sm text-primary" href="javascript:void(0)" title="查看商品分类">',
+			'<i class="glyphicon glyphicon-th-list"></i>',
 			'</a>'
 		].join('');
 
@@ -28,12 +30,11 @@ window.actionEvents = {
 		layer_show("修改商品详情", baselocation + '/product/detail/' + row.productId + '/edit', 900, 650)
 	},
 	'click .log' : function(e, value, row, index) {
-		debugger
 		layer_show("商品图片列表", baselocation + '/product/detail/' + row.productId + '/list', 1300, 720)
 	},
-	'click .update' : function(e, value, row, index) {
+	'click .categoryUpdate' : function(e, value, row, index) {
 		debugger
-		layer_show("商品分类列表", baselocation + '/product/detail/' + row.productId + '/categoryList', 900, 720)
+		layer_show("更新商品分类", baselocation + '/product/detail/' + row.productId + '/categoryUpdate', 900, 720)
 	},
 	'click .detailUpdate' : function(e, value, row, index) {
 		debugger

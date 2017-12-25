@@ -57,7 +57,7 @@ public class ProductCategoryController extends BaseController {
 	 * GET 分类列表,根据父类目ID
 	 * @return
 	 */
-	@ApiOperation(value = "获取分类列表", notes = "根据分页信息/搜索内容/父类目ID获取分类列表")  
+	@ApiOperation(value = "获取分类列表", notes = "根据分页信息/搜索内容/父类目ID获取分类列表")
 	@RequiresPermissions("product:category:view")
 	@GetMapping(value = "/gid/{parentId}")
 	@ResponseBody

@@ -56,4 +56,9 @@ public class ProductCategoryServiceImpl extends ServiceImpl<ProductCategoryMappe
 
 		return new BasePageDTO<ProductVO>(pageInfo, productVOs);
 	}
+
+	@Override
+	public BasePageDTO<ProductVO> listByProductId(Long productId,String seerch, PageInfo pageInfo) {
+		return null;
+	}
 }

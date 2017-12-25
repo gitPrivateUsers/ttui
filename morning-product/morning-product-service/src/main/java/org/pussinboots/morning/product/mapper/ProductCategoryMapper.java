@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.pussinboots.morning.common.support.page.PageInfo;
+import org.pussinboots.morning.product.entity.Category;
 import org.pussinboots.morning.product.entity.ProductCategory;
 import org.pussinboots.morning.product.pojo.vo.ProductVO;
 
@@ -97,4 +98,14 @@ public interface ProductCategoryMapper extends BaseMapper<ProductCategory> {
 	 */
 	List<ProductVO> listBySearch(@Param("search") String search, @Param("status") Integer status,
 			@Param("pageInfo") PageInfo pageInfo, RowBounds rowBounds);
+
+	/**
+	 * 根据商品ID查询对应的商品分类
+	 * @param pageInfo
+	 * @param search
+	 * @param productId
+     * @return
+     */
+	List<Category> listByProductId(@Param("pageInfo") PageInfo pageInfo,@Param("search") String search,
+								   @Param("productId") Long productId);
 }
