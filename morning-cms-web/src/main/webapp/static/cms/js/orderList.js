@@ -42,7 +42,7 @@ function actionFormatter(value, row, index) {
 
 window.actionEvents = { 
 	'click .edit' : function(e, value, row, index) {
-		 layer_show(row.name, baselocation + '/order/list/' + row.advertId + '/edit', 900, 650)
+		 layer_show(row.name, baselocation + '/system/order/' + row.orderId + '/edit', 900, 650)
  	}, 
 };
 
@@ -155,7 +155,7 @@ $(function() {
 					url : $form.attr('action'),
 					success : function(result) {
 						if (result.code == 1) {
-							parent.layer.msg("更新广告成功!", {
+							parent.layer.msg("更新订单成功!", {
 								shade : 0.3,
 								time : 1500
 							}, function() {
@@ -177,7 +177,7 @@ $(function() {
 					url : $form.attr('action'),
 					success : function(result) {
 						if (result.code == 1) {
-							parent.layer.msg("创建广告成功!", {
+							parent.layer.msg("创建订单成功!", {
 								shade : 0.3,
 								time : 1500
 							}, function() {

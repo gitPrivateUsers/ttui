@@ -75,4 +75,6 @@ public interface IOrderService extends IService<Order> {
 	 * @return
 	 */
 	Integer updateShipmentTime(Long orderNumber, Integer shipmentTime, Long userId);
+
+	Integer updateOrder(Order order, String userName);
 }

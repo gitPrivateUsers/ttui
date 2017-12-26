@@ -147,4 +147,18 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 			return null;
 		}
 	}
+
+	@Override
+	public Integer updateOrder(Order order, String userName) {
+
+		Order oldOrder = orderMapper.selectById(order.getOrderId());
+		if (oldOrder != null) {
+			oldOrder.setUpdateTime(new Date());
+			oldOrder.setShipmentTime(order.getShipmentTime());
+			oldOrder.setPayType(order.getPayType());
+			return orderMapper.updateById(oldOrder);
+
+		}
+		return 0;
+	}
 }

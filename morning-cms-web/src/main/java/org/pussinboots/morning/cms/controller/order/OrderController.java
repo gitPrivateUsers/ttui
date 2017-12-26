@@ -64,7 +64,41 @@ public class OrderController extends BaseController {
 		return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
 		/*return null;*/
 	}
+	/**
+	 * GET 更新订单信息
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "更新订单信息", notes = "更新订单信息")
+	@RequiresPermissions("order:list:edit")
+	@GetMapping(value = "/{orderId}/edit")
+	public String getUpdatePage(Model model, @PathVariable("orderId") Long orderId) {
 
+		Order order = orderService.selectById(orderId);
+		model.addAttribute("order", order);
+
+		return "/modules/order/order_edit";
+	}
+
+	/**
+	 * PUT 更新订单信息
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "更新订单信息", notes = "根据ID修改")
+	@RequiresPermissions("order:list:edit")
+	@PutMapping(value = "/{orderId}")
+	@ResponseBody
+	public Object update(Order order, @PathVariable("orderId") Long orderId) {
+
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+			Integer count = orderService.updateOrder(order, authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
 
 
 }
