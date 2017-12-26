@@ -4,46 +4,65 @@
 function timeFormatter(value) {
 	return new Date(value).Format("yyyy-MM-dd HH:mm:ss");
 }
+
+function payFormatter(value){
+	if(value == 0){
+	return '<span class="">线下支付</span>'
+	}else if (value == 1){
+	 return '<span class="">在线支付</span>'
+	}
+}
+
+function shipTimeFormatter(value) {
+ 	if (value == 1) {
+ 	return '<span class="">不限送货时间</span>'
+ 	} else if (value == 2) {
+ 	return '<span class="">工作日送货</span>'
+ 	}else if (value == 3) {
+		return '<span class="">双休日、假日送货</span>'
+	}
+}
+
 function statusFormatter(value) {
 	if (value == 1) {
-		return '<span  class="">已提交</span>'
+		return '<span  class="label label-primary">已提交</span>'
 	} 
 	if (value == 2) {
-		return '<span  class="">待付款</span>'
+		return '<span  class="label label-warning">待付款</span>'
 	} 
 	if (value == 3) {
-		return '<span  class="">已取消</span>'
+		return '<span  class="label label-danger">已取消</span>'
 	} 
 	if (value == 4) {
-		return '<span  class="">已付款</span>'
+		return '<span  class="label label-info">已付款</span>'
 	} 
 	if (value == 5) {
-		return '<span  class="">配送中</span>'
+		return '<span  class="label label-default">配送中</span>'
 	} 
 	if (value == 6) {
-		return '<span  class="">已完成</span>'
+		return '<span  class="label label-success">已完成</span>'
 	} 
 }
-/*function typeFormatter(value) {
+function typeFormatter(value) {
 	if (value == 1) {
 		return '<span class="label label-primary">图片</span>'
 	} else if (value == 0) {
 		return '<span class="label label-danger">文本</span>'
 	}
-}*/
+}
 
 function actionFormatter(value, row, index) {
 	 return [ 
 			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
 			'<i class="glyphicon glyphicon-edit"></i>',
-			'</a>' 
+			'</a>',
 		].join(''); 
 }
 
 window.actionEvents = { 
 	'click .edit' : function(e, value, row, index) {
 		 layer_show(row.name, baselocation + '/system/order/' + row.orderId + '/edit', 900, 650)
- 	}, 
+ 	},
 };
 
 

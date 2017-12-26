@@ -6,30 +6,30 @@ function timeFormatter(value) {
 }
 function navFormatter(value) {
 	if (value == 1) {
-		return '<span class="label label-primary">显示</span>'
+		return '<span class="label label-success">显示</span>'
 	} else if (value == 0) {
-		return '<span class="label label-danger">隐藏</span>'
+		return '<span class="label label-default">隐藏</span>'
 	}
 }
 function topFormatter(value) {
 	if (value == 1) {
-		return '<span class="label label-danger">置顶</span>'
+		return '<span class="label label-success">置顶</span>'
 	} else if (value == 0) {
-		return '<span class="label label-primary">默认</span>'
+		return '<span class="label label-default">默认</span>'
 	}
 }
 function hotFormatter(value) {
 	if (value == 1) {
-		return '<span class="label label-danger">热门</span>'
+		return '<span class="label label-success">热门</span>'
 	} else if (value == 0) {
-		return '<span class="label label-primary">默认</span>'
+		return '<span class="label label-default">默认</span>'
 	}
 }
 function shelveFormatter(value) {
 	if (value == 1) {
-		return '<span class="label label-danger">上架</span>'
+		return '<span class="label label-success">上架</span>'
 	} else if (value == 0) {
-		return '<span class="label label-primary">下架</span>'
+		return '<span class="label label-default">下架</span>'
 	}
 }
 

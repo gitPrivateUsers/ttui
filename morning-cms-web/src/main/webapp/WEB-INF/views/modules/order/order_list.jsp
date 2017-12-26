@@ -57,10 +57,10 @@
                                             <th data-field="userId" data-halign="center" data-align="center"
                                                 data-sortable="true">用户ID
                                             </th>
-                                            <th data-field="payType" data-halign="center" data-align="center"
+                                            <th data-formatter="payFormatter"  data-field="payType" data-halign="center" data-align="center"
                                                 data-sortable="true">支付方式
                                             </th>
-                                            <th data-field="shipmentTime" data-halign="center" data-align="center"
+                                            <th data-formatter="shipTimeFormatter" data-field="shipmentTime" data-halign="center" data-align="center"
                                                 data-sortable="true">配送时间
                                             </th>
                                             <th data-formatter="statusFormatter" data-field="orderStatus" data-halign="center" data-align="center"

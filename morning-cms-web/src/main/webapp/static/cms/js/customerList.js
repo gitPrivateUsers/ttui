@@ -5,13 +5,25 @@ function timeFormatter(value) {
     return new Date(value).Format("yyyy-MM-dd HH:mm:ss");
 }
 
+function sexFormatter(value){
+    if(value == 0){
+        return '<span  class="label label-primary">保密</span>'
+    }else if(value == 1){
+        return '<span  class="label label-success">男</span>'
+    }
+    else if(value == 2){
+        return '<span  class="label label-warning">女</span>'
+    }
+
+}
+
 function statusFormatter(value){
 	if(value == 1){
 		return '<span  class="label label-primary">正常</span>'
 	} 
 	if(value == 0){
 		return '<span  class="label label-danger">冻结</span>'
-	}
+    }
 	
 }
 function actionFormatter(value, row, index) {
@@ -115,7 +127,7 @@ $(function() {
                     url : $form.attr('action'),
                     success : function(result) {
                         if (result.code == 1) {
-                            parent.layer.msg("创建用户信息成功!", {
+                            parent.layer.msg("创建用户成功!", {
                                 shade : 0.3,
                                 time : 1500
                             }, function() {

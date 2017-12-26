@@ -39,10 +39,18 @@
               </div>
             </div>
             <div class="hr-line-dashed"></div>
-            <div class="form-group m-t">
+            <div class="form-group">
               <label class="col-sm-2 col-xs-offset-1 control-label">性别：</label>
-              <div class="col-sm-7">
-                <input type="text" class="form-control" name="sex">
+              <div class="col-sm-9">
+                <label class="radio-inline">
+                  <input type="radio" class="js-switch" name="sex" value="0" ${customer.sex}/>
+                  保密</label>
+                <label class="radio-inline">
+                  <input type="radio" class="js-switch" name="sex" value="1" ${customer.sex}/>
+                  男</label>
+                <label class="radio-inline">
+                  <input type="radio" class="js-switch" name="sex" value="2" ${customer.sex}/>
+                  女</label>
               </div>
             </div>
             <div class="hr-line-dashed"></div>

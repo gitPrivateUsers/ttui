@@ -23,7 +23,7 @@
                 <div class="example">
                   <div id="toolbar" class="btn-group m-t-sm">
                     <shiro:hasPermission name="customer:detail:create">
-                      <button type="button" class="btn btn-default"   onclick="layer_show('添加用户','${ctx}/customer/detail/create','800','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
+                      <button type="button" class="btn btn-default" title="创建用户"  onclick="layer_show('创建用户','${ctx}/customer/detail/create','800','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
                     </shiro:hasPermission>
                   </div>
                   <table id="table"
@@ -52,6 +52,7 @@
                       <%--<th data-field="loginPassword" data-halign="center" data-align="center" data-sortable="true">登录密码</th>--%>
                       <%--<th data-field="salt" data-halign="center" data-align="center" data-sortable="true">加密密码的盐</th>--%>
                       <th data-field="realName" data-halign="center" data-align="center" data-sortable="true">真实姓名</th>
+                        <th data-formatter="sexFormatter"data-field="sex" data-halign="center" data-align="center" data-sortable="true">性别</th>
                       <%--<th data-field="sex" data-halign="center" data-align="center" data-sortable="true">性别</th>--%>
                       <%--<th data-field="age" data-halign="center" data-align="center" data-sortable="true">年龄</th>--%>
                       <%--<th data-field="picImg" data-halign="center" data-align="center" data-sortable="true">用户头像</th>--%>

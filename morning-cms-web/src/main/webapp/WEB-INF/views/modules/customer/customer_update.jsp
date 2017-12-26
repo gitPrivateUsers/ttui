@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>修改商品信息- 拓语网络</title>
+    <title>修改用户信息- 拓语网络</title>
     <link rel="stylesheet" href="${ctxsta}/common/icheck/flat/green.css"/>
 </head>
 
@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>修改商品信息
+                    <h5>修改用户信息
                         <small> 广告位信息时应当遵循合法、正当、必要的原则，明示目的、方式和范围。</small>
                     </h5>
                     <div class="ibox-tools"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> <a
@@ -44,10 +44,18 @@
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
-                        <div class="form-group m-t">
+                        <div class="form-group">
                             <label class="col-sm-2 col-xs-offset-1 control-label">性别：</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" name="sex" value="${customer.sex}">
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <input type="radio" class="js-switch" name="sex" value="0" ${customer.sex}/>
+                                    保密</label>
+                                <label class="radio-inline">
+                                    <input type="radio" class="js-switch" name="sex" value="1" ${customer.sex}/>
+                                    男</label>
+                                <label class="radio-inline">
+                                    <input type="radio" class="js-switch" name="sex" value="2" ${customer.sex}/>
+                                    女</label>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>

@@ -80,9 +80,11 @@ public class CustomerController extends BaseController {
     @PostMapping(value = "")
     @ResponseBody
     public Object insert(Customer customer,
+                         @RequestParam(value = "sex", defaultValue = "0") Integer sex,
                          @RequestParam(value = "status", defaultValue = "0") Integer status) {
         AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
         if (authorizingUser != null) {
+            customer.setSex(sex);
             customer.setStatus(status);
             Integer count = customerService.insertCustomer(customer, authorizingUser.getUserName());
             return new CmsResult(CommonReturnCode.SUCCESS, count);
@@ -115,6 +117,7 @@ public class CustomerController extends BaseController {
     @PutMapping(value = "/{userId}")
     @ResponseBody
     public Object update(Customer customer, @PathVariable("userId") Long userId,
+                         @RequestParam(value = "sex", defaultValue = "0") Integer sex,
                          @RequestParam(value = "status", defaultValue = "0") Integer status) {
 
         AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
