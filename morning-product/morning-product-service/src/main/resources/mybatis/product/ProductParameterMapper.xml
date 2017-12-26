@@ -24,7 +24,7 @@
 	<!-- 根据分页信息/搜索内容查找广告列表 -->
 	<select id="listByPage" resultType="org.pussinboots.morning.product.entity.ProductParameter">
 		SELECT
-		product_parameter_id AS productParameterId,product_id AS productId,
+		product_parameter_id AS productParameterId,
 		product_id AS productId, name, value,status,sort, create_time AS createTime,
 		create_by AS createBy, update_time AS updateTime,update_by AS updateBy
 		FROM
