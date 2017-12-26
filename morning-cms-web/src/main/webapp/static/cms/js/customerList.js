@@ -6,11 +6,11 @@ function timeFormatter(value) {
 }
 
 function statusFormatter(value){
-	if(value == 0){
-		return '<span  class="">冻结</span>'
-	} 
 	if(value == 1){
-		return '<span  class="">正常</span>'
+		return '<span  class="label label-primary">正常</span>'
+	} 
+	if(value == 0){
+		return '<span  class="label label-danger">冻结</span>'
 	}
 	
 }

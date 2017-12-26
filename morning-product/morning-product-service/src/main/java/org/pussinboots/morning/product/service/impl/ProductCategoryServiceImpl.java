@@ -33,7 +33,7 @@ public class ProductCategoryServiceImpl extends ServiceImpl<ProductCategoryMappe
 	private CategoryMapper categoryMapper;
 	@Autowired
 	private ProductCategoryMapper productCategoryMapper;
-	
+
 	@Override
 	public BasePageDTO<ProductVO> listProducts(Long categoryId, PageInfo pageInfo) {
 		// 查询子目录信息ID

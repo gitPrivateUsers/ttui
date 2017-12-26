@@ -55,7 +55,7 @@
                         <th data-field="createTime" data-formatter="registerTimeFormatter" data-halign="center" data-align="center" data-sortable="true">注册时间</th>
                         <th data-field="lastLoginTime" data-formatter="loginTimeFormatter" data-halign="center" data-align="center" data-sortable="true">最后登录时间</th>
                         <th data-field="lastLoginIp" data-halign="center" data-align="center" data-sortable="true">登录IP</th>
-                        <th data-field="status" data-formatter="statusFormatter" data-halign="center" data-align="center">状态</th>
+                        <th data-field="status" data-formatter="statusFormatter" data-halign="center" data-align="center" data-sortable="true">状态</th>
                         <th data-formatter="actionFormatter" data-events="actionEvents" data-halign="center" data-align="center">操作</th>
                       </tr>
                     </thead>

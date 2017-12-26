@@ -79,9 +79,11 @@ public class CustomerController extends BaseController {
     @RequiresPermissions("customer:detail:create")
     @PostMapping(value = "")
     @ResponseBody
-    public Object insert(Customer customer) {
+    public Object insert(Customer customer,
+                         @RequestParam(value = "status", defaultValue = "1") Integer status) {
         AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
         if (authorizingUser != null) {
+            customer.setStatus(status);
             Integer count = customerService.insertCustomer(customer, authorizingUser.getUserName());
             return new CmsResult(CommonReturnCode.SUCCESS, count);
         } else {
@@ -112,11 +114,13 @@ public class CustomerController extends BaseController {
     @RequiresPermissions("customer:detail:edit")
     @PutMapping(value = "/{userId}")
     @ResponseBody
-    public Object update(Customer customer, @PathVariable("userId") Long userId) {
+    public Object update(Customer customer, @PathVariable("userId") Long userId,
+                         @RequestParam(value = "status", defaultValue = "1") Integer status) {
 
         AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
         if (authorizingUser != null) {
             // 更新用户记录
+            customer.setStatus(status);
             Integer count = customerService.updateUserId(customer, authorizingUser.getUserName());
             return new CmsResult(CommonReturnCode.SUCCESS, count);
         } else {

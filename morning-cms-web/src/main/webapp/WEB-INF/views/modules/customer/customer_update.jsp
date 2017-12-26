@@ -72,10 +72,12 @@
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
-                        <div class="form-group m-t">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">状态：</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" name="status" value="${customer.status}">
+                        <div class="form-group">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">状态[是否冻结]：</label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <input type="checkbox" class="js-switch" name="status" value="1" ${customer.status eq '1'?'checked="checked"':''}/>
+                                    是</label>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -91,6 +93,7 @@
     </div>
 </div>
 <myfooter>
+    <script src="${ctxsta}/common/switchery/switchery.min.js"></script>
     <!-- 自定义js -->
     <script src="${ctxsta}/cms/js/customerList.js"></script>
 </myfooter>
