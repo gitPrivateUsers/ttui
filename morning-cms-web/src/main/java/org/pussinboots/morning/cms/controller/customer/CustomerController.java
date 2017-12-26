@@ -80,7 +80,7 @@ public class CustomerController extends BaseController {
     @PostMapping(value = "")
     @ResponseBody
     public Object insert(Customer customer,
-                         @RequestParam(value = "status", defaultValue = "1") Integer status) {
+                         @RequestParam(value = "status", defaultValue = "0") Integer status) {
         AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
         if (authorizingUser != null) {
             customer.setStatus(status);
@@ -115,7 +115,7 @@ public class CustomerController extends BaseController {
     @PutMapping(value = "/{userId}")
     @ResponseBody
     public Object update(Customer customer, @PathVariable("userId") Long userId,
-                         @RequestParam(value = "status", defaultValue = "1") Integer status) {
+                         @RequestParam(value = "status", defaultValue = "0") Integer status) {
 
         AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
         if (authorizingUser != null) {

@@ -40,10 +40,17 @@
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
+
                         <div class="form-group">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">状态：</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" name="status">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">是否可用：</label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" value="1" checked="checked">
+                                    显示</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" value="0">
+                                    隐藏</label>
+                                <label class="radio-inline status-tip"><strong>提示：</strong> 状态</label>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
