@@ -2,7 +2,11 @@ package org.pussinboots.morning.product.service;
 
 import java.util.List;
 
+import org.pussinboots.morning.common.base.BasePageDTO;
+import org.pussinboots.morning.common.support.page.PageInfo;
+import org.pussinboots.morning.product.entity.Product;
 import org.pussinboots.morning.product.entity.ProductRecommend;
+import org.pussinboots.morning.product.entity.Recommend;
 import org.pussinboots.morning.product.pojo.vo.ProductVO;
 
 import com.baomidou.mybatisplus.service.IService;
@@ -17,7 +21,8 @@ import com.baomidou.mybatisplus.service.IService;
 *
  */
 public interface IProductRecommendService extends IService<ProductRecommend> {
-	
+
+	BasePageDTO<ProductRecommend> listByPage(PageInfo pageInfo, String search);
 	/**
 	 * 根据推荐位ID查找显示推荐商品
 	 * @param recommendId 推荐位ID

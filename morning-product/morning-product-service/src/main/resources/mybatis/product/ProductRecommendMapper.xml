@@ -21,7 +21,34 @@
     <sql id="Base_Column_List">
         recommend_product_id AS recommendProductId, recommend_id AS recommendId, product_id AS productId, sort, status, begin_time AS beginTime, end_time AS endTime, create_time AS createTime, create_by AS createBy, update_time AS updateTime, update_by AS updateBy
     </sql>
-    
+    <!--根据分页信息/搜索内容查找推荐列表-->
+	<select id="listByPage" resultType="org.pussinboots.morning.product.entity.ProductRecommend">
+		SELECT
+		  recommend_product_id AS recommendProductId,
+		  recommend_id AS recommendId,
+		  product_id AS productId, sort,
+		  status, begin_time AS beginTime,
+		  end_time AS endTime,
+		  create_time AS createTime,
+		  create_by AS createBy,
+		  update_time AS updateTime,
+		  update_by AS updateBy
+		FROM
+			os_product_recommend
+		<where>
+			1=1
+			<if test="search != null">
+				AND (
+				name LIKE '%' #{search} '%'
+				OR create_by LIKE '%' #{search} '%'
+				OR update_by LIKE '%' #{search} '%'
+				)
+			</if>
+			<if test="pageInfo.sort != null">
+				ORDER BY ${pageInfo.sort} ${pageInfo.order}
+			</if>
+		</where>
+	</select>
     <!-- 根据推荐位ID查找显示推荐商品 -->
     <select id="listByRecommendId" resultType="org.pussinboots.morning.product.pojo.vo.ProductVO">
     	SELECT

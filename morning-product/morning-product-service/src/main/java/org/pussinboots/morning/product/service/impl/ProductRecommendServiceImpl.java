@@ -3,7 +3,11 @@ package org.pussinboots.morning.product.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import com.baomidou.mybatisplus.plugins.Page;
+import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.enums.StatusEnum;
+import org.pussinboots.morning.common.support.page.PageInfo;
+import org.pussinboots.morning.product.entity.Product;
 import org.pussinboots.morning.product.entity.ProductRecommend;
 import org.pussinboots.morning.product.entity.Recommend;
 import org.pussinboots.morning.product.mapper.ProductRecommendMapper;
@@ -31,7 +35,17 @@ public class ProductRecommendServiceImpl extends ServiceImpl<ProductRecommendMap
 	private RecommendMapper recommendMapper;
 	@Autowired
 	private ProductRecommendMapper productRecommendMapper;
-	
+
+
+	@Override
+	public BasePageDTO<ProductRecommend> listByPage(PageInfo pageInfo, String search) {
+
+		Page<ProductRecommend> page = new Page<>(pageInfo.getCurrent(), pageInfo.getLimit());
+		List<ProductRecommend> productRecommends = productRecommendMapper.listByPage(pageInfo, search, page);
+		pageInfo.setTotal(page.getTotal());
+		return new BasePageDTO<ProductRecommend>(pageInfo, productRecommends);
+	}
+
 	@Override
 	public List<ProductVO> listByRecommendId(Long recommendId) {
 		// 根据推荐位ID查找推荐位信息

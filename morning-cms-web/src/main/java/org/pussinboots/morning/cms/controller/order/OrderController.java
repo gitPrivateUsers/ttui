@@ -69,7 +69,10 @@ public class OrderController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "更新订单信息", notes = "更新订单信息")
-	@RequiresPermissions("order:list:edit")
+	/*权限问题暂时还没有解决*/
+	/*权限问题暂时还没有解决*/
+	/*权限问题暂时还没有解决*/
+	//@RequiresPermissions("order:list:edit")
 	@GetMapping(value = "/{orderId}/edit")
 	public String getUpdatePage(Model model, @PathVariable("orderId") Long orderId) {
 
@@ -85,7 +88,7 @@ public class OrderController extends BaseController {
 	 * @return
 	 */
 	@ApiOperation(value = "更新订单信息", notes = "根据ID修改")
-	@RequiresPermissions("order:list:edit")
+	//@RequiresPermissions("order:list:edit")
 	@PutMapping(value = "/{orderId}")
 	@ResponseBody
 	public Object update(Order order, @PathVariable("orderId") Long orderId,

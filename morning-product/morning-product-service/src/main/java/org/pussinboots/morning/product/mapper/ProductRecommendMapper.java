@@ -3,8 +3,12 @@ package org.pussinboots.morning.product.mapper;
 import java.util.Date;
 import java.util.List;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
+import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.ProductRecommend;
+import org.pussinboots.morning.product.entity.Recommend;
 import org.pussinboots.morning.product.pojo.vo.ProductVO;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
@@ -19,7 +23,9 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 *
  */
 public interface ProductRecommendMapper extends BaseMapper<ProductRecommend> {
-	
+
+
+	List<ProductRecommend> listByPage(@Param("pageInfo") PageInfo pageInfo, @Param("search") String search, RowBounds rowBounds);
 	/**
 	 * 根据推荐位ID查找显示推荐商品
 	 * @param recommendId 推荐位ID

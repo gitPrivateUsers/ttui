@@ -33,9 +33,9 @@
                             <label class="col-sm-2 col-xs-offset-1 control-label">支付方式：</label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
-                                    <input type="radio" class="js-switch" name="status" value="1" ${order.status}/>在线支付</label>
+                                    <input type="radio" class="js-switch" name="payType" value="1" ${order.payType}/>在线支付</label>
                                 <label class="radio-inline">
-                                    <input type="radio" class="js-switch" name="status" value="0" ${order.status}/>线下支付</label>
+                                    <input type="radio" class="js-switch" name="payType" value="0" ${order.payType}/>线下支付</label>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
