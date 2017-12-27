@@ -62,7 +62,6 @@ public class OrderController extends BaseController {
 	public Object listorder(Long userId,PageInfo pageInfo, @RequestParam(required = false, value = "search") String search) {
 		BasePageDTO<OrderVO> basePageDTO = orderService.list(userId, pageInfo, search, search);
 		return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
-		/*return null;*/
 	}
 	/**
 	 * GET 更新订单信息
@@ -77,11 +76,11 @@ public class OrderController extends BaseController {
 		Order order = orderService.selectById(orderId);
 		model.addAttribute("order", order);
 
-		return "/modules/order/order_edit";
+		return "/modules/order/order_update";
 	}
 
 	/**
-	 * PUT 更新订单信息
+	 * POST更新订单信息
 	 *
 	 * @return
 	 */
@@ -89,10 +88,14 @@ public class OrderController extends BaseController {
 	@RequiresPermissions("order:list:edit")
 	@PutMapping(value = "/{orderId}")
 	@ResponseBody
-	public Object update(Order order, @PathVariable("orderId") Long orderId) {
+	public Object update(Order order, @PathVariable("orderId") Long orderId,
+						 @RequestParam(value = "payType",defaultValue = "1")Integer payType,
+						 @RequestParam(value = "shipmentTime",defaultValue ="1")Integer shipmentTime) {
 
 		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
 		if (authorizingUser != null) {
+			order.setPayType(payType);
+			order.setShipmentTime(shipmentTime);
 			Integer count = orderService.updateOrder(order, authorizingUser.getUserName());
 			return new CmsResult(CommonReturnCode.SUCCESS, count);
 		} else {

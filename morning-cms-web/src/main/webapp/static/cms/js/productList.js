@@ -60,16 +60,13 @@ window.actionEvents = {
 		layer_show("商品图片列表", baselocation + '/product/detail/' + row.productId + '/list', 1300, 720)
 	},
 	'click .categoryUpdate' : function(e, value, row, index) {
-		debugger
 		layer_show("更新商品分类", baselocation + '/product/detail/' + row.productId + '/categoryUpdate', 900, 720)
 	},
 	'click .detailUpdate' : function(e, value, row, index) {
-		debugger
 		layer_show("商品详情修改", baselocation + '/product/detail/' + row.productId + '/update', 900, 720)
 
 	},
 	'click .parameterView' : function(e, value, row, index) {
-		debugger
 		layer_show("商品参数列表", baselocation + '/product/detail/' + row.productId + '/parameterView', 900, 720)
 
 	}

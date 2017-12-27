@@ -81,11 +81,14 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">状态[是否冻结]：</label>
+                            <label class="col-sm-2 col-xs-offset-1 control-label">状态：</label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
-                                    <input type="checkbox" class="js-switch" name="status" value="1" ${customer.status eq '1'?'checked="checked"':''}/>
-                                    是</label>
+                                    <input type="radio" class="js-switch" name="status" value="1" ${customer.status}/>
+                                    正常</label>
+                                <label class="radio-inline">
+                                    <input type="radio" class="js-switch" name="status" value="0" ${customer.status}/>
+                                    冻结</label>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>

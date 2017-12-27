@@ -7,19 +7,19 @@ function timeFormatter(value) {
 
 function payFormatter(value){
 	if(value == 0){
-	return '<span class="">线下支付</span>'
+	return '<span class="label label-warning">线下支付</span>'
 	}else if (value == 1){
-	 return '<span class="">在线支付</span>'
+	 return '<span class="label label-success">在线支付</span>'
 	}
 }
 
 function shipTimeFormatter(value) {
  	if (value == 1) {
- 	return '<span class="">不限送货时间</span>'
+ 	return '<span class="label label-default">不限</span>'
  	} else if (value == 2) {
- 	return '<span class="">工作日送货</span>'
+     	return '<span class="label label-success">工作日</span>'
  	}else if (value == 3) {
-		return '<span class="">双休日、假日送货</span>'
+	    	return '<span class="label label-warning">双休日、假日</span>'
 	}
 }
 
@@ -53,7 +53,7 @@ function typeFormatter(value) {
 
 function actionFormatter(value, row, index) {
 	 return [ 
-			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
+			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="修改订单信息">',
 			'<i class="glyphicon glyphicon-edit"></i>',
 			'</a>',
 		].join(''); 
@@ -61,7 +61,7 @@ function actionFormatter(value, row, index) {
 
 window.actionEvents = { 
 	'click .edit' : function(e, value, row, index) {
-		 layer_show(row.name, baselocation + '/system/order/' + row.orderId + '/edit', 900, 650)
+		 layer_show("修改订单信息", baselocation + '/system/order/' + row.orderId + '/edit', 900, 650)
  	},
 };
 

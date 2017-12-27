@@ -274,7 +274,7 @@ $(function() {
 					url : $form.attr('action'),
 					success : function(result) {
 						if (result.code == 1) {
-							parent.layer.msg("更新广告成功!", {
+							parent.layer.msg("更新用户成功!", {
 								shade : 0.3,
 								time : 1500
 							}, function() {
