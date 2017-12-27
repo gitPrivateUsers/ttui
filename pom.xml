@@ -24,6 +24,7 @@
 		<module>morning-system</module>
 		<module>morning-cms-web</module>
 		<module>morning-os-web</module>
+		<module>morning-wx-web</module>
 		<module>morning-support</module>
 	</modules>
 
@@ -515,15 +516,15 @@
 	</build>
 
 	<!-- 开发者信息 -->
-	<developers>
-		<developer>
-			<name>ChenXingXing</name>
-			<id>XingXing.Chen</id>
-			<email>chenxingxing1994@foxmail.com</email>
-			<roles>
-				<role>Developer</role>
-			</roles>
-			<timezone>+8</timezone>
-		</developer>
-	</developers>
+	<!--<developers>-->
+		<!--<developer>-->
+			<!--<name>ChenXingXing</name>-->
+			<!--<id>XingXing.Chen</id>-->
+			<!--<email>chenxingxing1994@foxmail.com</email>-->
+			<!--<roles>-->
+				<!--<role>Developer</role>-->
+			<!--</roles>-->
+			<!--<timezone>+8</timezone>-->
+		<!--</developer>-->
+	<!--</developers>-->
 </project>
