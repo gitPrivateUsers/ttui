@@ -12,6 +12,7 @@ import org.pussinboots.morning.online.entity.AdvertDetail;
 import org.pussinboots.morning.online.entity.NavigationBar;
 import org.pussinboots.morning.online.service.IAdvertDetailService;
 import org.pussinboots.morning.online.service.INavigationBarService;
+import org.pussinboots.morning.os.common.result.OsResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,13 +71,13 @@ public class WebFrontController extends BaseController {
 	 */
 	@ApiOperation(value = "首页json", notes = "首页展示json")
 	@GetMapping(value = "/test")
-	public @ResponseBody String index() {
+	public @ResponseBody Object index() {
 		Map<String,Object> model=new HashMap<String,Object>();
 		// 首页轮播广告列表
 		List<AdvertDetail> indexCarouselImgs = advertDetailService
 				.listByAdvertId(AdvertTypeEnum.INDEX_CAROUSEL.getType());
 		model.put("indexCarouselImgs", indexCarouselImgs);
 		System.out.println( String.valueOf(JSONObject.fromObject(model)));
-		return String.valueOf(JSONObject.fromObject(model));
+		return  new OsResult(200, String.valueOf(JSONObject.fromObject(model)));
 	}
 }
