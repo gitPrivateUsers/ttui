@@ -27,7 +27,7 @@ function actionFormatter(value, row, index) {
 
 window.actionEvents = {
     'click .edit' : function(e, value, row, index) {
-        layer_show("修改推荐信息", baselocation + '/product/recommend/' + row.userId + '/edit', 900, 650)
+        layer_show("修改推荐信息", baselocation + '/product/recommend/' + row.recommendProductId + '/edit', 900, 650)
     }
 };
 

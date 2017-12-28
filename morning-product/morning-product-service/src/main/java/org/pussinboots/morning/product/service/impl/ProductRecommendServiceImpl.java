@@ -87,4 +87,13 @@ public class ProductRecommendServiceImpl extends ServiceImpl<ProductRecommendMap
 		}
 		return null;
 	}
+
+	@Override
+	public Integer insertProductRecommend(ProductRecommend productRecommend, String userName) {
+		productRecommend.setCreateBy(userName);
+		productRecommend.setCreateTime(new Date());
+		productRecommend.setUpdateBy(userName);
+		productRecommend.setUpdateTime(new Date());
+		return productRecommendMapper.insert(productRecommend);
+	}
 }

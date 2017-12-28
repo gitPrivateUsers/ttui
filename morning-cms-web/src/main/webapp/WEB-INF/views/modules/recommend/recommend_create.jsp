@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>创建推荐- 拓语网络</title>
+<title>创建一个推荐位- 拓语网络</title>
 <link rel="stylesheet" href="${ctxsta}/common/icheck/flat/green.css" />
 </head>
 
@@ -13,11 +13,11 @@
     <div class="col-sm-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>创建推荐</h5>
+          <h5>创建一个推荐位</h5>
           <div class="ibox-tools"> <a class="collapse-link"><i class="fa fa-chevron-up"></i></a> <a class="close-link"><i class="fa fa-times"></i></a> </div>
         </div>
         <div class="ibox-content">
-          <form id="form" class="form-horizontal" action="${ctx}/product/recommend" data-method="post">
+          <form id="form" class="form-horizontal" action="${ctx}/product/recommend/create" data-method="post">
             <div class="form-group m-t">
               <label class="col-sm-2 col-xs-offset-1 control-label">推荐位ID：</label>
               <div class="col-sm-7">
@@ -51,26 +51,23 @@
               </div>
             </div>
             <div class="hr-line-dashed"></div>
-              <div class="form-group">
-                <label class="col-sm-2 col-xs-offset-1 control-label">开始时间：</label>
-                  <div class='input-group date col-sm-4' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-                  </div>
+            <div class="form-group">
+              <label class="col-sm-2 col-xs-offset-1 control-label">开始时间：</label>
+              <div class="col-sm-7">
+                <div class="input-group date form_datetime">
+                  <input class="form-control" size="16" type="text" name="beginTime" value="<fmt:formatDate value="${productRecommend.beginTime}" pattern="yyyy-MM-dd HH:mm:ss" />" readonly>
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span> </div>
               </div>
-              <div class="hr-line-dashed"></div>
-              <div class="form-group">
-                <label class="col-sm-2 col-xs-offset-1 control-label">结束时间：</label>
-                  <!--指定 date标记-->
-                  <div class='input-group date col-sm-4' id='datetimepicker2'>
-                    <input type='text' class="form-control" />
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-                  </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+              <label class="col-sm-2 col-xs-offset-1 control-label">结束时间：</label>
+              <div class="col-sm-7">
+                <div class="input-group date form_datetime">
+                  <input class="form-control" size="16" type="text" name="endTime" value="<fmt:formatDate value="${productRecommend.endTime}" pattern="yyyy-MM-dd HH:mm:ss" />" readonly>
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span> </div>
               </div>
+            </div>
             <div class="hr-line-dashed"></div>
             <div class="form-group">
               <div class="col-sm-12 text-center">
@@ -85,8 +82,22 @@
 </div>
 <myfooter>
   <script src="${ctxsta}/common/switchery/switchery.min.js"></script>
+  <script src="${ctxsta}/common/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="${ctxsta}/common/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+  <script src="${ctxsta}/common/bootstrap-prettyfile/bootstrap-prettyfile.js"></script>
   <!-- 自定义js --> 
   <script src="${ctxsta}/cms/js/recommendCreate.js"></script>
+  <script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+      language:  'zh-CN',
+      format: "yyyy-mm-dd hh:ii:ss",
+      autoclose: true,
+      todayBtn: true,
+      minuteStep: 10,
+      pickerPosition: 'bottom-left',
+    });
+    $('input[type="file"]').prettyFile();
+  </script>
 </myfooter>
 </body>
 </html>

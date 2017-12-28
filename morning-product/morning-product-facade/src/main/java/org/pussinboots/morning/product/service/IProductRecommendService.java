@@ -38,4 +38,6 @@ public interface IProductRecommendService extends IService<ProductRecommend> {
 	 * @return
 	 */
 	List<ProductVO> listComment(Long recommendId, Integer type);
+
+	Integer insertProductRecommend(ProductRecommend productRecommend, String userName);
 }

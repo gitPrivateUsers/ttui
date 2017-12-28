@@ -11,13 +11,6 @@ function statusFormatter(value) {
 		return '<span class="label label-danger">隐藏</span>'
 	}
 }
-function typeFormatter(value) {
-	if (value == 1) {
-		return '<span class="label label-primary">图片</span>'
-	} else if (value == 0) {
-		return '<span class="label label-danger">文本</span>'
-	}
-}
 
 function actionFormatter(value, row, index) {
 	if (row.status == 1) {
@@ -71,25 +64,6 @@ window.actionEvents = {
 	}
 };
 
-$(function () {
-	var picker1 = $('#datetimepicker1').datetimepicker({
-		format: 'YYYY-MM-DD HH:mm:ss',
-		locale: moment.locale('zh-cn'),
-		//minDate: '2016-7-1'
-	});
-	var picker2 = $('#datetimepicker2').datetimepicker({
-		format: 'YYYY-MM-DD HH:mm:ss',
-		locale: moment.locale('zh-cn')
-	});
-	//动态设置最小值
-	picker1.on('dp.change', function (e) {
-		picker2.data('DateTimePicker').minDate(e.date);
-	});
-	//动态设置最大值
-	picker2.on('dp.change', function (e) {
-		picker1.data('DateTimePicker').maxDate(e.date);
-	});
-});
 /**
  * 隐藏广告
  */
@@ -293,7 +267,7 @@ $(function() {
 					url : $form.attr('action'),
 					success : function(result) {
 						if (result.code == 1) {
-							parent.layer.msg("更新用户成功!", {
+							parent.layer.msg("更新推荐位成功!", {
 								shade : 0.3,
 								time : 1500
 							}, function() {
@@ -315,7 +289,7 @@ $(function() {
 					url : $form.attr('action'),
 					success : function(result) {
 						if (result.code == 1) {
-							parent.layer.msg("创建用户成功!", {
+							parent.layer.msg("创建推荐位成功!", {
 								shade : 0.3,
 								time : 1500
 							}, function() {

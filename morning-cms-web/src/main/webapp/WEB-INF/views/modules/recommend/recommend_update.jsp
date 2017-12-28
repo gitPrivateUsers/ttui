@@ -1,10 +1,10 @@
-<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8" %>
-<%@ include file="/WEB-INF/layouts/base.jsp" %>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
+<%@ include file="/WEB-INF/layouts/base.jsp"%>
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>修改用户信息- 拓语网络</title>
-    <link rel="stylesheet" href="${ctxsta}/common/icheck/flat/green.css"/>
+    <title>更新推荐位- 拓语网络</title>
+    <link rel="stylesheet" href="${ctxsta}/common/icheck/flat/green.css" />
 </head>
 
 <body class="gray-bg">
@@ -13,70 +13,29 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>修改用户信息
-                        <small> 广告位信息时应当遵循合法、正当、必要的原则，明示目的、方式和范围。</small>
-                    </h5>
-                    <div class="ibox-tools"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> <a
-                            class="close-link"><i class="fa fa-times"></i></a></div>
+                    <h5>更新推荐位</h5>
+                    <div class="ibox-tools"> <a class="collapse-link"><i class="fa fa-chevron-up"></i></a> <a class="close-link"><i class="fa fa-times"></i></a> </div>
                 </div>
                 <div class="ibox-content">
-                    <form id="form" class="form-horizontal" action="${ctx}/customer/detail/${customer.userId}"
-                          data-method="put">
-
+                    <form id="form" class="form-horizontal" action="${ctx}/product/recommend/create" data-method="post">
                         <div class="form-group m-t">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">昵称：</label>
+                            <label class="col-sm-2 col-xs-offset-1 control-label">推荐位ID：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="userName" value="${customer.userName}">
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <%--<div class="form-group m-t">--%>
-                            <%--<label class="col-sm-2 col-xs-offset-1 control-label">登录密码：</label>--%>
-                            <%--<div class="col-sm-7">--%>
-                                <%--<input type="text" class="form-control" name="userName" value="${customer.loginPassword}">--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group m-t">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">真实姓名：</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" name="realName" value="${customer.realName}">
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">性别：</label>
-                            <div class="col-sm-9">
-                                <label class="radio-inline">
-                                    <input type="radio" class="js-switch" name="sex" value="0" ${customer.sex}/>
-                                    保密</label>
-                                <label class="radio-inline">
-                                    <input type="radio" class="js-switch" name="sex" value="1" ${customer.sex}/>
-                                    男</label>
-                                <label class="radio-inline">
-                                    <input type="radio" class="js-switch" name="sex" value="2" ${customer.sex}/>
-                                    女</label>
+                                <input type="text" class="form-control" name="recommendId">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group m-t">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">年龄：</label>
+                            <label class="col-sm-2 col-xs-offset-1 control-label">商品ID：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="age" value="${customer.age}">
+                                <input type="text" class="form-control" name="productId">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group m-t">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">电子邮箱：</label>
+                            <label class="col-sm-2 col-xs-offset-1 control-label">排序：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="email" value="${customer.email}">
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group m-t">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">手机号码：</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" name="telephone" value="${customer.telephone}">
+                                <input type="text" class="form-control" name="sort">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -84,11 +43,29 @@
                             <label class="col-sm-2 col-xs-offset-1 control-label">状态：</label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
-                                    <input type="radio" class="js-switch" name="status" value="1" ${customer.status}/>
-                                    正常</label>
+                                    <input type="radio" class="js-switch" name="status" value="0" ${productRecommend.status}/>
+                                    隐藏</label>
                                 <label class="radio-inline">
-                                    <input type="radio" class="js-switch" name="status" value="0" ${customer.status}/>
-                                    冻结</label>
+                                    <input type="radio" class="js-switch" name="status" value="1" ${productRecommend.status}/>
+                                    显示</label>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">开始时间：</label>
+                            <div class="col-sm-7">
+                                <div class="input-group date form_datetime">
+                                    <input class="form-control" size="16" type="text" name="beginTime" value="<fmt:formatDate value="${productRecommend.beginTime}" pattern="yyyy-MM-dd HH:mm:ss" />" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span> </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">结束时间：</label>
+                            <div class="col-sm-7">
+                                <div class="input-group date form_datetime">
+                                    <input class="form-control" size="16" type="text" name="endTime" value="<fmt:formatDate value="${productRecommend.endTime}" pattern="yyyy-MM-dd HH:mm:ss" />" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span> </div>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -105,8 +82,22 @@
 </div>
 <myfooter>
     <script src="${ctxsta}/common/switchery/switchery.min.js"></script>
+    <script src="${ctxsta}/common/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="${ctxsta}/common/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${ctxsta}/common/bootstrap-prettyfile/bootstrap-prettyfile.js"></script>
     <!-- 自定义js -->
-    <script src="${ctxsta}/cms/js/customerList.js"></script>
+    <script src="${ctxsta}/cms/js/recommendCreate.js"></script>
+    <script type="text/javascript">
+        $(".form_datetime").datetimepicker({
+            language:  'zh-CN',
+            format: "yyyy-mm-dd hh:ii:ss",
+            autoclose: true,
+            todayBtn: true,
+            minuteStep: 10,
+            pickerPosition: 'bottom-left',
+        });
+        $('input[type="file"]').prettyFile();
+    </script>
 </myfooter>
 </body>
 </html>

@@ -40,12 +40,14 @@ public class ProductRecommendController extends BaseController {
 
 
     @ApiOperation(value = "推荐页面", notes = "推荐页面")
+    @RequiresPermissions("product:recommend:list:view")
     @GetMapping(value = "/view")
     public String getRecommendPage(Model model) {
         return "/modules/recommend/recommend_list";
     }
 
     @ApiOperation(value = "获取推荐列表", notes = "根据分页信息获取推荐列表")
+    @RequiresPermissions("product:recommend:list:view")
     @GetMapping(value = "/list")
     @ResponseBody
     public Object recommendList(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search) {
@@ -55,7 +57,8 @@ public class ProductRecommendController extends BaseController {
 
 
 
-    @ApiOperation(value = "创建推荐商品", notes = "推荐商品")
+    @ApiOperation(value = "创建推荐位页面", notes = "推荐位页面")
+    @RequiresPermissions("product:recommend:list:create")
     @GetMapping(value = "/create")
     public String getInsertPage(Model model) {
         return "/modules/recommend/recommend_create";
@@ -63,34 +66,30 @@ public class ProductRecommendController extends BaseController {
 
 
 
- /*   @ApiOperation(value = "创建用户", notes = "创建用户")
-    @RequiresPermissions("customer:detail:create")
-    @PostMapping(value ody= "")
-    @ResponseB
-    public Object insert(Customer customer,
-                         @RequestParam(value = "sex", defaultValue = "0") Integer sex,
-                         @RequestParam(value = "status", defaultValue = "0") Integer status) {
+    @ApiOperation(value = "创建一个推荐位", notes = "创建一个推荐位")
+    @RequiresPermissions("product:recommend:list:create")
+    @PostMapping(value= "/create")
+    @ResponseBody
+    public Object insert(ProductRecommend productRecommend) {
         AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
         if (authorizingUser != null) {
-            customer.setSex(sex);
-            customer.setStatus(status);
-            Integer count = customerService.insertCustomer(customer, authorizingUser.getUserName());
+            Integer count = iProductRecommendService.insertProductRecommend(productRecommend, authorizingUser.getUserName());
             return new CmsResult(CommonReturnCode.SUCCESS, count);
         } else {
             return new CmsResult(CommonReturnCode.UNAUTHORIZED);
         }
     }
-*/
- /*   @ApiOperation(value = "更新用户信息", notes = "更新用户信息")
-    @RequiresPermissions("customer:detail:edit")
-    @GetMapping(value = "/{userId}/edit")
-    public String getUpdatePage(Model model, @PathVariable("userId") Long userId) {
-        // 广告信息
-        Customer customer = customerService.selectById(userId);
-        model.addAttribute("customer", customer);
 
-        return "/modules/customer/customer_update";
-    }*/
+    @ApiOperation(value = "更新推荐信息", notes = "更新推荐信息")
+    @RequiresPermissions("product:recommend:list:edit")
+    @GetMapping(value = "/{recommendProductId}/edit")
+    public String getUpdatePage(Model model, @PathVariable("recommendProductId") Long recommendProductId) {
+
+        ProductRecommend productRecommend = iProductRecommendService.selectById(recommendProductId);
+        model.addAttribute("productRecommend", productRecommend);
+
+        return "/modules/recommend/recommend_update";
+    }
 
 
    /* @ApiOperation(value = "更新用户信息", notes = "根据ID修改")

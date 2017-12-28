@@ -23,7 +23,7 @@
                 <div class="example">
                   <div id="toolbar" class="btn-group m-t-sm">
                    <%-- <shiro:hasPermission name="product:recommend:create">--%>
-                      <button type="button" class="btn btn-default" title="创建商品推荐"  onclick="layer_show('创建商品推荐','${ctx}/product/recommend/create','800','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
+                      <button type="button" class="btn btn-default" title="创建商品推荐位"  onclick="layer_show('创建商品推荐位','${ctx}/product/recommend/create','800','700')"> <i class="glyphicon glyphicon-plus"></i> </button>
                    <%-- </shiro:hasPermission>--%>
                   </div>
                   <table id="table"
