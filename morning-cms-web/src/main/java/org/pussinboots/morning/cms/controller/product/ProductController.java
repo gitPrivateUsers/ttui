@@ -142,7 +142,7 @@ public class ProductController extends BaseController {
 	}
 
 	@ApiOperation(value = "删除推荐",notes = "根据url推荐位ID删除广告")
-	@RequiresPermissions("product:list:delete")
+	@RequiresPermissions("product:detail:edit")
 	@DeleteMapping(value = "/recommendProductDelete/{recommendProductId}")
 	@ResponseBody
 	public Object delete(@PathVariable("recommendProductId") Long recommendProductId){
@@ -304,6 +304,7 @@ public class ProductController extends BaseController {
      * @return
      */
     @ApiOperation(value = "删除商品图片", notes = "根据url传过来的商品图片编号删除商品图片")
+	@RequiresPermissions("product:detail:edit")
     @DeleteMapping(value = "/delete/{picImgId}")
     @ResponseBody
     public Object favoriteDelete(@PathVariable("picImgId") Long picImgId) {
