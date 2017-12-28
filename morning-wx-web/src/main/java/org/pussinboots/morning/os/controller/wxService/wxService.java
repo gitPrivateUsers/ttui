@@ -137,7 +137,7 @@ public class wxService extends BaseController {
 	 * @return Object
 	 */
 	@ApiOperation(value = "搜索列表", notes = "搜索列表")
-	@GetMapping(value = "/search")
+	@GetMapping(value = "/search.product.category.json")
 	public @ResponseBody Object search(
 						 @RequestParam(value = "search", required = false, defaultValue = "") String search,
 						 @RequestParam(value = "sort", required = false, defaultValue = "0") String reqSort,
