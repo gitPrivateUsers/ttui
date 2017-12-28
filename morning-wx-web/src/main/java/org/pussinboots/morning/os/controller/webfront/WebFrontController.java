@@ -6,6 +6,7 @@ import java.util.Map;
 
 import net.sf.json.JSONObject;
 import org.pussinboots.morning.common.base.BaseController;
+import org.pussinboots.morning.common.enums.StatusEnum;
 import org.pussinboots.morning.online.common.enums.AdvertTypeEnum;
 import org.pussinboots.morning.online.common.enums.NavigationBarTypeEnum;
 import org.pussinboots.morning.online.entity.AdvertDetail;
@@ -65,19 +66,5 @@ public class WebFrontController extends BaseController {
 
 		return "/modules/webfront/index";
 	}
-	/**
-	 * GET 商城首页
-	 * @return
-	 */
-	@ApiOperation(value = "首页json", notes = "首页展示json")
-	@GetMapping(value = "/test")
-	public @ResponseBody Object index() {
-		Map<String,Object> model=new HashMap<String,Object>();
-		// 首页轮播广告列表
-		List<AdvertDetail> indexCarouselImgs = advertDetailService
-				.listByAdvertId(AdvertTypeEnum.INDEX_CAROUSEL.getType());
-		model.put("indexCarouselImgs", indexCarouselImgs);
-		System.out.println( String.valueOf(JSONObject.fromObject(model)));
-		return  new OsResult(200, String.valueOf(JSONObject.fromObject(model)));
-	}
+
 }
