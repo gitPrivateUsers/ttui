@@ -38,6 +38,8 @@ public enum CommonReturnCode implements ReturnCode {
 
 	/** api返回分类商品失败 */
 	FAIL_PRODUCT_CATEGORY(102,"没有对应的分类及商品,api返回分类商品失败!"),
+	/** api返回分类商品失败 */
+	FAIL_PRODUCT_INFO(104,"没有对应的商品详情,api返回商品详情失败!"),
 
 	/** 500服务器出错 */
 	INTERNAL_SERVER_ERROR(500, "服务器出错");
