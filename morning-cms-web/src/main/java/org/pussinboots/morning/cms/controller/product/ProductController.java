@@ -118,7 +118,7 @@ public class ProductController extends BaseController {
 
 	@ApiOperation(value = "更新推荐信息", notes = "更新推荐信息")
 	@RequiresPermissions("product:detail:edit")
-	@GetMapping(value = "/{recommendProductId}/edit")
+	@GetMapping(value = "/{recommendProductId}/productRecommendEdit")
 	public String getUpdateByRecommendProductId(Model model, @PathVariable("recommendProductId") Long recommendProductId) {
 
 		ProductRecommend productRecommend = productRecommendService.selectById(recommendProductId);
@@ -127,6 +127,33 @@ public class ProductController extends BaseController {
 		return "/modules/recommend/recommend_update";
 	}
 
+	@ApiOperation(value = "更新推荐信息", notes = "根据推荐位ID更新推荐信息")
+	@RequiresPermissions("product:detail:edit")
+	@PutMapping(value = "/{recommendProductId}/productRecommendEdit")
+	@ResponseBody
+	public Object UpdateByRecommendProductId(ProductRecommend productRecommend, @PathVariable("recommendProductId") Long recommendProductId) {
+
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null){
+			Integer count = productRecommendService.updateProductRecommecd(productRecommend,authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		}
+		    return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+	}
+
+	@ApiOperation(value = "删除推荐",notes = "根据url推荐位ID删除广告")
+	@RequiresPermissions("product:list:delete")
+	@DeleteMapping(value = "/recommendProductDelete/{recommendProductId}")
+	@ResponseBody
+	public Object delete(@PathVariable("recommendProductId") Long recommendProductId){
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if(authorizingUser != null){
+			Integer count = productRecommendService.deleteByRecommendProductId(recommendProductId);
+			return new CmsResult(CommonReturnCode.SUCCESS,count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
 
 	/**
      * GET 商品图片页面

@@ -3,11 +3,13 @@ package org.pussinboots.morning.product.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.enums.StatusEnum;
 import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.Product;
+import org.pussinboots.morning.product.entity.ProductParameter;
 import org.pussinboots.morning.product.entity.ProductRecommend;
 import org.pussinboots.morning.product.entity.Recommend;
 import org.pussinboots.morning.product.mapper.ProductRecommendMapper;
@@ -95,5 +97,20 @@ public class ProductRecommendServiceImpl extends ServiceImpl<ProductRecommendMap
 		productRecommend.setUpdateBy(userName);
 		productRecommend.setUpdateTime(new Date());
 		return productRecommendMapper.insert(productRecommend);
+	}
+
+	@Override
+	public Integer updateProductRecommecd(ProductRecommend productRecommend, String userName) {
+		productRecommend.setUpdateTime(new Date());
+		productRecommend.setUpdateBy(userName);
+		return productRecommendMapper.updateById(productRecommend);
+	}
+
+	@Override
+	public Integer deleteByRecommendProductId(Long recommendProductId) {
+		ProductRecommend productRecommend = new ProductRecommend();
+		productRecommend.setRecommendProductId(recommendProductId);
+		productRecommendMapper.delete(new EntityWrapper<ProductRecommend>(productRecommend));
+		return productRecommendMapper.deleteById(recommendProductId);
 	}
 }

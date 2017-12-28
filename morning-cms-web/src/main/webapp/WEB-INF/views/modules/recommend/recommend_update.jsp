@@ -18,13 +18,14 @@
                     <div class="ibox-tools"> <a class="collapse-link"><i class="fa fa-chevron-up"></i></a> <a class="close-link"><i class="fa fa-times"></i></a> </div>
                 </div>
                 <div class="ibox-content">
-                    <form id="form" class="form-horizontal" action="${ctx}/product/recommend/create" data-method="post">
+                    <form id="form" class="form-horizontal" action="${ctx}/product/detail/${productRecommend.recommendProductId}/productRecommendEdit" data-method="put">
                         <div class="form-group m-t">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">推荐位ID：</label>
+                            <label class="col-sm-2 col-xs-offset-1 control-label">产品推荐ID：</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" name="recommendProductId" readonly="readonly" value="${productRecommend.recommendProductId}">
                             </div>
                         </div>
+                        <div class="hr-line-dashed"></div>
                         <div class="form-group m-t">
                             <label class="col-sm-2 col-xs-offset-1 control-label">推荐位ID：</label>
                             <div class="col-sm-7">
@@ -42,19 +43,20 @@
                         <div class="form-group m-t">
                             <label class="col-sm-2 col-xs-offset-1 control-label">排序：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="sort" value="${productRecommend.sort}>
+                                <input type="text" class="form-control" name="sort" value="${productRecommend.sort}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">状态：</label>
+                            <label class="col-sm-2 col-xs-offset-1 control-label">是否可用：</label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
-                                    <input type="radio" class="js-switch" name="status" value="0" ${productRecommend.status}/>
-                                    隐藏</label>
-                                <label class="radio-inline">
-                                    <input type="radio" class="js-switch" name="status" value="1" ${productRecommend.status}/>
+                                    <input type="radio" name="status" value="1" ${productRecommend.status eq '1'?'checked="checked"':''}>
                                     显示</label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" value="0" ${productRecommend.status eq '0'?'checked="checked"':''}>
+                                    隐藏</label>
+                                <label class="radio-inline status-tip"><strong>提示：</strong> 状态</label>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>

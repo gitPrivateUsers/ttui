@@ -5,6 +5,7 @@ import java.util.List;
 import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.Product;
+import org.pussinboots.morning.product.entity.ProductParameter;
 import org.pussinboots.morning.product.entity.ProductRecommend;
 import org.pussinboots.morning.product.entity.Recommend;
 import org.pussinboots.morning.product.pojo.vo.ProductVO;
@@ -40,4 +41,8 @@ public interface IProductRecommendService extends IService<ProductRecommend> {
 	List<ProductVO> listComment(Long recommendId, Integer type);
 
 	Integer insertProductRecommend(ProductRecommend productRecommend, String userName);
+
+	Integer updateProductRecommecd(ProductRecommend productRecommend, String userName);
+
+	Integer deleteByRecommendProductId(Long recommendProductId);
 }

@@ -20,16 +20,54 @@ function actionFormatter(value, row, index) {
     return [
         '<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
         '<i class="glyphicon glyphicon-edit"></i>',
-        '</a>'
+        '</a>',
+        '<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
+        '<i class="glyphicon glyphicon-remove"></i>',
+        '</a>',
     ].join('');
 
 }
 
 window.actionEvents = {
     'click .edit' : function(e, value, row, index) {
-        layer_show("修改推荐信息", baselocation + '/product/recommend/' + row.recommendProductId + '/edit', 900, 650)
+        layer_show("修改推荐位信息", baselocation + '/product/detail/' + row.recommendProductId + '/productRecommendEdit', 900, 650)
+    },
+    'click .remove' :function(e,value,row,index){
+        var url =  baselocation + '/product/detail/recommendProductDelete/';
+        admin_delete(index, row.recommendProductId,url);
     }
 };
+
+/**
+ * 删除
+ */
+function admin_delete(index, value, url) {
+    layer.confirm('确认要删除该条商品的图片吗？', {
+        btn : [ '确定', '取消' ] //按钮
+    }, function() {
+        debugger
+        $.ajax({
+            type : 'delete',
+            dataType : 'json',
+            url : url + value,
+            success : function(result) {
+                if (result.code == 1) {
+                    $('#table').bootstrapTable('hideRow', {
+                        index : index
+                    });
+                    layer.msg('该条商品的图片删除成功!', {
+                        icon : 1,
+                        time : 1000
+                    });
+                } else {
+                    layer.alert(result.message, {
+                        icon : 2
+                    });
+                }
+            }
+        })
+    });
+}
 
 /**
  * 多选框插件
