@@ -112,7 +112,9 @@ public class wxService extends BaseController {
 					ProductSortEnum.typeOf(sort).getOrder());
 			BasePageDTO<ProductVO> basePageDTO = productCategoryService.listProducts(categoryId, pageInfo);
 
-			// 根据类目ID查找子类目
+			// 根据类目ID查找子类目.
+
+
 			List<Category> lowerCategories = categoryService.listLowerCategories(categoryId, StatusEnum.SHOW.getStatus());
 
 			// 根据类目ID查找上级类目列表

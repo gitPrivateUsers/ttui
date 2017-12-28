@@ -10,6 +10,7 @@ import org.pussinboots.morning.cms.common.util.SingletonLoginUtils;
 import org.pussinboots.morning.common.base.BaseController;
 import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
+import org.pussinboots.morning.common.enums.StatusEnum;
 import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.*;
 import org.pussinboots.morning.product.service.*;
@@ -73,8 +74,61 @@ public class ProductController extends BaseController {
         return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
     }
 
+	@ApiOperation(value = "推荐页面", notes = "推荐页面")
+	@RequiresPermissions("product:list:view")
+	@GetMapping(value = "/recommendView")
+	public String getRecommendPage(Model model) {
+		return "/modules/recommend/recommend_list";
+	}
 
-    /**
+	@ApiOperation(value = "获取推荐列表", notes = "根据分页信息获取推荐列表")
+	@RequiresPermissions("product:list:view")
+	@GetMapping(value = "/recommendList")
+	@ResponseBody
+	public Object recommendList(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search) {
+		BasePageDTO<ProductRecommend> BasePageDTO = productRecommendService.listByPage(pageInfo, search);
+		return new CmsPageResult(BasePageDTO.getList(), BasePageDTO.getPageInfo().getTotal());
+	}
+
+	@ApiOperation(value = "创建推荐位页面", notes = "推荐位页面")
+	@RequiresPermissions("product:detail:create")
+	@GetMapping(value = "/recommendCreate")
+	public String getInsertRecommend(Model model) {
+		ProductRecommend productRecommend=new ProductRecommend();
+		productRecommend.setStatus(StatusEnum.NORMAL.getStatus());
+		model.addAttribute("productRecommend",productRecommend);
+		return "/modules/recommend/recommend_create";
+	}
+
+
+
+	@ApiOperation(value = "创建一个推荐位", notes = "创建一个推荐位")
+	@RequiresPermissions("product:detail:create")
+	@PostMapping(value= "/recommendCreate")
+	@ResponseBody
+	public Object insert(ProductRecommend productRecommend) {
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+			Integer count = productRecommendService.insertProductRecommend(productRecommend, authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
+
+	@ApiOperation(value = "更新推荐信息", notes = "更新推荐信息")
+	@RequiresPermissions("product:detail:edit")
+	@GetMapping(value = "/{recommendProductId}/edit")
+	public String getUpdateByRecommendProductId(Model model, @PathVariable("recommendProductId") Long recommendProductId) {
+
+		ProductRecommend productRecommend = productRecommendService.selectById(recommendProductId);
+		model.addAttribute("productRecommend", productRecommend);
+
+		return "/modules/recommend/recommend_update";
+	}
+
+
+	/**
      * GET 商品图片页面
      *
      * @return
