@@ -45,12 +45,6 @@ public enum StatusEnum {
 	SHELVE(1, "上架"), 
 	/** 下架 */
 	OFF_SHELVE(0, "下架"),
-	/** api返回成功 */
-	SUCCESS(200,"成功"),
-	/** api返回分类商品失败 */
-	FAIL_PRODUCT_CATEGORY(102,"没有对应的分类及商品,api返回分类商品失败!"),
-
-
 	/** 全部*/
 	ALL(null, "全部");
 

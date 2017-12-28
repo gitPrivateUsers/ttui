@@ -35,10 +35,13 @@ public enum CommonReturnCode implements ReturnCode {
 	GONE(410, "已被删除"),
 	/** 423已被锁定 */
 	LOCKED(423, "已被锁定"),
-	
+
+	/** api返回分类商品失败 */
+	FAIL_PRODUCT_CATEGORY(102,"没有对应的分类及商品,api返回分类商品失败!"),
+
 	/** 500服务器出错 */
 	INTERNAL_SERVER_ERROR(500, "服务器出错");
-	
+
 	/** 返回状态码 */
 	private Integer code;
 

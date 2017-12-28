@@ -3,7 +3,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>创建一个推荐位- 拓语网络</title><link rel="stylesheet" href="${ctxsta}/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+<title>创建一个推荐位- 拓语网络</title>
+  <link rel="stylesheet" href="${ctxsta}/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
 <link rel="stylesheet" href="${ctxsta}/common/icheck/flat/green.css" />
 </head>
 
@@ -52,10 +53,10 @@
             </div>
             <div class="hr-line-dashed"></div>
             <div class="form-group">
-              <label class="col-sm-2 col-xs-offset-1 control-label">开始时间：</label>
+              <label class="col-sm-2 col-xs-offset-1 control-label">起始时间：</label>
               <div class="col-sm-7">
                 <div class="input-group date form_datetime">
-                  <input class="form-control" size="16" type="text" name="beginTime" value="<fmt:formatDate value="${productRecommend.beginTime}" pattern="yyyy-MM-dd HH:mm:ss" />" readonly>
+                  <input class="form-control" size="16" type="text" name="beginTime" ${productRecommend.beginTime} readonly>
                   <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span> </div>
               </div>
             </div>
@@ -64,10 +65,11 @@
               <label class="col-sm-2 col-xs-offset-1 control-label">结束时间：</label>
               <div class="col-sm-7">
                 <div class="input-group date form_datetime">
-                  <input class="form-control" size="16" type="text" name="endTime" value="<fmt:formatDate value="${productRecommend.endTime}" pattern="yyyy-MM-dd HH:mm:ss" />" readonly>
+                  <input class="form-control" size="16" type="text" name="endTime" ${productRecommend.endTime} readonly>
                   <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span> <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span> </div>
               </div>
             </div>
+
             <div class="hr-line-dashed"></div>
             <div class="form-group">
               <div class="col-sm-12 text-center">

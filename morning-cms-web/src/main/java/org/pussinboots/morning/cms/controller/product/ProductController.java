@@ -106,7 +106,7 @@ public class ProductController extends BaseController {
 	@RequiresPermissions("product:detail:create")
 	@PostMapping(value= "/recommendCreate")
 	@ResponseBody
-	public Object insert(ProductRecommend productRecommend) {
+	public Object insertProductRecommend(ProductRecommend productRecommend) {
 		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
 		if (authorizingUser != null) {
 			Integer count = productRecommendService.insertProductRecommend(productRecommend, authorizingUser.getUserName());

@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 
 /**
@@ -48,11 +50,13 @@ public class ProductRecommend extends Model<ProductRecommend> {
     /**
      * 推荐起始时间
      */
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@TableField("begin_time")
 	private Date beginTime;
     /**
      * 推荐结束时间
      */
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@TableField("end_time")
 	private Date endTime;
     /**

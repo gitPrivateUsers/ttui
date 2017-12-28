@@ -6,6 +6,7 @@ import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.pussinboots.morning.common.base.BaseController;
 import org.pussinboots.morning.common.base.BasePageDTO;
+import org.pussinboots.morning.common.constant.CommonReturnCode;
 import org.pussinboots.morning.common.enums.StatusEnum;
 import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.online.common.enums.AdvertTypeEnum;
@@ -80,7 +81,7 @@ public class wxService extends BaseController {
 		//推荐商品  productRecommend
 		List<ProductVO> indexProductRecommend = productRecommendService.listByRecommendId(ProductRecommendTypeEnum.POPULAR.getType());
 		model.put("indexProductRecommend", indexProductRecommend);
-		return new OsResult(StatusEnum.NORMAL.getStatus(), String.valueOf(JSONObject.fromObject(model)));
+		return new OsResult(CommonReturnCode.SUCCESS, String.valueOf(JSONObject.fromObject(model)));
 	}
 	/**
 	 * 分类数据结果集合
@@ -128,9 +129,9 @@ public class wxService extends BaseController {
 			model.put("lowerCategories", lowerCategories);// 子类目列表
 			model.put("supperCategories", upperCategories);// 父类目列表
 
-			return new OsResult(StatusEnum.NORMAL.getStatus(), String.valueOf(JSONObject.fromObject(model)));
+			return new OsResult(CommonReturnCode.SUCCESS, String.valueOf(JSONObject.fromObject(model)));
 		}
-		return new OsResult(StatusEnum.FAIL_PRODUCT_CATEGORY.getStatus(),StatusEnum.FAIL_PRODUCT_CATEGORY.getStateInfo());
+		return new OsResult(CommonReturnCode.FAIL_PRODUCT_CATEGORY,CommonReturnCode.FAIL_PRODUCT_CATEGORY);
 	}
 
 
@@ -164,7 +165,7 @@ public class wxService extends BaseController {
 		model.put("products", basePageDTO.getList());// 商品列表
 		model.put("pageInfo", basePageDTO.getPageInfo()); // 分页信息
 		model.put("lowerCategories", lowerCategories);// 子类目列表
-		return new OsResult(StatusEnum.NORMAL.getStatus(), String.valueOf(JSONObject.fromObject(model)));
+		return new OsResult(CommonReturnCode.SUCCESS, String.valueOf(JSONObject.fromObject(model)));
 	}
 
 	/**
