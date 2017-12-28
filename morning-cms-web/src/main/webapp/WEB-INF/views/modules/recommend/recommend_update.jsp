@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>更新推荐位- 拓语网络</title>
+    <link rel="stylesheet" href="${ctxsta}/common/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="${ctxsta}/common/icheck/flat/green.css" />
 </head>
 
@@ -21,21 +22,27 @@
                         <div class="form-group m-t">
                             <label class="col-sm-2 col-xs-offset-1 control-label">推荐位ID：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="recommendId">
+                                <input type="text" class="form-control" name="recommendProductId" readonly="readonly" value="${productRecommend.recommendProductId}">
+                            </div>
+                        </div>
+                        <div class="form-group m-t">
+                            <label class="col-sm-2 col-xs-offset-1 control-label">推荐位ID：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="recommendId" value="${productRecommend.recommendId}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group m-t">
                             <label class="col-sm-2 col-xs-offset-1 control-label">商品ID：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="productId">
+                                <input type="text" class="form-control" name="productId" value="${productRecommend.productId}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group m-t">
                             <label class="col-sm-2 col-xs-offset-1 control-label">排序：</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="sort">
+                                <input type="text" class="form-control" name="sort" value="${productRecommend.sort}>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -96,7 +103,7 @@
             minuteStep: 10,
             pickerPosition: 'bottom-left',
         });
-        $('input[type="file"]').prettyFile();
+//        $('input[type="file"]').prettyFile();
     </script>
 </myfooter>
 </body>

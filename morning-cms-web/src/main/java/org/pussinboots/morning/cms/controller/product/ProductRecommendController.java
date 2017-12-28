@@ -58,7 +58,7 @@ public class ProductRecommendController extends BaseController {
 
 
     @ApiOperation(value = "创建推荐位页面", notes = "推荐位页面")
-    @RequiresPermissions("product:recommend:list:create")
+   @RequiresPermissions("product:recommend:list:create")
     @GetMapping(value = "/create")
     public String getInsertPage(Model model) {
         return "/modules/recommend/recommend_create";
