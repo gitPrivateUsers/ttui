@@ -1,4 +1,4 @@
-//package org.pussinboots.morning.os.wxService;
+//package org.pussinboots.morning.os.controller.wxService;
 //
 //import com.alibaba.fastjson.JSON;
 //import io.swagger.annotations.Api;
