@@ -41,21 +41,34 @@ public class wxApiIndexService extends BaseController {
      * @return Object
      */
     @ApiOperation(value = "首页json", notes = "首页展示json")
-    @GetMapping(value = "/view.index.json")
+    @GetMapping(value = "/index.json")
     public
     @ResponseBody
-    Object index() {
+    Object index(@RequestParam(value = "type", required = true) String type) {
         Map<String, Object> model = new HashMap<String, Object>();
         // 首页轮播广告列表
-        List<AdvertDetail> indexCarouselImgs = advertDetailService.listByAdvertId(AdvertTypeEnum.INDEX_CAROUSEL.getType());
-        model.put("indexCarouselImgs", indexCarouselImgs);
+        if (type.equals("indexCarouselImgs")) {
+            List<AdvertDetail> indexCarouselImgs = advertDetailService.listByAdvertId(AdvertTypeEnum.INDEX_CAROUSEL.getType());
+//            model.put("indexCarouselImgs", indexCarouselImgs);
+//            String value =String.valueOf(JSONObject.fromObject(model));
+            return new OsResult(CommonReturnCode.SUCCESS, indexCarouselImgs);
+        }
         //新品推荐 indexProductRecommendNew
-        List<ProductVO> indexProductRecommendNew = productRecommendService.listByRecommendId(ProductRecommendTypeEnum.NEW.getType());
-        model.put("indexProductRecommendNew", indexProductRecommendNew);
+        if (type.equals("indexProductRecommendNew")) {
+            List<ProductVO> indexProductRecommendNew = productRecommendService.listByRecommendId(ProductRecommendTypeEnum.NEW.getType());
+//            model.put("indexProductRecommendNew", indexProductRecommendNew);
+//            String value =String.valueOf(JSONObject.fromObject(model));
+            return new OsResult(CommonReturnCode.SUCCESS, indexProductRecommendNew);
+        }
         //推荐商品  productRecommend
-        List<ProductVO> indexProductRecommend = productRecommendService.listByRecommendId(ProductRecommendTypeEnum.POPULAR.getType());
-        model.put("indexProductRecommend", indexProductRecommend);
-        return new OsResult(CommonReturnCode.SUCCESS, String.valueOf(JSONObject.fromObject(model)));
+        if (type.equals("indexProductRecommend")) {
+            List<ProductVO> indexProductRecommend = productRecommendService.listByRecommendId(ProductRecommendTypeEnum.POPULAR.getType());
+//            model.put("indexProductRecommend", indexProductRecommend);
+//            String value =String.valueOf(JSONObject.fromObject(model));
+            return new OsResult(CommonReturnCode.SUCCESS, indexProductRecommend);
+        }
+
+        return new OsResult(CommonReturnCode.NOT_FOUND, CommonReturnCode.NOT_FOUND);
     }
 
 }

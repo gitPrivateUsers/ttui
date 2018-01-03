@@ -9,6 +9,7 @@ import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
 import org.pussinboots.morning.common.enums.StatusEnum;
 import org.pussinboots.morning.common.support.page.PageInfo;
+import org.pussinboots.morning.os.common.dto.ProductCategoryDto;
 import org.pussinboots.morning.os.common.result.OsResult;
 import org.pussinboots.morning.product.common.enums.ProductSortEnum;
 import org.pussinboots.morning.product.entity.Category;
@@ -76,15 +77,22 @@ public class wxApiCategoryService extends BaseController {
             // 根据类目ID查找上级类目列表
             List<Category> upperCategories = categoryService.listUpperCategories(categoryId, StatusEnum.SHOW.getStatus());
 
-            Map<String, Object> model = new HashMap<String, Object>();
-            model.put("sort", ProductSortEnum.typeOf(sort).getType());// 排序方式
-            model.put("category", category);// 当前类目信息
-            model.put("products", basePageDTO.getList());// 商品列表
-            model.put("pageInfo", basePageDTO.getPageInfo()); // 分页信息
-            model.put("lowerCategories", lowerCategories);// 子类目列表
-            model.put("supperCategories", upperCategories);// 父类目列表
-
-            return new OsResult(CommonReturnCode.SUCCESS, String.valueOf(JSONObject.fromObject(model)));
+//            Map<String, Object> model = new HashMap<String, Object>();
+//            model.put("sort", ProductSortEnum.typeOf(sort).getType());// 排序方式
+//            model.put("category", category);// 当前类目信息
+//            model.put("products", basePageDTO.getList());// 商品列表
+//            model.put("pageInfo", basePageDTO.getPageInfo()); // 分页信息
+//            model.put("lowerCategories", lowerCategories);// 子类目列表
+//            model.put("supperCategories", upperCategories);// 父类目列表
+            ProductCategoryDto pcdto=new ProductCategoryDto();
+            pcdto.setSort( ProductSortEnum.typeOf(sort).getType());
+            pcdto.setCategory(category);
+            pcdto.setPageInfo(basePageDTO.getPageInfo());
+            pcdto.setProductList(basePageDTO.getList());
+            pcdto.setLowerCategories(lowerCategories);
+            pcdto.setUpperCategories(upperCategories);
+//            return new OsResult(CommonReturnCode.SUCCESS, String.valueOf(JSONObject.fromObject(model)));
+            return new OsResult(CommonReturnCode.SUCCESS, pcdto);
         }
         return new OsResult(CommonReturnCode.FAIL_PRODUCT_CATEGORY, CommonReturnCode.FAIL_PRODUCT_CATEGORY);
     }
