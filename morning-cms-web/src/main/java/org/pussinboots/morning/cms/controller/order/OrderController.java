@@ -85,7 +85,7 @@ public class OrderController extends BaseController {
 	}
 
 	/**
-	 * POST更新订单信息
+	 * PUT更新订单信息
 	 *
 	 * @return
 	 */
@@ -137,4 +137,23 @@ public class OrderController extends BaseController {
 			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
 		}
 	}
+
+	/**
+	 * PUT 取消订单
+	 * @return
+	 */
+	@ApiOperation(value = "取消订单", notes = "根据URL传过来的订单编号取消订单")
+	@PutMapping(value = "/cancelOrder/{orderId}")
+	@ResponseBody
+	public Object cancelOrder(@PathVariable("orderId") Long orderId) {
+		Order order=orderService.selectById(orderId);
+		if(order!=null){
+
+			Integer count = orderService.updateCancelOrder(order.getOrderNumber(),order.getUserId());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		}
+//		Integer count = orderService.updateCancelOrder(orderNumber,userId);
+		return new CmsResult(CommonReturnCode.FAILED, 0);
+	}
+
 }

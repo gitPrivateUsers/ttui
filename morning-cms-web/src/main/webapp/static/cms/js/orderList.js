@@ -25,24 +25,24 @@ function shipTimeFormatter(value) {
 
 function statusFormatter(value) {
 	if (value == 1) {
-		return '<span  class="label label-primary">已提交</span>'
-	} 
-	if (value == 2) {
-		return '<span  class="label label-warning">待付款</span>'
-	} 
-	if (value == 3) {
-		return '<span  class="label label-danger">已取消</span>'
-	} 
-	if (value == 4) {
-		return '<span  class="label label-info">已付款</span>'
-	} 
-	if (value == 5) {
-		return '<span  class="label label-default">配送中</span>'
-	} 
-	if (value == 6) {
-		return '<span  class="label label-success">已完成</span>'
-	} 
+		return '<span  class="label label-primary">订单提交</span>'
+	}else if (value == 2) {
+		return '<span  class="label label-warning">支付完成</span>'
+	}else if (value == 3) {
+		return '<span  class="label label-danger">拣取配货</span>'
+	}else if (value == 4) {
+		return '<span  class="label label-info">商品出库</span>'
+	}else if (value == 5) {
+		return '<span  class="label label-default">等待收货</span>'
+	}else if (value == 6) {
+		return '<span  class="label label-success">确认收货</span>'
+	}else if (value == 11) {
+		return '<span  class="label label-success">自动取消订单</span>'
+	}else if (value == 12) {
+		return '<span  class="label label-success">手动取消订单</span>'
+	}
 }
+
 function typeFormatter(value) {
 	if (value == 1) {
 		return '<span class="label label-primary">图片</span>'
@@ -59,7 +59,10 @@ function actionFormatter(value, row, index) {
 		    '<a class="updateShipment m-r-sm text-warning" href="javascript:void(0)" title="修改订单配送信息">',
 		    '<i class="glyphicon glyphicon-map-marker"></i>',
 		    '</a>',
-		].join(''); 
+		    '<a class="cacelOrder m-r-sm text-warning" href="javascript:void(0)" title="取消订单">',
+		    '<i class="glyphicon glyphicon-remove-sign"></i>',
+		    '</a>',
+		].join('');
 }
 
 window.actionEvents = { 
@@ -69,9 +72,43 @@ window.actionEvents = {
 	'click .updateShipment' : function(e, value, row, index) {
 		 layer_show("修改订单配送信息", baselocation + '/system/order/' + row.orderId + '/updateShipment', 900, 650)
  	},
+	'click .cacelOrder' : function(e, value, row, index) {
+		//debugger
+		 order_delete(index,row.orderNumber,row.orderId,row.orderStatus);
+ 	},
 };
 
-
+/**
+ * 取消订单
+ */
+function order_delete(index,value,orderId,stu) {
+	if(stu == 1 || stu == 3 || stu == 4) {
+		layer.confirm('确定要取消该订单吗？', {
+			btn: ['确定', '取消'] //按钮
+		}, function () {
+			$.ajax({
+				type: 'put',
+				dataType: 'json',
+				url: baselocation + '/system/order/cancelOrder/' + orderId,
+				success: function (result) {
+					if (result.code == 1) {
+						layer.msg('订单取消成功!', {
+							icon: 1,
+							time: 1000
+						});
+						window.location.reload();
+					} else {
+						layer.alert(result.message, {
+							icon: 2
+						});
+					}
+				}
+			})
+		});
+	} else {
+		layer.alert('操作不合法，请联系管理员！');
+	}
+}
 
 /**
  * 多选框插件
