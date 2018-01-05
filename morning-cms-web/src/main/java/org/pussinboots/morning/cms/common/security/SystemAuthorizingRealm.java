@@ -32,6 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 * 创建时间：2017年4月1日 下午5:46:18   
 *
  */
+
 public class SystemAuthorizingRealm extends AuthorizingRealm {
 	
 	@Autowired

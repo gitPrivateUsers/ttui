@@ -161,7 +161,7 @@
 	    	LIMIT #{pageInfo.offset}, #{pageInfo.limit}  	
     	) AS o
     	LEFT JOIN os_order_product p ON o.order_id = p.order_id
-    	ORDER BY o.update_time DESC
+    	ORDER BY o.order_id
     </select>
     
     <!-- 根据用户ID、订单状态列表、分页信息、搜索内容查找订单总记录数 -->

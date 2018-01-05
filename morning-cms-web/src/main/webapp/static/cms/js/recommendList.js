@@ -42,10 +42,9 @@ window.actionEvents = {
  * 删除
  */
 function admin_delete(index, value, url) {
-    layer.confirm('确认要删除该条商品的图片吗？', {
+    layer.confirm('确认要删除该条推荐信息吗？', {
         btn : [ '确定', '取消' ] //按钮
     }, function() {
-        debugger
         $.ajax({
             type : 'delete',
             dataType : 'json',
@@ -55,7 +54,7 @@ function admin_delete(index, value, url) {
                     $('#table').bootstrapTable('hideRow', {
                         index : index
                     });
-                    layer.msg('该条商品的图片删除成功!', {
+                    layer.msg('该条商品推荐信息删除成功!', {
                         icon : 1,
                         time : 1000
                     });

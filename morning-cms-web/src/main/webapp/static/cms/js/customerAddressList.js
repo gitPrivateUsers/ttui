@@ -31,8 +31,8 @@ function actionFormatter(value, row, index) {
         '<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
         '<i class="glyphicon glyphicon-edit"></i>',
         '</a>',
-        '<a class="look m-r-sm text-warning" href="javascript:void(0)" title="查看用户地址列表">',
-        '<i class="glyphicon glyphicon-map-marker"></i>',
+        '<a class="remove m-r-sm text-danger" href="javascript:void(0)" title="删除">',
+        '<i class="glyphicon glyphicon-remove"></i>',
         '</a>',
     ].join('');
 
@@ -40,12 +40,13 @@ function actionFormatter(value, row, index) {
 
 window.actionEvents = {
     'click .edit' : function(e, value, row, index) {
-        layer_show("修改用户信息", baselocation + '/customer/detail/' + row.userId + '/edit', 900, 650)
+        layer_show("更新地址信息", baselocation + '/customer/detail/address/' + row.addressId + '/update', 900, 650)
     },
-    'click .look' : function(e, value, row, index) {
-        layer_show("用户地址列表", baselocation + '/customer/detail/' + row.userId + '/address', 1220, 800)
+    'click .remove' : function(e, value, row, index) {
+       address_delete(index, row.userId,row.addressId);
     },
 };
+
 
 /**
  * 多选框插件
@@ -66,7 +67,32 @@ $(function() {
     })
 })
 
-
+function address_delete(index, value,ad) {
+    layer.confirm('确认要删除该地址吗？', {
+        btn : [ '确定', '取消' ] //按钮
+    }, function() {
+        $.ajax({
+            type : 'delete',
+            dataType : 'json',
+            url : baselocation + '/customer/detail/address/' + value+"/"+ad,
+            success : function(result) {
+                if (result.code == 1) {
+                    $('#table').bootstrapTable('hideRow', {
+                        index : index
+                    });
+                    layer.msg('该地址删除成功!', {
+                        icon : 1,
+                        time : 1000
+                    });
+                } else {
+                    layer.alert(result.message, {
+                        icon : 2
+                    });
+                }
+            }
+        })
+    });
+}
 /**
  * 表单验证
  */

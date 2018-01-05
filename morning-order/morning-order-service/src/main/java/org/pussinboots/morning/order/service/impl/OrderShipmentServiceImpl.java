@@ -31,6 +31,11 @@ public class OrderShipmentServiceImpl extends ServiceImpl<OrderShipmentMapper, O
 	}
 
 	@Override
+	public Integer updateById(OrderShipment orderShipment, Long orderShipmentId) {
+		return orderShipmentMapper.updateById(orderShipment);
+	}
+
+	@Override
 	public Integer update(OrderShipment orderShipment, Long userId) {
 		// TODO 根据订单号以及用户ID以及订单状态查找该订单是否存在,如存在则修改配送地址信息,若不存在,则抛出异常
 		return orderShipmentMapper.updateById(orderShipment);

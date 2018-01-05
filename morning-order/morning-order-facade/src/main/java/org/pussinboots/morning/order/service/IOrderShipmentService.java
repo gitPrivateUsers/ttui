@@ -20,6 +20,10 @@ public interface IOrderShipmentService extends IService<OrderShipment> {
 	 * @return
 	 */	
 	OrderShipment getByOrderId(Long orderId);
+	/**
+	 * 根据订单ID更新配送信息
+	 */
+	Integer updateById(OrderShipment orderShipment,Long orderShipmentId);
 	
 	/**
 	 * 更新订单配送信息

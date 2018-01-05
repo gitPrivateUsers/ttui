@@ -19,6 +19,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 /**
  *
 * 类名称：OrderController
@@ -106,5 +108,33 @@ public class OrderController extends BaseController {
 		}
 	}
 
+	@ApiOperation(value = "更新订单配送信息", notes = "更新订单配送信息")
+	/*权限问题暂时还没有解决*/
+	/*权限问题暂时还没有解决*/
+	/*权限问题暂时还没有解决*/
+	//@RequiresPermissions("order:list:edit")
+	@GetMapping(value = "/{orderId}/updateShipment")
+	public String getUpdateShipmentPage(Model model, @PathVariable("orderId") Long orderId) {
 
+		OrderShipment orderShipment = orderShipmentService.getByOrderId(orderId);
+		model.addAttribute("orderShipment", orderShipment);
+
+		return "/modules/order/order_shipment_update";
+	}
+
+	@ApiOperation(value = "更新订单配送信息", notes = "根据订单ID修改")
+	//@RequiresPermissions("order:list:edit")
+	@PutMapping(value = "/{orderShipmentId}/updateShipment")
+	@ResponseBody
+	public Object updateOrderShipment(OrderShipment orderShipment, @PathVariable("orderShipmentId") Long orderShipmentId) {
+
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+			orderShipment.setUpdateTime(new Date());
+			Integer count = orderShipmentService.updateById(orderShipment,orderShipmentId);
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
 }

@@ -53,15 +53,21 @@ function typeFormatter(value) {
 
 function actionFormatter(value, row, index) {
 	 return [ 
-			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="修改订单信息">',
+			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="修改订单基本信息">',
 			'<i class="glyphicon glyphicon-edit"></i>',
 			'</a>',
+		    '<a class="updateShipment m-r-sm text-warning" href="javascript:void(0)" title="修改订单配送信息">',
+		    '<i class="glyphicon glyphicon-map-marker"></i>',
+		    '</a>',
 		].join(''); 
 }
 
 window.actionEvents = { 
 	'click .edit' : function(e, value, row, index) {
-		 layer_show("修改订单信息", baselocation + '/system/order/' + row.orderId + '/edit', 900, 650)
+		 layer_show("修改订单基本信息", baselocation + '/system/order/' + row.orderId + '/edit', 900, 650)
+ 	},
+	'click .updateShipment' : function(e, value, row, index) {
+		 layer_show("修改订单配送信息", baselocation + '/system/order/' + row.orderId + '/updateShipment', 900, 650)
  	},
 };
 
