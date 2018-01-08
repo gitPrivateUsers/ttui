@@ -122,8 +122,10 @@ public class wxApiUserLoginService extends BaseController {
             user.setCreateBy(wx.getOpenId());
             //根据openId保证用户唯一
             System.out.println("开始验证"+wx.getOpenId());
-            if (userService.selectByOpenId(wx.getOpenId()) < 1) {
-                userService.insert(user);
+            if (userService.selectByOpenId(wx.getOpenId()) ==0) {
+                System.out.println("进入判断 serService.selectByOpenId(wx.getOpenId()) < 1====== ");
+             boolean b=   userService.insert(user);
+                System.out.println("执行创建爱你user表结果"+b);
                 Long userId = userService.selectByOpenId(wx.getOpenId());
                 System.out.println("创建成功拿到userId"+userId);
                 wx.setOsUserId(userId);
@@ -133,7 +135,7 @@ public class wxApiUserLoginService extends BaseController {
                 return new OsResult(CommonReturnCode.SUCCESS, count);
             }
         }
-        return new OsResult(UserReturnCode.USER_NOT_EXIST);
+        return new OsResult(123456,"该账号已存在！");
     }
 
     /**

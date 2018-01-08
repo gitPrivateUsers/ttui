@@ -117,7 +117,7 @@
 	</select>
 
 	<!-- 根据微信openId查找用户创建人对应的显示信息 -->
-	<select id="selectUserByOpenId" >
+	<select id="selectUserByOpenId" resultType="java.lang.Long">
 		SELECT
 		user_id AS userId
 		FROM
