@@ -51,6 +51,11 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
+    public ProductVO getByProductId(Long productId, Integer status) {
+        return productMapper.getByProductId(productId, status);
+    }
+
+    @Override
     public BasePageDTO<Product> listByPage(PageInfo pageInfo, String search) {
 
 

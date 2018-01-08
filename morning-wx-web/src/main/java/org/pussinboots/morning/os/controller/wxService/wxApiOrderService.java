@@ -21,6 +21,7 @@ import org.pussinboots.morning.product.pojo.vo.ShoppingCartVO;
 import org.pussinboots.morning.product.service.*;
 import org.pussinboots.morning.user.entity.Address;
 import org.pussinboots.morning.user.service.IAddressService;
+import org.pussinboots.morning.user.service.IWxUserInfoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,12 +53,23 @@ public class wxApiOrderService extends BaseController {
     private IOrderProductService orderProductService;
     @Autowired
     private IOrderShipmentService orderShipmentService;
+    @Autowired
+    private IWxUserInfoService  wxUserInfoService;
 
     /**
      * 订单数据结果集合
      *
      * @return Object
      */
+    @ApiOperation(value = "订单列表", notes = "订单列表")
+    @PostMapping(value = "/order.list")
+    @ResponseBody
+    public Object getOrderList( @RequestParam(value = "token", required = true) String token) {
+
+        return null;
+
+    }
+
 
 
     /**
@@ -188,6 +200,7 @@ public class wxApiOrderService extends BaseController {
 
     /**
      * PUT 修改收货地址
+     *
      *
      * @return
      */
