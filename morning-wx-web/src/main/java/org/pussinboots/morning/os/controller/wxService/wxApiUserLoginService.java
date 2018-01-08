@@ -49,8 +49,8 @@ public class wxApiUserLoginService extends BaseController {
                 //   验证是否未注册
                 WxUserInfo wx1 = wxUserInfoService.getWxUserInfo(map.get("openid"));
                 if (wx1 != null) {
-                    Map<String, String> map1 = WXAppletUserInfo.getAccessToken();
-                    map.put("token", map1.get("access_token"));
+//                    Map<String, String> map1 = WXAppletUserInfo.getAccessToken();
+                    map.put("token", wx1.getToken());
                     map.put("uid", String.valueOf(wx1.getOsUserId()));
                     return new OsResult(CommonReturnCode.SUCCESS, map);
                 } else   {
@@ -67,8 +67,16 @@ public class wxApiUserLoginService extends BaseController {
     @GetMapping(value = "/wxApi._tk")
     public
     @ResponseBody
-    Object getAccessToken() {
-        return WXAppletUserInfo.getAccessToken();
+    Object getAccessToken(@RequestParam(value = "token", required = true) String token) {
+        WxUserInfo wx = wxUserInfoService.getWxUserInfoByToken(token);
+        if(wx!=null){
+            wx.setUpdateTime(new Date());
+            Map<String, String> tokenMap = WXAppletUserInfo.getAccessToken();
+            wx.setToken(tokenMap.get("access_token")+"");
+            wxUserInfoService.updateById(wx);
+            return tokenMap;
+        }
+        return new OsResult(CommonReturnCode.BAD_REQUEST, CommonReturnCode.BAD_REQUEST);
     }
 
     /**
@@ -155,12 +163,15 @@ public class wxApiUserLoginService extends BaseController {
 
     }
 
-    @ApiOperation(value = "用户token", notes = "token")
+    @ApiOperation(value = "用户信息根据token验证", notes = "token")
     @PostMapping(value = "/wxUser.token")
     @ResponseBody
     public Object getOrderList(@RequestParam(value = "token", required = true) String token) {
         WxUserInfo wx = wxUserInfoService.getWxUserInfoByToken(token);
-        return new OsResult(CommonReturnCode.SUCCESS, wx);
+        if(wx!=null){
+            return new OsResult(CommonReturnCode.SUCCESS, wx);
+        }else
+            return new OsResult(107, "登录超时!");
 
     }
 }
