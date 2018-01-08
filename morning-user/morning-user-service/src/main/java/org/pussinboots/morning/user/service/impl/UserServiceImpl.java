@@ -130,4 +130,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 		user.setUpdateBy(user.getUserName());
 		return userMapper.updateById(user);
 	}
+
+	@Override
+	public Long selectByOpenId(String openId) {
+
+		return userMapper.selectUserByOpenId(openId);
+	}
+
 }

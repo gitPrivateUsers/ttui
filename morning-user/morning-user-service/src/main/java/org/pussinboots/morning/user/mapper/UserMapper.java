@@ -1,6 +1,7 @@
 package org.pussinboots.morning.user.mapper;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.ibatis.annotations.Param;
 import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.user.entity.User;
 import org.pussinboots.morning.user.pojo.vo.UserVO;
@@ -35,4 +36,6 @@ public interface UserMapper extends BaseMapper<User> {
 	UserVO getById(Long userId);
 
 	List<UserVO> listByPage(PageInfo pageInfo, String search, Page<UserVO> page);
+
+	Long selectUserByOpenId(@Param("openId") String openId);
 }

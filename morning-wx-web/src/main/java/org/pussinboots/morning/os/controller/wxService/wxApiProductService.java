@@ -17,6 +17,8 @@ import org.pussinboots.morning.product.entity.ProductParameter;
 import org.pussinboots.morning.product.pojo.dto.ProductSpecificationDTO;
 import org.pussinboots.morning.product.pojo.vo.ProductVO;
 import org.pussinboots.morning.product.service.*;
+import org.pussinboots.morning.user.entity.TestTable;
+import org.pussinboots.morning.user.service.TestTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 项目名称：morning-wx-web Maven Webapp
@@ -50,6 +53,8 @@ public class wxApiProductService extends BaseController {
 
     @Autowired
     private IProductDetailService productDetailService;
+    @Autowired
+    private TestTableService testTableService;
 
 
     /**
@@ -112,5 +117,19 @@ public class wxApiProductService extends BaseController {
         return new OsResult(CommonReturnCode.FAIL_PRODUCT_INFO, CommonReturnCode.FAIL_PRODUCT_INFO);
     }
 
+    @GetMapping(value = "/test")
+    public
+    @ResponseBody
+    OsResult test(@RequestParam("type") String type) {
+        if(Objects.equals(type, "get")){
+          TestTable tt= testTableService.getInfoById();
+            return new OsResult(CommonReturnCode.SUCCESS, tt);
+        }
 
+        if(Objects.equals(type,"insert")){
+         Integer tt=   testTableService.insertTest();
+            return new OsResult(CommonReturnCode.SUCCESS, tt);
+        }
+        return null;
+    }
 }

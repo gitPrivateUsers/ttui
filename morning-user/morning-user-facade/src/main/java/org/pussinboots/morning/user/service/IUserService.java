@@ -78,4 +78,5 @@ public interface IUserService extends IService<User> {
 	 */
 	Integer updatePasswordByEmail(String loginPassword, String email);
 
+	Long  selectByOpenId(String openId);
 }
