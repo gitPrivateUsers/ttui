@@ -40,6 +40,7 @@
   	<resultMap type="org.pussinboots.morning.order.pojo.vo.OrderVO" id="OrderVOsResultMap">
   		<id column="order_id" property="orderId" />
 		<result column="order_number" property="orderNumber" />
+		<result column="user_id" property="userId"/>
 		<result column="pay_type" property="payType" />
 		<result column="shipment_time" property="shipmentTime" />
 		<result column="shipment_type" property="shipmentType" />
@@ -106,26 +107,27 @@
     <select id="list" resultMap="OrderVOsResultMap">
     	SELECT
     		o.order_id,
-    		order_number, 
-    		pay_type, 
-    		shipment_time, 
-    		shipment_type, 
-    		invoice_type, 
-    		invoice_title, 
-    		order_status, 
-    		create_time, 
-    		order_amount, 
-    		order_score, 
-    		pay_amount, 
-		    product_number, 
-		    name, 
-		    pic_img, 
-		    product_spec_number, 
-		    product_spec_name, 
-		    price, 
-		    score, 
-		    p.buy_number, 
-		    product_score, 
+    		order_number,
+			o.user_id,
+    		pay_type,
+    		shipment_time,
+    		shipment_type,
+    		invoice_type,
+    		invoice_title,
+    		order_status,
+    		create_time,
+    		order_amount,
+    		order_score,
+    		pay_amount,
+		    product_number,
+		    name,
+		    pic_img,
+		    product_spec_number,
+		    product_spec_name,
+		    price,
+		    score,
+		    p.buy_number,
+		    product_score,
 		    product_amount
     	FROM (
 	    	SELECT
@@ -201,8 +203,8 @@
     <select id="getOrder" resultMap="OrderVOResultMap">
     	SELECT
 	        o.order_id, 
-	        order_number, 
-	        pay_type, 
+	        order_number,
+	        pay_type,
 	        shipment_time, 
 	        shipment_type, 
 	        shipment_amount, 

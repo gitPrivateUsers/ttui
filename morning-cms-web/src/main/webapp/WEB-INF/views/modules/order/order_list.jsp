@@ -72,8 +72,8 @@
                                             <th data-field="orderAmount" data-halign="center" data-align="center"
                                                 data-sortable="true">订单金额
                                             </th>
-                                            <th data-formatter="actionFormatter" data-events="actionEvents" data-halign="center" 
-                                                data-align="center" data-sortable="true">修改订单信息
+                                            <th data-formatter="actionFormatter" data-events="actionEvents" data-halign="center"
+                                                data-align="center" data-sortable="true">订单操作
                                             </th>
                                             <!-- 
                                                   <th data-field="remarks" data-halign="center" data-align="center" data-sortable="true">备注</th>
