@@ -66,6 +66,38 @@
 		AND	show_in_shelve = #{status}	
 	</select>
 
+	<!-- 根据商品ID和状态查找商品 -->
+	<select id="getByProductId" resultType="org.pussinboots.morning.product.pojo.vo.ProductVO">
+		SELECT
+		p.product_id AS productId,
+		product_number AS productNumber,
+		name,
+		show_score AS showScore,
+		show_price AS showPrice,
+		introduce,
+		pic_img AS picImg,
+		page_title AS pageTitle,
+		page_description AS pageDescription,
+		page_keyword AS pageKeyword,
+		label_name AS labelName,
+		description
+		FROM
+		os_product p
+		LEFT JOIN os_product_detail d ON p.product_id = d.product_id
+		LEFT JOIN (
+		SELECT
+		label_id,
+		label_name
+		FROM
+		os_label
+		WHERE
+		status = #{status}
+		) l ON p.label_id = l.label_id
+		WHERE
+		p.product_id = #{productId}
+		AND	show_in_shelve = #{status}
+	</select>
+
 	<!-- 根据分页信息/搜索内容查找广告列表 -->
 	<select id="listByPage" resultType="org.pussinboots.morning.product.pojo.vo.ProductVO">
 		SELECT

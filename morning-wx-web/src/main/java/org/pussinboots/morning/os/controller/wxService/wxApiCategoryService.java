@@ -87,7 +87,7 @@ public class wxApiCategoryService extends BaseController {
             ProductCategoryDto pcdto=new ProductCategoryDto();
             pcdto.setSort( ProductSortEnum.typeOf(sort).getType());
             pcdto.setCategory(category);
-            pcdto.setPageInfo(basePageDTO.getPageInfo());
+//            pcdto.setPageInfo(basePageDTO.getPageInfo());
             pcdto.setProductList(basePageDTO.getList());
             pcdto.setLowerCategories(lowerCategories);
             pcdto.setUpperCategories(upperCategories);

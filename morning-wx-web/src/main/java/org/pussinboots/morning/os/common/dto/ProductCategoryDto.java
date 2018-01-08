@@ -1,5 +1,6 @@
 package org.pussinboots.morning.os.common.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.Category;
 import org.pussinboots.morning.product.pojo.vo.ProductVO;
@@ -7,7 +8,8 @@ import org.pussinboots.morning.product.pojo.vo.ProductVO;
 import java.io.Serializable;
 import java.util.List;
 
-public class ProductCategoryDto implements Serializable{
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ProductCategoryDto  implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	// 排序方式

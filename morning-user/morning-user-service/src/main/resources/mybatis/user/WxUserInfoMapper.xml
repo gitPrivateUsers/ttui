@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.pussinboots.morning.user.mapper.WxUserInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.pussinboots.morning.user.entity.WxUserInfo">
+        <id column="wx_user_id" property="wxUserId" javaType="long" jdbcType="INTEGER"/>
+        <result column="os_user_id" property="osUserId" javaType="long" jdbcType="INTEGER"/>
+        <result column="avatar_url" property="avatarUrl" javaType="long" jdbcType="INTEGER"/>
+        <result column="country" property="country" javaType="string" jdbcType="VARCHAR"/>
+        <result column="city" property="city" javaType="string" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" javaType="int" jdbcType="INTEGER"/>
+        <result column="language" property="language" javaType="string" jdbcType="VARCHAR"/>
+        <result column="nick_name" property="nickName" javaType="string" jdbcType="VARCHAR"/>
+        <result column="province" property="province" javaType="string" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" javaType="string" jdbcType="VARCHAR"/>
+        <result column="unionid" property="unionid" javaType="string" jdbcType="VARCHAR"/>
+        <result column="open_id" property="openId" javaType="string" jdbcType="VARCHAR"/>
+        <result column="session_key" property="sessionKey" javaType="string" jdbcType="VARCHAR"/>
+        <result column="status" property="status" javaType="int" jdbcType="INTEGER"/>
+        <result column="remark" property="remark" javaType="string" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" javaType="java.sql.Timestamp" jdbcType="TIMESTAMP"/>
+        <result column="token" property="token" javaType="string" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+		wx_user_id as wxUserId,os_user_id as osUserId,avatar_url as avatarUrl,country,city,gender,`language`,nick_name as nickName,province,mobile,unionid,open_id as openId,session_key as sessionKey,`status`,remark,create_time as createTime,update_time as updateTime,token
+    </sql>
+
+    <!-- 根据open_id查找用户信息 -->
+    <select id="getByOpenId" resultType="org.pussinboots.morning.user.entity.WxUserInfo">
+    	SELECT
+    			wx_user_id as wxUserId,os_user_id as osUserId,avatar_url as avatarUrl,country,city,gender,`language`,nick_name as nickName,province,mobile,unionid,open_id as openId,session_key as sessionKey,`status`,remark,create_time as createTime,update_time as updateTime,token
+
+    	FROM
+    		wx_user_info
+    	WHERE
+    		open_id = #{openId}
+    </select>
+
+    <!-- 根据微信用户ID查找用户显示信息 -->
+    <select id="getById" resultType="org.pussinboots.morning.user.entity.WxUserInfo">
+    	SELECT
+	     	wx_user_id as wxUserId,os_user_id as osUserId,avatar_url as avatarUrl,country,city,gender,`language`,nick_name as nickName,province,mobile,unionid,open_id as openId,session_key as sessionKey,`status`,remark,create_time as createTime,update_time as updateTime,token
+     FROM
+    		wx_user_info
+	     WHERE
+	     	wx_user_id = #{wxUserId}
+    </select>
+
+    <insert id="insertWxUserInfo" parameterType="org.pussinboots.morning.user.entity.WxUserInfo" >
+        INSERT INTO wx_user_info ( avatar_url, city, nick_name, province, `status`, create_time, gender )
+        VALUES ( #{avatarUrl,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}
+        ,#{status,jdbcType=INTEGER},#{createTime,jdbcType=TIMESTAMP}, #{gender,jdbcType=INTEGER} )
+    </insert>
+</mapper>

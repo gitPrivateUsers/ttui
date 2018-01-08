@@ -7,6 +7,7 @@ import net.sf.json.JSONObject;
 import org.pussinboots.morning.common.base.BaseController;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
 import org.pussinboots.morning.common.enums.StatusEnum;
+import org.pussinboots.morning.os.common.dto.ProductDto;
 import org.pussinboots.morning.os.common.result.OsResult;
 import org.pussinboots.morning.product.common.constant.ProductConstantEnum;
 import org.pussinboots.morning.product.entity.Category;
@@ -47,6 +48,9 @@ public class wxApiProductService extends BaseController {
     @Autowired
     private IProductSpecificationService productSpecificationService;
 
+    @Autowired
+    private IProductDetailService productDetailService;
+
 
     /**
      * 商品数据结果集合
@@ -62,11 +66,10 @@ public class wxApiProductService extends BaseController {
     @GetMapping(value = "/product.info")
     public
     @ResponseBody
-    OsResult item(@RequestParam("productNumber") Long productNumber) {
+    OsResult item(@RequestParam("productId") Long productId) {
         // 根据商品编号查找商品信息
-        ProductVO product = productService.getByNumber(productNumber, StatusEnum.SHELVE.getStatus());
+        ProductVO product = productService.getByProductId(productId, StatusEnum.SHELVE.getStatus());
         if (product != null) {
-            Map<String, Object> model = new HashMap<String, Object>();
             // 根据类目ID查找上级类目列表
             List<Category> upperCategories = categoryService.listUpperByProductId(product.getProductId(),
                     StatusEnum.SHOW.getStatus());
@@ -77,7 +80,6 @@ public class wxApiProductService extends BaseController {
             // 根据商品ID查找商品展示图片
             List<ProductImage> productImages = productImageService.listByProductId(product.getProductId(),
                     ProductConstantEnum.PRODUCT_PICIMG_NUMBER.getValue(), StatusEnum.SHOW.getStatus());
-            model.put("productImages", productImages);
 
             // 根据商品ID查找商品参数
             List<ProductParameter> productParameters = productParameterService.listByProductId(product.getProductId(),
@@ -87,14 +89,25 @@ public class wxApiProductService extends BaseController {
             ProductSpecificationDTO productSpecificationDTO = productSpecificationService
                     .getByProductId(product.getProductId(), StatusEnum.SHOW.getStatus());
 
-            model.put("product", product);// 商品信息
-            model.put("upperCategories", upperCategories);// 上级类目列表
-            model.put("productAttribute", productAttribute);// 商品属性
-            model.put("productParameters", productParameters);// 商品参数
-            model.put("kindVOs", productSpecificationDTO.getKindVOs());// 商品类型列表
-            model.put("productSpecifications", JSON.toJSON(productSpecificationDTO.getProductSpecifications()));
-
-            return new OsResult(CommonReturnCode.SUCCESS, String.valueOf(JSONObject.fromObject(model)));
+            ProductDto productDto = new ProductDto();
+            productDto.setProduct(product);
+            productDto.setProductImages(productImages);
+            productDto.setProductAttribute(productAttribute);
+            productDto.setUpperCategories(upperCategories);
+            productDto.setKindVOs(productSpecificationDTO.getKindVOs());
+            productDto.setProductParameters(productParameters);
+            productDto.setProductSpecifications(productSpecificationDTO.getProductSpecifications());
+//            productDto.setProductDetail(productDetailService.selectByProductId(product.getProductId()));
+//            Map<String, Object> model = new HashMap<String, Object>();
+//            model.put("productImages", productImages);
+//            model.put("product", product);// 商品信息
+//            model.put("upperCategories", upperCategories);// 上级类目列表
+//            model.put("productAttribute", productAttribute);// 商品属性
+//            model.put("productParameters", productParameters);// 商品参数
+//            model.put("kindVOs", productSpecificationDTO.getKindVOs());// 商品类型列表
+//            model.put("productSpecifications", JSON.toJSON(productSpecificationDTO.getProductSpecifications()));
+//            return new OsResult(CommonReturnCode.SUCCESS, String.valueOf(JSONObject.fromObject(model)));
+            return new OsResult(CommonReturnCode.SUCCESS, productDto);
         }
         return new OsResult(CommonReturnCode.FAIL_PRODUCT_INFO, CommonReturnCode.FAIL_PRODUCT_INFO);
     }
