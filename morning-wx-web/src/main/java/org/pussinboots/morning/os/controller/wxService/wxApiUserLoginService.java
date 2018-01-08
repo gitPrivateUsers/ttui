@@ -36,29 +36,29 @@ public class wxApiUserLoginService extends BaseController {
     @Autowired
     private IUserService userService;
 
+
     @ApiOperation(value = "json", notes = "json")
-    @GetMapping(value = "/wxApi.openId")
+    @GetMapping(value = "/wxApi.login")
     public
     @ResponseBody
     Object getSessionKeyAndOropenid(@RequestParam(value = "code", required = true) String code) {
         if (StringUtils.isNotEmpty(code)) {
             Map<String, String> map = WXAppletUserInfo.getSessionKeyAndOropenid(code);
 
-            //   验证是否未注册
             if (StringUtils.isNotEmpty(map.get("openid"))) {
+                //   验证是否未注册
                 WxUserInfo wx1 = wxUserInfoService.getWxUserInfo(map.get("openid"));
                 if (wx1 != null) {
                     Map<String, String> map1 = WXAppletUserInfo.getAccessToken();
                     map.put("token", map1.get("access_token"));
                     map.put("uid", String.valueOf(wx1.getOsUserId()));
-                } else
+                    return new OsResult(CommonReturnCode.SUCCESS, map);
+                } else   {
+                    //去注册
                     map.put("code", "10000");
+                    return new OsResult(CommonReturnCode.SUCCESS, map);
+                }
             }
-            return map;
-
-//            return WXAppletUserInfo.getSessionKeyAndOropenid(code);
-
-
         }
         return new OsResult(CommonReturnCode.BAD_REQUEST, CommonReturnCode.BAD_REQUEST);
     }
@@ -98,7 +98,7 @@ public class wxApiUserLoginService extends BaseController {
             if (wx1 != null) {
                 System.out.println("进来了 if (wx != null) ");
 
-                return new OsResult(UserReturnCode.USER_NOT_EXIST);
+                return new OsResult(123456, "该账号已存在！");
             }
             System.out.println("================开始set=======================");
             WxUserInfo wx = new WxUserInfo();
@@ -121,39 +121,25 @@ public class wxApiUserLoginService extends BaseController {
             user.setRealName("WX");
             user.setCreateBy(wx.getOpenId());
             //根据openId保证用户唯一
-            System.out.println("开始验证"+wx.getOpenId());
-            if (userService.selectByOpenId(wx.getOpenId()) ==0) {
+            System.out.println("开始验证" + wx.getOpenId() + "=====null===" + userService.selectByOpenId(wx.getOpenId()));
+
+            if (userService.selectByOpenId(wx.getOpenId()) == null) {
                 System.out.println("进入判断 serService.selectByOpenId(wx.getOpenId()) < 1====== ");
-             boolean b=   userService.insert(user);
-                System.out.println("执行创建爱你user表结果"+b);
+                boolean b = userService.insert(user);
+                System.out.println("执行创建user表结果" + b);
                 Long userId = userService.selectByOpenId(wx.getOpenId());
-                System.out.println("创建成功拿到userId"+userId);
+                System.out.println("创建成功拿到userId" + userId);
                 wx.setOsUserId(userId);
 
                 Integer count = wxUserInfoService.insertWxUserInfo(wx);
                 System.out.println("执行结果" + count);
                 return new OsResult(CommonReturnCode.SUCCESS, count);
             }
+            return new OsResult(22222222, "出错了！");
         }
-        return new OsResult(123456,"该账号已存在！");
+        return new OsResult(123456, "该账号已存在！");
     }
 
-    /**
-     * POST 登录
-     *
-     * @return
-     */
-    @ApiOperation(value = "用户登录", notes = "denglu")
-    @PostMapping(value = "/wx.login")
-    @ResponseBody
-    public Object login(@RequestParam("code") String code, @RequestParam("encryptedData") String encryptedData, @RequestParam("iv") String iv) {
-        Map<String, String> map = WXAppletUserInfo.getSessionKeyAndOropenid(code);
-        Map<String, String> map1 = WXAppletUserInfo.getUserInfo(encryptedData, map.get("sessionKey"), iv);
-        WxUserInfo wx1 = wxUserInfoService.getWxUserInfo(map.get("openid"));
-        if (wx1 != null)
-            map1.put("userId", String.valueOf(wx1.getWxUserId()));
-        return map1;
-    }
 
     /**
      * test
