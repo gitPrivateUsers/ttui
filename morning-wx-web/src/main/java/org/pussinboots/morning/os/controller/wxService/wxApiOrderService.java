@@ -6,6 +6,7 @@ import net.sf.json.JSONObject;
 import org.pussinboots.morning.common.base.BaseController;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
 import org.pussinboots.morning.common.enums.StatusEnum;
+import org.pussinboots.morning.online.entity.WxUserInfo;
 import org.pussinboots.morning.order.common.enums.OrderStatusEnum;
 import org.pussinboots.morning.order.entity.Order;
 import org.pussinboots.morning.order.entity.OrderProduct;
@@ -21,7 +22,7 @@ import org.pussinboots.morning.product.pojo.vo.ShoppingCartVO;
 import org.pussinboots.morning.product.service.*;
 import org.pussinboots.morning.user.entity.Address;
 import org.pussinboots.morning.user.service.IAddressService;
-import org.pussinboots.morning.user.service.IWxUserInfoService;
+import org.pussinboots.morning.online.service.IWxUserInfoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,19 +57,7 @@ public class wxApiOrderService extends BaseController {
     @Autowired
     private IWxUserInfoService  wxUserInfoService;
 
-    /**
-     * 订单数据结果集合
-     *
-     * @return Object
-     */
-    @ApiOperation(value = "订单列表", notes = "订单列表")
-    @PostMapping(value = "/order.list")
-    @ResponseBody
-    public Object getOrderList( @RequestParam(value = "token", required = true) String token) {
 
-        return null;
-
-    }
 
 
 

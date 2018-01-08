@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.pussinboots.morning.online.mapper.WxUserInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.pussinboots.morning.online.entity.WxUserInfo">
+        <id column="wx_user_id" property="wxUserId"/>
+        <result column="os_user_id" property="osUserId"/>
+        <result column="avatar_url" property="avatarUrl"/>
+        <result column="country" property="country"/>
+        <result column="city" property="city"/>
+        <result column="gender" property="gender"/>
+        <result column="language" property="language"/>
+        <result column="nick_name" property="nickName" />
+        <result column="province" property="province" />
+        <result column="mobile" property="mobile"/>
+        <result column="unionid" property="unionid"/>
+        <result column="open_id" property="openId"/>
+        <result column="session_key" property="sessionKey"/>
+        <result column="status" property="status"/>
+        <result column="remark" property="remark"/>
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="token" property="token"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+		wx_user_id as wxUserId,os_user_id as osUserId,avatar_url as avatarUrl,
+		country,city,gender,`language`,nick_name as nickName,province,mobile,unionid,open_id as openId,
+		session_key as sessionKey,`status`,remark,create_time as createTime,update_time as updateTime,token
+    </sql>
+
+    <!-- 根据open_id查找用户信息 -->
+    <select id="getByOpenId" resultType="org.pussinboots.morning.online.entity.WxUserInfo">
+    	SELECT
+		wx_user_id as wxUserId,os_user_id as osUserId,avatar_url as avatarUrl,
+		country,city,gender,`language`,nick_name as nickName,province,mobile,unionid,open_id as openId,
+		session_key as sessionKey,`status`,remark,create_time as createTime,update_time as updateTime,token
+
+    	FROM
+    		wx_user_info
+    	WHERE
+    		open_id = #{openId}
+    </select>
+
+    <!-- 根据微信用户ID查找用户显示信息 -->
+    <select id="getById" resultType="org.pussinboots.morning.online.entity.WxUserInfo">
+    	SELECT
+		wx_user_id as wxUserId,os_user_id as osUserId,avatar_url as avatarUrl,
+		country,city,gender,`language`,nick_name as nickName,province,mobile,unionid,open_id as openId,
+		session_key as sessionKey,`status`,remark,create_time as createTime,update_time as updateTime,token   FROM
+    		wx_user_info
+	     WHERE
+	     	wx_user_id = #{wxUserId}
+    </select>
+
+    <insert id="insertWxUserInfo" parameterType="org.pussinboots.morning.online.entity.WxUserInfo">
+        INSERT INTO wx_user_info ( avatar_url, city, nick_name, province, `status`, create_time, gender )
+        VALUES ( #{avatarUrl,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}
+        ,#{status,jdbcType=INTEGER},#{createTime,jdbcType=TIMESTAMP}, #{gender,jdbcType=INTEGER} )
+    </insert>
+
+
+    <!-- 根据微信用户token查找用户显示信息 -->
+    <select id="selectByToken" resultType="org.pussinboots.morning.online.entity.WxUserInfo">
+        SELECT
+		wx_user_id as wxUserId,os_user_id as osUserId,avatar_url as avatarUrl,
+		country,city,gender,`language`,nick_name as nickName,province,mobile,unionid,open_id as openId,
+		session_key as sessionKey,`status`,remark,create_time as createTime,update_time as updateTime,token     FROM
+        wx_user_info
+        WHERE
+        token = #{token}
+    </select>
+
+</mapper>

@@ -1,4 +1,4 @@
-package org.pussinboots.morning.user.entity;
+package org.pussinboots.morning.online.entity;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;

@@ -115,4 +115,14 @@
 			</if>   		   		 		
     	</where>    -->
 	</select>
+
+	<!-- 根据微信openId查找用户创建人对应的显示信息 -->
+	<select id="selectUserByOpenId" >
+		SELECT
+		user_id AS userId
+		FROM
+		os_user
+		WHERE
+		create_by = #{openId}
+	</select>
 </mapper>
