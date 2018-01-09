@@ -1,5 +1,6 @@
 package org.pussinboots.morning.os.controller.wxService;
 
+import com.alibaba.dubbo.common.json.JSON;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -164,7 +166,12 @@ public class wxApiPortalService extends BaseController {
                             AddressInfo addressInfo=new AddressInfo();
                             addressInfo.setAd(ad);
                             addressInfo.setToken(token);
-                            return new OsResult(CommonReturnCode.SUCCESS, addressInfo);
+                            try {
+                              String ads=  JSON.json(addressInfo);
+                                return new OsResult(CommonReturnCode.SUCCESS, ads);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }else{
                            flag=true;
                         }
