@@ -24,7 +24,7 @@ public interface IAddressService extends IService<Address> {
 	 * @param address 收获地址信息
 	 * @return
 	 */
-	Integer insertAddress(Long userId, Address address);
+	Integer insertAddress(Address address);
 	
 	/**
 	 * 根据用户ID查找收货地址列表

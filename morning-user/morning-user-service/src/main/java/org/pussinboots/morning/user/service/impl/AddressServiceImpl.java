@@ -31,9 +31,7 @@ public class AddressServiceImpl extends ServiceImpl<AddressMapper, Address> impl
 	private AddressMapper addressMapper;
 	
 	@Override
-	public Integer insertAddress(Long userId, Address address) {
-		address.setCreateTime(new Date());
-		address.setUserId(userId);
+	public Integer insertAddress(  Address address) {
 		return addressMapper.insert(address);
 	}
 
