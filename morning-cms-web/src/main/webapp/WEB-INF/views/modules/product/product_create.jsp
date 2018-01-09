@@ -19,6 +19,15 @@
         <div class="ibox-content">
           <form id="form" class="form-horizontal" action="${ctx}/product/detail" data-method="post">
             <div class="form-group m-t">
+              <div class="form-group">
+                <div class="col-sm-12 text-center">
+                  <label class="col-sm-2 col-xs-offset-1 control-label">
+                    <button class=".btn btn-info" type="button" onclick="layer_show('添加商品分类','${ctx}/product/detail/template','500','600')">类目选择</button>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group m-t">
               <label class="col-sm-2 col-xs-offset-1 control-label">商品名称：</label>
               <div class="col-sm-7">
                 <input type="text" class="form-control" name="name">
@@ -54,13 +63,6 @@
                 <label class="radio-inline">
                   <input type="checkbox" class="js-switch" name="showInShelve" value="1" ${product.showInShelve eq '1'?'checked="checked"':''} />
                   是否上架</label>
-              </div>
-            </div>
-            <div class="hr-line-dashed"></div>    
-            <div class="form-group">
-              <label class="col-sm-2 col-xs-offset-1 control-label">商品编码：</label>
-              <div class="col-sm-7">
-                <input type="text" class="form-control" name="productNumber">
               </div>
             </div>
             <div class="hr-line-dashed"></div>            

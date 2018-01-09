@@ -503,7 +503,7 @@ public class ProductController extends BaseController {
 	 * GET 更新商品信息
 	 * @return
 	 */
-	@ApiOperation(value = "修改参数页面", notes = "更新参数页面")
+	@ApiOperation(value = "更新参数页面", notes = "更新参数页面")
 	@RequiresPermissions("product:detail:edit")
 	@GetMapping(value = "/{productParameterId}/editProductParameter")
 	public String getUpdateProductParameterPage(Model model, @PathVariable("productParameterId") Long productParameterId) {
@@ -533,6 +533,19 @@ public class ProductController extends BaseController {
 			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
 		}
 	}
+
+	/**
+	 * GET 商品类目选择页面
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "商品类目选择页面", notes = "商品类目选择页面")
+//	@RequiresPermissions("product:list:view")
+	@GetMapping(value = "/template")
+	public String getProductTemplate(Model model) {
+		return "/modules/product/product_specification_template";
+	}
+
 }
 
 

@@ -2,6 +2,7 @@ package org.pussinboots.morning.product.mapper;
 
 import java.util.List;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.pussinboots.morning.common.support.page.PageInfo;
@@ -9,6 +10,7 @@ import org.pussinboots.morning.product.entity.Comment;
 import org.pussinboots.morning.product.pojo.vo.CommentVO;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import org.pussinboots.morning.product.pojo.vo.CommentVOs;
 
 /**
  * 
@@ -32,4 +34,7 @@ public interface CommentMapper extends BaseMapper<Comment> {
 	List<CommentVO> listByProductId(@Param("productId") Long productId, @Param("status") Integer status,
 			@Param("pageInfo") PageInfo pageInfo, RowBounds rowBounds);
 
+	List<CommentVOs> listComment();
+
+	List<CommentVOs> listCommentPage(PageInfo pageInfo, Page<CommentVOs> page);
 }

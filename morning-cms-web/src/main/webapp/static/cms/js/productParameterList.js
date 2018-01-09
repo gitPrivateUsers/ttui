@@ -90,7 +90,7 @@ $(function() {
 					url : $form.attr('action'),
 					success : function(result) {
 						if (result.code == 1) {
-							parent.layer.msg("更新商品详情成功!", {
+							parent.layer.msg("更新商品参数成功!", {
 								shade : 0.3,
 								time : 1500
 							}, function() {
@@ -112,7 +112,7 @@ $(function() {
 					url : $form.attr('action'),
 					success : function(result) {
 						if (result.code == 1) {
-							parent.layer.msg("创建商品信息成功!", {
+							parent.layer.msg("创建商品参数信息成功!", {
 								shade : 0.3,
 								time : 1500
 							}, function() {

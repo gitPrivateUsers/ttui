@@ -6,6 +6,9 @@ import org.pussinboots.morning.product.entity.Comment;
 import org.pussinboots.morning.product.pojo.vo.CommentVO;
 
 import com.baomidou.mybatisplus.service.IService;
+import org.pussinboots.morning.product.pojo.vo.CommentVOs;
+
+import java.util.List;
 
 /**
  * 
@@ -33,5 +36,8 @@ public interface ICommentService extends IService<Comment> {
 	 * @return
 	 */
 	Integer updateLike(Long commentId);
-	
+
+	List<CommentVOs> listComment();
+
+	BasePageDTO<CommentVOs> listCommentPage(PageInfo pageInfo, String search);
 }

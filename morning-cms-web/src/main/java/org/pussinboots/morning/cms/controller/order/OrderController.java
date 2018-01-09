@@ -10,10 +10,16 @@ import org.pussinboots.morning.cms.common.util.SingletonLoginUtils;
 import org.pussinboots.morning.common.base.BaseController;
 import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
+import org.pussinboots.morning.common.enums.StatusEnum;
 import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.order.entity.*;
 import org.pussinboots.morning.order.pojo.vo.OrderVO;
 import org.pussinboots.morning.order.service.*;
+import org.pussinboots.morning.product.common.enums.QuestionSortEnum;
+import org.pussinboots.morning.product.entity.Comment;
+import org.pussinboots.morning.product.pojo.vo.CommentVO;
+import org.pussinboots.morning.product.pojo.vo.CommentVOs;
+import org.pussinboots.morning.product.service.ICommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +46,8 @@ public class OrderController extends BaseController {
 	private IOrderShipmentService orderShipmentService;
 	@Autowired
 	private IOrderStatusService orderStatusService;
+	@Autowired
+	private ICommentService commentService;
 	
 
 	/**
@@ -152,8 +160,30 @@ public class OrderController extends BaseController {
 			Integer count = orderService.updateCancelOrder(order.getOrderNumber(),order.getUserId());
 			return new CmsResult(CommonReturnCode.SUCCESS, count);
 		}
-//		Integer count = orderService.updateCancelOrder(orderNumber,userId);
 		return new CmsResult(CommonReturnCode.FAILED, 0);
 	}
 
+	/**
+	 * GET 商品评价
+	 * @return
+	 */
+	@ApiOperation(value = "商品评论页面", notes = "商品评价")
+	@GetMapping(value = "/reviews")
+	public String getComment(Model model) {
+		return "/modules/comment/comment_list";
+	}
+
+	/**
+	 * GET 订单列表,
+	 * @return
+	 */
+	@ApiOperation(value = "商品评论列表", notes = "根据分页信息/搜索内容")
+//	@RequiresPermissions("order:list:view")
+	@GetMapping(value = "/reviews/list")
+	@ResponseBody
+	public Object commentList(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search) {
+
+		BasePageDTO<CommentVOs> basePageDTO = commentService.listCommentPage(pageInfo, search);
+		return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
+	}
 }
