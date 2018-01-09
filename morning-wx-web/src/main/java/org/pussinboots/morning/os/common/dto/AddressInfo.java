@@ -3,11 +3,13 @@ package org.pussinboots.morning.os.common.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.pussinboots.morning.user.entity.Address;
 
+import java.io.Serializable;
+
 /**
  * Created by ttui on 2018/1/9.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AddressInfo {
+public class AddressInfo implements Serializable{
     //     @RequestParam("address") String address
 //   , @RequestParam("provinceId") Integer provinceId//省
 //   , @RequestParam("provinceName") String provinceName//省
