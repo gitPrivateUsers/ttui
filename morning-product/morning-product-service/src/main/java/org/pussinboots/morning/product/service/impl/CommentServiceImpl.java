@@ -1,7 +1,9 @@
 package org.pussinboots.morning.product.service.impl;
 
+import java.io.IOException;
 import java.util.List;
 
+import com.alibaba.dubbo.common.json.JSON;
 import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.Comment;
@@ -9,6 +11,7 @@ import org.pussinboots.morning.product.entity.CommentReply;
 import org.pussinboots.morning.product.mapper.CommentMapper;
 import org.pussinboots.morning.product.mapper.CommentReplyMapper;
 import org.pussinboots.morning.product.pojo.vo.CommentVO;
+import org.pussinboots.morning.product.pojo.vo.CommentVOs;
 import org.pussinboots.morning.product.service.ICommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,5 +62,28 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
 			// TODO 抛出一个评论不存在异常
 			return null;
 		}
+	}
+
+	@Override
+	public List<CommentVOs> listComment() {
+		List<CommentVOs> c= commentMapper.listComment();
+		System.out.println(c);
+		for(CommentVOs co:c){
+			try {
+				System.out.println(JSON.json(co));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return c;
+	}
+
+	@Override
+	public BasePageDTO<CommentVOs> listCommentPage(PageInfo pageInfo, String search) {
+
+		Page<CommentVOs> page = new Page<>(pageInfo.getCurrent(), pageInfo.getLimit());
+		List<CommentVOs> commentVOs = commentMapper.listCommentPage(pageInfo, page);
+		pageInfo.setTotal(page.getTotal());
+		return new BasePageDTO<CommentVOs>(pageInfo, commentVOs);
 	}
 }
