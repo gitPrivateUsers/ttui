@@ -4,20 +4,15 @@ import com.alibaba.dubbo.common.json.JSON;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import net.sf.json.JSONObject;
 import org.pussinboots.morning.common.base.BaseController;
-import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
 import org.pussinboots.morning.common.enums.StatusEnum;
-import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.online.entity.WxUserInfo;
 import org.pussinboots.morning.online.service.IWxUserInfoService;
 import org.pussinboots.morning.os.common.dto.AddressInfo;
 import org.pussinboots.morning.os.common.result.OsResult;
 import org.pussinboots.morning.user.entity.Address;
-import org.pussinboots.morning.user.entity.Favorite;
 import org.pussinboots.morning.user.entity.User;
-import org.pussinboots.morning.user.pojo.vo.UserVO;
 import org.pussinboots.morning.user.service.IAddressService;
 import org.pussinboots.morning.user.service.IFavoriteService;
 import org.pussinboots.morning.user.service.IUserService;
@@ -168,6 +163,7 @@ public class wxApiPortalService extends BaseController {
                             addressInfo.setToken(token);
                             try {
                               String ads=  JSON.json(addressInfo);
+                                System.out.println("数据：============="+ads);
                                 return new OsResult(CommonReturnCode.SUCCESS, ads);
                             } catch (IOException e) {
                                 e.printStackTrace();
