@@ -109,4 +109,5 @@ public interface ICategoryService extends IService<Category> {
 	 */
 	Integer updateCategory(Category category, String userName);
 
+	List<Category> selectParentId(Long categoryId);
 }

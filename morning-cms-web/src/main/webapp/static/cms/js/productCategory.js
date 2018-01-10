@@ -157,7 +157,7 @@ window.actionEvents = {
 		layer_show(row.name, baselocation + '/product/category/' + row.categoryId + '/edit', 900, 650)
 	},
 	'click .remove' : function(e, value, row, index) {
-		admin_delete(index, row.categoryId);
+		category_delete(index, row.categoryId);
 	},
 	'click .log' : function(e, value, row, index) {
 		layer_show(row.name, baselocation + '/product/category/' + row.categoryId + '/create', 900, 650)
@@ -228,14 +228,14 @@ function status_start(index, value) {
 /**
  * 删除分类
  */
-function admin_delete(index, value) {
+function category_delete(index, value) {
 	layer.confirm('确认要删除该分类吗？', {
 		btn : [ '确定', '取消' ] //按钮
 	}, function() {
 		$.ajax({
 			type : 'delete',
 			dataType : 'json',
-			url : baselocation + '/product/category/' + value,
+			url : baselocation + '/product/category/delete/' + value,
 			success : function(result) {
 				if (result.code == 1) {
 					$('#table').bootstrapTable('hideRow', {

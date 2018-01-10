@@ -8,22 +8,19 @@ import org.pussinboots.morning.cms.common.util.SingletonLoginUtils;
 import org.pussinboots.morning.common.base.BaseController;
 import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
+import org.pussinboots.morning.common.enums.StatusEnum;
 import org.pussinboots.morning.common.support.page.PageInfo;
 import org.pussinboots.morning.product.entity.Category;
 import org.pussinboots.morning.product.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
+import java.util.List;
 
 /**
  * 
@@ -163,5 +160,22 @@ public class ProductCategoryController extends BaseController {
 		} else {
 			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
 		}
+	}
+	/**
+	 * PUT 更新类目信息
+	 * @return
+	 */
+	@ApiOperation(value = "删除分类", notes = "删除分类")
+	@RequiresPermissions("product:category:edit")
+	@DeleteMapping(value = "/delete/{categoryId}")
+	@ResponseBody
+	public Object delete(@PathVariable("categoryId") Long categoryId) {
+		List<Category> categoryList = categoryService.selectParentId(categoryId);
+		for (Category ca : categoryList) {
+			categoryService.deleteById(ca.getCategoryId());
+		}
+	boolean b=  categoryService.deleteById(categoryId);
+
+		return new CmsResult(CommonReturnCode.SUCCESS, b);
 	}
 }

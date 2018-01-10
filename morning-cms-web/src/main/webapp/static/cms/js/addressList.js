@@ -43,7 +43,8 @@ window.actionEvents = {
         layer_show("更新地址信息", baselocation + '/customer/detail/updateAddress' + row.userId + '/edit', 900, 650)
     },
     'click .remove' : function(e, value, row, index) {
-       address_delete(index, row.userId);
+        var val=row.userId+"/"+row.addressId;
+       address_delete(index,val );
 },
 };
 
@@ -54,7 +55,7 @@ function address_delete(index, value) {
         $.ajax({
             type : 'delete',
             dataType : 'json',
-            url : baselocation + '/customer/detail/delete' + value,
+            url : baselocation + '/customer/detail/delete/' + value,
             success : function(result) {
                 if (result.code == 1) {
                     $('#table').bootstrapTable('hideRow', {

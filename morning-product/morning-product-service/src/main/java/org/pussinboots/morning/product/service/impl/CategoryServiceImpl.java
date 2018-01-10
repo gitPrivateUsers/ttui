@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.pussinboots.morning.common.base.BasePageDTO;
 import org.pussinboots.morning.common.enums.StatusEnum;
 import org.pussinboots.morning.common.support.page.PageInfo;
@@ -304,6 +305,13 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 		category.setUpdateBy(userName);
 		category.setUpdateTime(new Date());
 		return categoryMapper.updateById(category);
+	}
+
+	@Override
+	public List<Category> selectParentId(Long categoryId) {
+		Category ca=new Category();
+		ca.setParentId(categoryId);
+		return categoryMapper.selectList(new EntityWrapper<Category>(ca));
 	}
 
 }
