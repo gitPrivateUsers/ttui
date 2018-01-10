@@ -55,8 +55,8 @@
                       <th data-field="showInNav" data-formatter="navFormatter" data-halign="center" data-align="center" data-sortable="true">是否导航</th>
                       <th data-field="showInHot" data-formatter="hotFormatter" data-halign="center" data-align="center" data-sortable="true">是否热门</th>
                       <th data-field="showInShelve" data-formatter="shelveFormatter" data-halign="center" data-align="center" data-sortable="true">是否上架</th>
-                      <th data-field="pageDescription" data-halign="center" data-align="center" data-sortable="true">商品描述</th>
-                      <th data-field="picImg" data-halign="center" data-align="center" data-sortable="true">展示图片</th>
+                      <%--<th data-field="pageDescription" data-halign="center" data-align="center" data-sortable="true">商品描述</th>--%>
+                      <%--<th data-field="picImg" data-halign="center" data-align="center" data-sortable="true">展示图片</th>--%>
                       <th data-field="searchKey" data-halign="center" data-align="center" data-sortable="true">搜索关键词</th>
                       <th data-field="createBy" data-halign="center" data-align="center" data-sortable="true">创建人</th>
                     <%--<th data-field="remarks" data-halign="center" data-align="center" data-sortable="true">备注</th>--%>
