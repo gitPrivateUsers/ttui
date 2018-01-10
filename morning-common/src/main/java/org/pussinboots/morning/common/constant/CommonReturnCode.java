@@ -41,6 +41,19 @@ public enum CommonReturnCode implements ReturnCode {
 	/** api返回分类商品失败 */
 	FAIL_PRODUCT_INFO(104,"没有对应的商品详情,api返回商品详情失败!"),
 
+	/** 该账号已存在 */
+	ACCOUNT_EXISTENCE(1005, "该账号已存在"),
+//	/** 登录超时 */
+//	LOGIN_TIMEOUT(1006, "登录超时"),
+	/** 暂无地址可选 */
+	NOT_ADDRESS(1007, "暂无地址可选"),
+	/** 该用户被冻结 */
+	THE_USER_IS_FROZEN(1008, "该用户被冻结"),
+	/** 修改失败 */
+	FAIL_UPDATE(1009, "修改失败"),
+
+
+
 	/** 500服务器出错 */
 	INTERNAL_SERVER_ERROR(500, "服务器出错");
 

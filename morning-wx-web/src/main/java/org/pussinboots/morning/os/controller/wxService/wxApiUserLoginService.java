@@ -1,7 +1,6 @@
 package org.pussinboots.morning.os.controller.wxService;
 
 import com.baomidou.mybatisplus.toolkit.StringUtils;
-import com.qiniu.util.Json;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.pussinboots.morning.common.base.BaseController;
@@ -11,15 +10,16 @@ import org.pussinboots.morning.os.common.result.OsResult;
 import org.pussinboots.morning.os.common.util.WXAppletUserInfo;
 import org.pussinboots.morning.online.entity.WxUserInfo;
 import org.pussinboots.morning.online.service.IWxUserInfoService;
-import org.pussinboots.morning.user.common.constant.UserReturnCode;
+import org.pussinboots.morning.user.entity.Address;
 import org.pussinboots.morning.user.entity.User;
+import org.pussinboots.morning.user.service.IAddressService;
 import org.pussinboots.morning.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,15 +29,17 @@ import java.util.Map;
  * 创建人：zhancl
  */
 @Controller
-@Api(value = "微信小程序api", description = "微信小程序api")
+@Api(value = "用户信息", description = "用户信息")
 public class wxApiUserLoginService extends BaseController {
     @Autowired
     private IWxUserInfoService wxUserInfoService;
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IAddressService addressService;
 
 
-    @ApiOperation(value = "json", notes = "json")
+    @ApiOperation(value = "登录接口", notes = "根据code获取openId验证用户")
     @GetMapping(value = "/wxApi.login")
     public
     @ResponseBody
@@ -49,7 +51,6 @@ public class wxApiUserLoginService extends BaseController {
                 //   验证是否未注册
                 WxUserInfo wx1 = wxUserInfoService.getWxUserInfo(map.get("openid"));
                 if (wx1 != null) {
-//                    Map<String, String> map1 = WXAppletUserInfo.getAccessToken();
                     map.put("token", wx1.getToken());
                     map.put("uid", String.valueOf(wx1.getOsUserId()));
                     return new OsResult(CommonReturnCode.SUCCESS, map);
@@ -63,7 +64,18 @@ public class wxApiUserLoginService extends BaseController {
         return new OsResult(CommonReturnCode.BAD_REQUEST, CommonReturnCode.BAD_REQUEST);
     }
 
-    @ApiOperation(value = "json", notes = "json")
+    @ApiOperation(value = "根据token验证用户信息", notes = "token")
+    @PostMapping(value = "/wxUser.token")
+    @ResponseBody
+    public Object getOrderList(@RequestParam(value = "token", required = true) String token) {
+        WxUserInfo wx = wxUserInfoService.getWxUserInfoByToken(token);
+        if(wx!=null){
+            return new OsResult(CommonReturnCode.SUCCESS, wx);
+        }else
+            return new OsResult(CommonReturnCode.UNAUTHORIZED);
+    }
+
+    @ApiOperation(value = "获取用户token", notes = "获取用户token")
     @GetMapping(value = "/wxApi._tk")
     public
     @ResponseBody
@@ -76,7 +88,7 @@ public class wxApiUserLoginService extends BaseController {
             wxUserInfoService.updateById(wx);
             return tokenMap;
         }
-        return new OsResult(CommonReturnCode.BAD_REQUEST, CommonReturnCode.BAD_REQUEST);
+        return new OsResult(CommonReturnCode.UNAUTHORIZED);
     }
 
     /**
@@ -97,23 +109,16 @@ public class wxApiUserLoginService extends BaseController {
         Map<String, String> tokenMap = WXAppletUserInfo.getAccessToken();
         String token = tokenMap.get("access_token");
         Map<String, String> map = WXAppletUserInfo.getSessionKeyAndOropenid(code);
-        System.out.println("map==========" + map);
         //   验证是否未注册
         if (StringUtils.isNotEmpty(map.get("openid"))) {
-            System.out.println("openid==========" + map.get("openid"));
             WxUserInfo wx1 = wxUserInfoService.getWxUserInfo(map.get("openid"));
-            System.out.println("   WxUserInfo wx = wxUserInfoService.getWxUserInfo==========" + wx1);
             if (wx1 != null) {
-                System.out.println("进来了 if (wx != null) ");
-
-                return new OsResult(123456, "该账号已存在！");
+                return new OsResult(CommonReturnCode.ACCOUNT_EXISTENCE, CommonReturnCode.ACCOUNT_EXISTENCE);
             }
-            System.out.println("================开始set=======================");
             WxUserInfo wx = new WxUserInfo();
             wx.setCreateTime(new Date());
-//        wx.setNickName(nickName);
             //TODO 微信nickname 特殊符号插入报错 不存表（无法保证实时性）
-//            System.out.println(nickName);
+//        wx.setNickName(nickName);
             wx.setNickName("testNickName");
             wx.setStatus(StatusEnum.NORMAL.getStatus());
             wx.setAvatarUrl(avatarUrl);
@@ -129,24 +134,18 @@ public class wxApiUserLoginService extends BaseController {
             user.setRealName("WX");
             user.setCreateBy(wx.getOpenId());
             //根据openId保证用户唯一
-            System.out.println("开始验证" + wx.getOpenId() + "=====null===" + userService.selectByOpenId(wx.getOpenId()));
-
             if (userService.selectByOpenId(wx.getOpenId()) == null) {
-                System.out.println("进入判断 serService.selectByOpenId(wx.getOpenId()) < 1====== ");
                 boolean b = userService.insert(user);
-                System.out.println("执行创建user表结果" + b);
                 Long userId = userService.selectByOpenId(wx.getOpenId());
-                System.out.println("创建成功拿到userId" + userId);
                 wx.setOsUserId(userId);
-
                 Integer count = wxUserInfoService.insertWxUserInfo(wx);
-                System.out.println("执行结果" + count);
                 return new OsResult(CommonReturnCode.SUCCESS, count);
             }
-            return new OsResult(22222222, "出错了！");
         }
-        return new OsResult(123456, "该账号已存在！");
+        return new OsResult(CommonReturnCode.ACCOUNT_EXISTENCE, CommonReturnCode.ACCOUNT_EXISTENCE);
     }
+
+
 
 
     /**
@@ -155,23 +154,12 @@ public class wxApiUserLoginService extends BaseController {
      * @return
      */
     @ApiOperation(value = "test", notes = "test")
-    @PostMapping(value = "/wx.test")
+    @GetMapping(value = "/wx.test")
     @ResponseBody
-    public Object login(@RequestParam("id") String id) {
+    public Object loginTest(@RequestParam("id") Long id) {
 
-        return userService.selectByOpenId(id);
-
-    }
-
-    @ApiOperation(value = "用户信息根据token验证", notes = "token")
-    @PostMapping(value = "/wxUser.token")
-    @ResponseBody
-    public Object getOrderList(@RequestParam(value = "token", required = true) String token) {
-        WxUserInfo wx = wxUserInfoService.getWxUserInfoByToken(token);
-        if(wx!=null){
-            return new OsResult(CommonReturnCode.SUCCESS, wx);
-        }else
-            return new OsResult(107, "登录超时!");
+        List<Address> ads=addressService.listAddress(id);
+        return new OsResult(CommonReturnCode.SUCCESS, ads);
 
     }
 }

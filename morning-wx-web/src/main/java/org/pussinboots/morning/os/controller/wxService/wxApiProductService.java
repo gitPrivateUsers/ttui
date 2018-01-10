@@ -33,7 +33,7 @@ import java.util.Objects;
  * 创建人：zhancl
  */
 @Controller
-@Api(value = "微信小程序api", description = "微信小程序api")
+@Api(value = "商品详情api", description = "商品详情api")
 public class wxApiProductService extends BaseController {
 
     @Autowired
@@ -90,23 +90,13 @@ public class wxApiProductService extends BaseController {
                     .getByProductId(product.getProductId(), StatusEnum.SHOW.getStatus());
 
             ProductDto productDto = new ProductDto();
-            productDto.setProduct(product);
+            productDto.setProduct(product);// 商品信息
             productDto.setProductImages(productImages);
-            productDto.setProductAttribute(productAttribute);
-            productDto.setUpperCategories(upperCategories);
-            productDto.setKindVOs(productSpecificationDTO.getKindVOs());
-            productDto.setProductParameters(productParameters);
+            productDto.setProductAttribute(productAttribute);// 商品属性
+            productDto.setUpperCategories(upperCategories);// 上级类目列表
+            productDto.setKindVOs(productSpecificationDTO.getKindVOs());// 商品类型列表
+            productDto.setProductParameters(productParameters);// 商品参数
             productDto.setProductSpecifications(productSpecificationDTO.getProductSpecifications());
-//            productDto.setProductDetail(productDetailService.selectByProductId(product.getProductId()));
-//            Map<String, Object> model = new HashMap<String, Object>();
-//            model.put("productImages", productImages);
-//            model.put("product", product);// 商品信息
-//            model.put("upperCategories", upperCategories);// 上级类目列表
-//            model.put("productAttribute", productAttribute);// 商品属性
-//            model.put("productParameters", productParameters);// 商品参数
-//            model.put("kindVOs", productSpecificationDTO.getKindVOs());// 商品类型列表
-//            model.put("productSpecifications", JSON.toJSON(productSpecificationDTO.getProductSpecifications()));
-//            return new OsResult(CommonReturnCode.SUCCESS, String.valueOf(JSONObject.fromObject(model)));
             return new OsResult(CommonReturnCode.SUCCESS, productDto);
         }
         return new OsResult(CommonReturnCode.FAIL_PRODUCT_INFO, CommonReturnCode.FAIL_PRODUCT_INFO);

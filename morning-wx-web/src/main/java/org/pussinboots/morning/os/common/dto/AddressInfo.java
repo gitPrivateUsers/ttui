@@ -40,14 +40,14 @@ public class AddressInfo implements Serializable{
     private String token;
 
 
-    Address ad;
-
+//   private Address ad;
+//
 //    public Address getAd() {
 //        return ad;
 //    }
 
     public void setAd(Address ad) {
-        this.ad = ad;
+//        this.ad = ad;
         this.setProvinceId(ad.getProvinceId());
         this.setProvinceName(ad.getProvinceName());
         this.setCityName(ad.getCityName());

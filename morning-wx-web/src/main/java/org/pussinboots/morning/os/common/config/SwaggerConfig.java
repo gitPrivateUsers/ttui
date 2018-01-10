@@ -21,19 +21,19 @@ public class SwaggerConfig {
    @Bean  
     public Docket platformApi() {  
         return new Docket(DocumentationType.SWAGGER_2)  
-        		.groupName("morning-wx-web")
+        		.groupName("wxApi")
                 .apiInfo(apiInfo())  
                 .forCodeGeneration(true);
     }  
 
     private ApiInfo apiInfo() {  
         return new ApiInfoBuilder()  
-                .title("morning-os-web RESTful APIs")  
-                .description("Copyright © 2017, xxxxx.Chen, Morning. All Rights Reserved.")
-                .contact(new Contact("xxxxx", "https://git.oschina.net/Morning_/Morning", "xxxx@foxmail.com"))
-                .license("Apache License Version 2.0")
-                .termsOfServiceUrl("https://git.oschina.net/Morning_/Morning")  
-                .version("3.0.0-SNAPSHOT")  
+                .title("wxApi RESTful APIs")
+                .description("")
+//                .contact(new Contact("xxxxx", "https://git.oschina.net/Morning_/Morning", "xxxx@foxmail.com"))
+//                .license("Apache License Version 2.0")
+//                .termsOfServiceUrl("https://git.oschina.net/Morning_/Morning")
+//                .version("3.0.0-SNAPSHOT")
                 .build();  
     }  
 }

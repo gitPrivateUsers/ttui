@@ -30,7 +30,7 @@ import java.util.Map;
  * 创建人：zhancl
  */
 @Controller
-@Api(value = "微信小程序api", description = "微信小程序api")
+@Api(value = "商品分类", description = "商品分类")
 public class wxApiCategoryService extends BaseController {
     @Autowired
     private IProductCategoryService productCategoryService;
@@ -43,7 +43,7 @@ public class wxApiCategoryService extends BaseController {
      *
      * @return Object
      */
-    @ApiOperation(value = "类目列表", notes = "类目列表")
+    @ApiOperation(value = "类目列表 categoryId=1为全部商品", notes = "类目列表 categoryId=1为全部商品")
     @GetMapping(value = "/product.category.json")
     public
     @ResponseBody
@@ -59,39 +59,24 @@ public class wxApiCategoryService extends BaseController {
         Integer sort = StringUtils.isNumeric(reqSort) ? Integer.valueOf(reqSort) : ProductSortEnum.RECOMMEND.getType();
         // 请求参数:分页,如果分页不存在或者不为Integer类型,则默认1/默认页数
         Integer page = StringUtils.isNumeric(reqPage) ? Integer.valueOf(reqPage) : 1;
-
         // 查找当前类目信息
         Category category = categoryService.getById(categoryId, StatusEnum.SHOW.getStatus());
         if (category != null) {
-
             // 通过类目ID、排序、分页查找商品列表
             PageInfo pageInfo = new PageInfo(page, limit, ProductSortEnum.typeOf(sort).getSort(),
                     ProductSortEnum.typeOf(sort).getOrder());
             BasePageDTO<ProductVO> basePageDTO = productCategoryService.listProducts(categoryId, pageInfo);
-
             // 根据类目ID查找子类目.
-
-
             List<Category> lowerCategories = categoryService.listLowerCategories(categoryId, StatusEnum.SHOW.getStatus());
-
             // 根据类目ID查找上级类目列表
             List<Category> upperCategories = categoryService.listUpperCategories(categoryId, StatusEnum.SHOW.getStatus());
-
-//            Map<String, Object> model = new HashMap<String, Object>();
-//            model.put("sort", ProductSortEnum.typeOf(sort).getType());// 排序方式
-//            model.put("category", category);// 当前类目信息
-//            model.put("products", basePageDTO.getList());// 商品列表
-//            model.put("pageInfo", basePageDTO.getPageInfo()); // 分页信息
-//            model.put("lowerCategories", lowerCategories);// 子类目列表
-//            model.put("supperCategories", upperCategories);// 父类目列表
             ProductCategoryDto pcdto=new ProductCategoryDto();
-            pcdto.setSort( ProductSortEnum.typeOf(sort).getType());
+            pcdto.setSort( ProductSortEnum.typeOf(sort).getType());// 排序方式
             pcdto.setCategory(category);
-//            pcdto.setPageInfo(basePageDTO.getPageInfo());
-            pcdto.setProductList(basePageDTO.getList());
-            pcdto.setLowerCategories(lowerCategories);
-            pcdto.setUpperCategories(upperCategories);
-//            return new OsResult(CommonReturnCode.SUCCESS, String.valueOf(JSONObject.fromObject(model)));
+//            pcdto.setPageInfo(basePageDTO.getPageInfo());// 分页信息
+            pcdto.setProductList(basePageDTO.getList());// 商品列表
+            pcdto.setLowerCategories(lowerCategories);// 子类目列表
+            pcdto.setUpperCategories(upperCategories);// 父类目列表
             return new OsResult(CommonReturnCode.SUCCESS, pcdto);
         }
         return new OsResult(CommonReturnCode.FAIL_PRODUCT_CATEGORY, CommonReturnCode.FAIL_PRODUCT_CATEGORY);
