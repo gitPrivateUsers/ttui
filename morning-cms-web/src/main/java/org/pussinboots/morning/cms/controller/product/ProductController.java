@@ -2,6 +2,8 @@ package org.pussinboots.morning.cms.controller.product;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.log4j.spi.LoggerFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.pussinboots.morning.cms.common.result.CmsPageResult;
 import org.pussinboots.morning.cms.common.result.CmsResult;
@@ -9,6 +11,7 @@ import org.pussinboots.morning.cms.common.security.AuthorizingUser;
 import org.pussinboots.morning.cms.common.util.SingletonLoginUtils;
 import org.pussinboots.morning.common.base.BaseController;
 import org.pussinboots.morning.common.base.BasePageDTO;
+import org.pussinboots.morning.common.base.UploadFile;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
 import org.pussinboots.morning.common.enums.StatusEnum;
 import org.pussinboots.morning.common.support.page.PageInfo;
@@ -18,8 +21,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.logging.Logger;
 
 
 /**
@@ -30,49 +44,48 @@ import java.util.Date;
 @RequestMapping(value = "/product/detail")
 @Api(value = "商品管理", description = "商品管理")
 public class ProductController extends BaseController {
+	@Autowired
+	private IProductService productService;
+	@Autowired
+	private IProductDetailService productDetailService;
+	@Autowired
+	private IProductImageService productImageService;
+	@Autowired
+	private IProductAttributeService productAttributeService;
+	@Autowired
+	private IProductParameterService productParameterService;
+	@Autowired
+	private IProductCategoryService productCategoryService;
+	@Autowired
+	private IProductRecommendService productRecommendService;
+	@Autowired
+	private IProductSpecificationService productSpecificationService;
 
-    @Autowired
-    private IProductService productService;
-    @Autowired
-    private IProductDetailService productDetailService;
-    @Autowired
-    private IProductImageService productImageService;
-    @Autowired
-    private IProductAttributeService productAttributeService;
-    @Autowired
-    private IProductParameterService productParameterService;
-    @Autowired
-    private IProductCategoryService productCategoryService;
-    @Autowired
-    private IProductRecommendService productRecommendService;
-    @Autowired
-    private IProductSpecificationService productSpecificationService;
+	/**
+	 * GET 商品管理页面
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "商品管理页面", notes = "商品管理页面")
+	@RequiresPermissions("product:list:view")
+	@GetMapping(value = "/view")
+	public String getProductPage(Model model) {
+		return "/modules/product/product_list";
+	}
 
-    /**
-     * GET 商品管理页面
-     *
-     * @return
-     */
-    @ApiOperation(value = "商品管理页面", notes = "商品管理页面")
-    @RequiresPermissions("product:list:view")
-    @GetMapping(value = "/view")
-    public String getProductPage(Model model) {
-        return "/modules/product/product_list";
-    }
-
-    /**
-     * GET 商品列表,
-     *
-     * @return
-     */
-    @ApiOperation(value = "获取商品列表", notes = "根据分页信息/搜索内容")
-    @RequiresPermissions("product:list:view")
-    @GetMapping(value = "/")
-    @ResponseBody
-    public Object listProduct(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search) {
-        BasePageDTO<Product> basePageDTO = productService.listByPage(pageInfo, search);
-        return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
-    }
+	/**
+	 * GET 商品列表,
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "获取商品列表", notes = "根据分页信息/搜索内容")
+	@RequiresPermissions("product:list:view")
+	@GetMapping(value = "/")
+	@ResponseBody
+	public Object listProduct(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search) {
+		BasePageDTO<Product> basePageDTO = productService.listByPage(pageInfo, search);
+		return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
+	}
 
 	@ApiOperation(value = "推荐页面", notes = "推荐页面")
 	@RequiresPermissions("product:list:view")
@@ -138,7 +151,7 @@ public class ProductController extends BaseController {
 			Integer count = productRecommendService.updateProductRecommecd(productRecommend,authorizingUser.getUserName());
 			return new CmsResult(CommonReturnCode.SUCCESS, count);
 		}
-		    return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		return new CmsResult(CommonReturnCode.UNAUTHORIZED);
 	}
 
 	@ApiOperation(value = "删除推荐",notes = "根据url推荐位ID删除广告")
@@ -156,87 +169,137 @@ public class ProductController extends BaseController {
 	}
 
 	/**
-     * GET 商品图片页面
-     *
-     * @return
-     */
-    @ApiOperation(value = "商品图片页面", notes = "商品图片页面")
-    @RequiresPermissions("product:list:view")
-    @GetMapping(value = "/{productId}/list")
-    public String getProductImagePage(Model model, @PathVariable("productId") Long productId) {
+	 * GET 商品图片页面
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "商品图片页面", notes = "商品图片页面")
+	@RequiresPermissions("product:list:view")
+	@GetMapping(value = "/{productId}/list")
+	public String getProductImagePage(Model model, @PathVariable("productId") Long productId) {
 
-        model.addAttribute("productId", productId);
-        return "/modules/product/product_image_list";
-    }
+		model.addAttribute("productId", productId);
+		return "/modules/product/product_image_list";
+	}
 
-    /**
-     * GET 商品图片页面,
-     *
-     * @return
-     */
-    @ApiOperation(value = "获取商品图片页面列表", notes = "根据分页信息/搜索内容")
-    @RequiresPermissions("product:list:view")
-    @GetMapping(value = "/{productId}/lists")
-    @ResponseBody
-    public Object listProductImage(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search, @PathVariable("productId") Long productId) {
+	/**
+	 * GET 商品图片页面,
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "获取商品图片页面列表", notes = "根据分页信息/搜索内容")
+	@RequiresPermissions("product:list:view")
+	@GetMapping(value = "/{productId}/lists")
+	@ResponseBody
+	public Object listProductImage(PageInfo pageInfo, @RequestParam(required = false, value = "search") String search, @PathVariable("productId") Long productId) {
 
-        AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
 
-        if (authorizingUser != null) {
-            BasePageDTO<ProductImage> basePageDTO = productImageService.listByPage(pageInfo, search, productId);
-            return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
-        } else {
-            return new CmsResult(CommonReturnCode.UNAUTHORIZED);
-        }
-    }
+		if (authorizingUser != null) {
+			BasePageDTO<ProductImage> basePageDTO = productImageService.listByPage(pageInfo, search, productId);
+			return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
 
-    @ApiOperation(value = "创建商品图片", notes = "创建商品图片")
-    @RequiresPermissions("product:detail:create")
-    @GetMapping(value = "/{productId}/addImg")
-    public String getInsertProductImagePage(Model model, @PathVariable("productId") Long productId) {
-        model.addAttribute("productId", productId);
-        return "/modules/product/product_image_create";
-    }
+	@ApiOperation(value = "商品图片", notes = "创建商品图片")
+	@RequiresPermissions("product:detail:create")
+	@GetMapping(value = "/{productId}/addImg")
+	public String getInsertProductImagePage(Model model, @PathVariable("productId") Long productId) {
+		model.addAttribute("productId", productId);
+		return "/modules/product/product_image_create";
+	}
 
 
-    @ApiOperation(value = "创建商品图片", notes = "创建商品图片")
-    @RequiresPermissions("product:detail:create")
-    @PostMapping(value = "/addImg")
-    @ResponseBody
-    public Object insertProductImage(ProductImage productImage) {
-        AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
-        if (authorizingUser != null) {
-            Integer count = productImageService.insertProductImage(productImage, authorizingUser.getUserName());
-            return new CmsResult(CommonReturnCode.SUCCESS, count);
-        } else {
-            return new CmsResult(CommonReturnCode.UNAUTHORIZED);
-        }
-    }
+	@ApiOperation(value = "上传商品图片", notes = "上传商品图片")
+//    @RequiresPermissions("product:detail:create")
+	@RequestMapping(value = "/upload/image")
+	@ResponseBody
+	public Map<String,Object> uploadPhoto(HttpServletRequest request, HttpServletResponse response, @RequestParam("myFile")MultipartFile myFile) {
+		Map<String, Object> json = new HashMap<String, Object>();
 
-    /**
-     * GET 分类管理页面
-     *
-     * @return
-     */
-    @ApiOperation(value = "更新分类页面", notes = "更新分类页面")
-    @RequiresPermissions("product:detail:edit")
-    @GetMapping(value = "/{productId}/categoryUpdate")
-    public String getCategoryPage(Model model, @PathVariable("productId") Long productId) {
-        ProductCategory productCategory = productCategoryService.selectByProductId(productId);
-        if (productCategory != null) {
-            model.addAttribute("productCategory", productCategory);
-        } else {
+		//原文件名
+		String oldFileName = myFile.getOriginalFilename();
+		//文件后缀
+		String suffix = oldFileName.substring(oldFileName.lastIndexOf(".")).toLowerCase();
+		//获取文件前缀
+		//String prefix = oldFileName.replace(suffix,"");
+		//新文件名
+		String newFileName = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + suffix;
+		//上传文件的路径
+		String path = request.getServletContext().getRealPath("uploads\\photo\\");
+		String dateFile = new SimpleDateFormat("yyyyMMdd").format(new Date());
+		path = path + File.separator + dateFile;
+		File file = new File(path);
+//        logger.info("文件的上传路径是：{}", path);
+		//不存在则创建
+		if (!file.exists()) {
+			file.mkdirs();
+		}
+		//目标文件
+		File dest = new File(path + File.separator + newFileName);
+		//上传
+		try {
+			myFile.transferTo(dest);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//		try {
+//			//输出文件后缀名称
+//			System.out.println(myFile.getOriginalFilename());
+//			DateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+//			//图片名称
+//			String name = df.format(new Date());
+//
+//			Random r = new Random();
+//			for(int i = 0 ;i<3 ;i++){
+//				name += r.nextInt(10);
+//			}
+//			//
+//			String ext = FilenameUtils.getExtension(myFile.getOriginalFilename());
+//			//保存图片       File位置 （全路径）   /upload/fileName.jpg
+//			String url = request.getSession().getServletContext().getRealPath("uploads/photo/");
+//			//相对路径
+//			String path = name + "." + ext;
+//			File file = new File(url);
+//			if(!file.exists()){
+//				file.mkdirs();
+//			}
+//			myFile.transferTo(new File(url+"\\"+path));
+//			json.put("success", "uploads/photo/"+path);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		return json ;
 
-            AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
-            ProductCategory pc = new ProductCategory();
-            pc.setProductId(productId);
-            pc.setCreateTime(new Date());
-            if (authorizingUser != null)
-                pc.setCreateBy(authorizingUser.getRealName());
-            model.addAttribute("productCategory", pc);
-        }
-        return "/modules/product/product_category_update";
-    }
+
+	}
+
+	/**
+	 * GET 分类管理页面
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "更新分类页面", notes = "更新分类页面")
+	@RequiresPermissions("product:detail:edit")
+	@GetMapping(value = "/{productId}/categoryUpdate")
+	public String getCategoryPage(Model model, @PathVariable("productId") Long productId) {
+		ProductCategory productCategory = productCategoryService.selectByProductId(productId);
+		if (productCategory != null) {
+			model.addAttribute("productCategory", productCategory);
+		} else {
+
+			AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+			ProductCategory pc = new ProductCategory();
+			pc.setProductId(productId);
+			pc.setCreateTime(new Date());
+			if (authorizingUser != null)
+				pc.setCreateBy(authorizingUser.getRealName());
+			model.addAttribute("productCategory", pc);
+		}
+		return "/modules/product/product_category_update";
+	}
 
 
 
@@ -251,30 +314,30 @@ public class ProductController extends BaseController {
 	@ResponseBody
 	public Object updateProductCategory(ProductCategory productCategory ) {
 
-        AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
-        if (authorizingUser != null) {
-            Integer count = productCategoryService.updateProductCategory(productCategory, authorizingUser.getUserName());
-            return new CmsResult(CommonReturnCode.SUCCESS, count);
-        } else {
-            return new CmsResult(CommonReturnCode.UNAUTHORIZED);
-        }
-    }
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+			Integer count = productCategoryService.updateProductCategory(productCategory, authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
 
-    /**
-     * GET 修改商品图片详情信息
-     *
-     * @return
-     */
-    @ApiOperation(value = "修改商品图片详情信息", notes = "修改商品图片详情信息")
-    @RequiresPermissions("product:detail:edit")
-    @GetMapping(value = "/{picImgId}/updateImg")
-    public String getUpdateProductImagelPage(Model model, @PathVariable("picImgId") Long picImgId) {
+	/**
+	 * GET 修改商品图片详情信息
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "修改商品图片详情信息", notes = "修改商品图片详情信息")
+	@RequiresPermissions("product:detail:edit")
+	@GetMapping(value = "/{picImgId}/updateImg")
+	public String getUpdateProductImagelPage(Model model, @PathVariable("picImgId") Long picImgId) {
 
-        ProductImage productImage = productImageService.selectById(picImgId);
-        model.addAttribute("productImage", productImage);
+		ProductImage productImage = productImageService.selectById(picImgId);
+		model.addAttribute("productImage", productImage);
 
-        return "/modules/product/product_image_update";
-    }
+		return "/modules/product/product_image_update";
+	}
 
 	/**
 	 * PUT 修改商品图片详情信息
@@ -287,30 +350,30 @@ public class ProductController extends BaseController {
 	@ResponseBody
 	public Object updateProductImage(ProductImage productImage, @PathVariable("picImgId") Long picImgId, @RequestParam(value = "status", defaultValue = "0") Integer status) {
 
-        AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
-        if (authorizingUser != null) {
-            productImage.setStatus(status);
-            Integer count = productImageService.updateProductImage(productImage, authorizingUser.getUserName(), picImgId);
-            return new CmsResult(CommonReturnCode.SUCCESS, count);
-        } else {
-            return new CmsResult(CommonReturnCode.UNAUTHORIZED);
-        }
-    }
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+			productImage.setStatus(status);
+			Integer count = productImageService.updateProductImage(productImage, authorizingUser.getUserName(), picImgId);
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
 
 
-    /**
-     * DELETE 商品图片
-     *
-     * @return
-     */
-    @ApiOperation(value = "删除商品图片", notes = "根据url传过来的商品图片编号删除商品图片")
+	/**
+	 * DELETE 商品图片
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "删除商品图片", notes = "根据url传过来的商品图片编号删除商品图片")
 	@RequiresPermissions("product:detail:edit")
-    @DeleteMapping(value = "/delete/{picImgId}")
-    @ResponseBody
-    public Object favoriteDelete(@PathVariable("picImgId") Long picImgId) {
-        Integer count = productImageService.deleteByPicImgId(picImgId);
-        return new CmsResult(CommonReturnCode.SUCCESS, count);
-    }
+	@DeleteMapping(value = "/delete/{picImgId}")
+	@ResponseBody
+	public Object favoriteDelete(@PathVariable("picImgId") Long picImgId) {
+		Integer count = productImageService.deleteByPicImgId(picImgId);
+		return new CmsResult(CommonReturnCode.SUCCESS, count);
+	}
 
 //	@ApiOperation(value = "商品参数页面", notes = "商品参数页面")
 //	@RequiresPermissions("product:list:view")
@@ -321,45 +384,45 @@ public class ProductController extends BaseController {
 //		return "/modules/product/product_Category_list";
 //	}
 
-    /**
-     * GET 创建product
-     *
-     * @return
-     */
-    @ApiOperation(value = "创建商品", notes = "创建广告页面")
-    @RequiresPermissions("product:detail:create")
-    @GetMapping(value = "/create")
-    public String getInsertPage(Model model) {
-        return "/modules/product/product_create";
-    }
+	/**
+	 * GET 创建product
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "创建商品", notes = "创建广告页面")
+	@RequiresPermissions("product:detail:create")
+	@GetMapping(value = "/create")
+	public String getInsertPage(Model model) {
+		return "/modules/product/product_create";
+	}
 
 
-    /**
-     * POST 创建商品
-     *
-     * @return
-     */
-    @ApiOperation(value = "创建商品", notes = "创建商品")
-    @RequiresPermissions("product:detail:create")
-    @PostMapping(value = "")
-    @ResponseBody
-    public Object insert(Product product,
-                         @RequestParam(value = "showInNav", defaultValue = "0") Integer showInNav,
-                         @RequestParam(value = "showInShelve", defaultValue = "0") Integer showInShelve,
-                         @RequestParam(value = "showInTop", defaultValue = "0") Integer showInTop,
-                         @RequestParam(value = "showInHot", defaultValue = "0") Integer showInHot) {
-        AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
-        if (authorizingUser != null) {
-            product.setShowInHot(showInHot);
-            product.setShowInShelve(showInShelve);
-            product.setShowInNav(showInNav);
-            product.setShowInTop(showInTop);
-            Integer count = productService.insertProduct(product, authorizingUser.getUserName());
-            return new CmsResult(CommonReturnCode.SUCCESS, count);
-        } else {
-            return new CmsResult(CommonReturnCode.UNAUTHORIZED);
-        }
-    }
+	/**
+	 * POST 创建商品
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "创建商品", notes = "创建商品")
+	@RequiresPermissions("product:detail:create")
+	@PostMapping(value = "")
+	@ResponseBody
+	public Object insert(Product product,
+						 @RequestParam(value = "showInNav", defaultValue = "0") Integer showInNav,
+						 @RequestParam(value = "showInShelve", defaultValue = "0") Integer showInShelve,
+						 @RequestParam(value = "showInTop", defaultValue = "0") Integer showInTop,
+						 @RequestParam(value = "showInHot", defaultValue = "0") Integer showInHot) {
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if (authorizingUser != null) {
+			product.setShowInHot(showInHot);
+			product.setShowInShelve(showInShelve);
+			product.setShowInNav(showInNav);
+			product.setShowInTop(showInTop);
+			Integer count = productService.insertProduct(product, authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS, count);
+		} else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
 
 
 	/**
