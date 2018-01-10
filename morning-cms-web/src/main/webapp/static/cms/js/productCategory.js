@@ -233,7 +233,7 @@ function category_delete(index, value) {
 		btn : [ '确定', '取消' ] //按钮
 	}, function() {
 		$.ajax({
-			type : 'delete',
+			type : 'put',
 			dataType : 'json',
 			url : baselocation + '/product/category/delete/' + value,
 			success : function(result) {

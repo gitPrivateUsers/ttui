@@ -167,7 +167,7 @@ public class ProductCategoryController extends BaseController {
 	 */
 	@ApiOperation(value = "删除分类", notes = "删除分类")
 	@RequiresPermissions("product:category:edit")
-	@DeleteMapping(value = "/delete/{categoryId}")
+	@PutMapping(value = "/delete/{categoryId}")
 	@ResponseBody
 	public Object delete(@PathVariable("categoryId") Long categoryId) {
 		List<Category> categoryList = categoryService.selectParentId(categoryId);

@@ -11,7 +11,6 @@ import org.pussinboots.morning.cms.common.security.AuthorizingUser;
 import org.pussinboots.morning.cms.common.util.SingletonLoginUtils;
 import org.pussinboots.morning.common.base.BaseController;
 import org.pussinboots.morning.common.base.BasePageDTO;
-import org.pussinboots.morning.common.base.UploadFile;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
 import org.pussinboots.morning.common.enums.StatusEnum;
 import org.pussinboots.morning.common.support.page.PageInfo;
