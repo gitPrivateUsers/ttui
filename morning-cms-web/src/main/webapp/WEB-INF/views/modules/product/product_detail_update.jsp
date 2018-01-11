@@ -20,8 +20,7 @@
                             class="close-link"><i class="fa fa-times"></i></a></div>
                 </div>
                 <div class="ibox-content">
-                    <form id="form" class="form-horizontal" action="${ctx}/product/detail/update"
-                          data-method="put">
+                    <form id="form" class="form-horizontal" action="${ctx}/product/detail/update" data-method="put">
 
                         <div class="form-group">
                             <label class="col-sm-2 col-xs-offset-1 control-label">详情ID：</label>

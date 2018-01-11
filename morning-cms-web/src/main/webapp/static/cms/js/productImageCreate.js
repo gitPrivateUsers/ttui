@@ -1,13 +1,4 @@
-/**
- * 进行格式转换
- */
-function statusFormatter(value) {
-	if (value == 1) {
-		return '<span class="label label-primary">显示</span>'
-	} else if (value == 0) {
-		return '<span class="label label-danger">隐藏</span>'
-	}
-}
+
 function actionFormatter(value, row, index) {
 	if (row.status == 1) {
 		return [
@@ -189,7 +180,7 @@ $(function() {
 					url : $form.attr('action'),
 					success : function(result) {
 						if (result.code == 1) {
-							parent.layer.msg("创建图片列表成功!", {
+							parent.layer.msg("创建图片信息成功!", {
 								shade : 0.3,
 								time : 1500
 							}, function() {

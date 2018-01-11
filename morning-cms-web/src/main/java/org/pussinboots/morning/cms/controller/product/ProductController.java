@@ -204,76 +204,68 @@ public class ProductController extends BaseController {
 
 	@ApiOperation(value = "商品图片", notes = "创建商品图片")
 	@RequiresPermissions("product:detail:create")
-	@GetMapping(value = "/{productId}/addImg")
+	@GetMapping(value = "/addImg/{productId}/page")
 	public String getInsertProductImagePage(Model model, @PathVariable("productId") Long productId) {
 		model.addAttribute("productId", productId);
 		return "/modules/product/product_image_create";
 	}
 
-
-	@ApiOperation(value = "上传商品图片", notes = "上传商品图片")
-//    @RequiresPermissions("product:detail:create")
-	@RequestMapping(value = "/upload/image")
+	@ApiOperation(value = "创建保存商品图片信息", notes = "创建保存商品图片信息")
+	@RequiresPermissions("product:detail:create")
+	@PostMapping(value = "/save/addImg")
 	@ResponseBody
-	public Map<String,Object> uploadPhoto(HttpServletRequest request, HttpServletResponse response, @RequestParam("myFile")MultipartFile myFile) {
-		Map<String, Object> json = new HashMap<String, Object>();
+	public Object saveInsertProductImage(ProductImage productImage,@RequestParam(value = "status", defaultValue = "0") Integer status ) {
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if(authorizingUser != null){
+			productImage.setStatus(status);
+			Integer count = productImageService.insertProductImage(productImage,authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS,count);
+		}else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
 
-		//原文件名
-		String oldFileName = myFile.getOriginalFilename();
-		//文件后缀
-		String suffix = oldFileName.substring(oldFileName.lastIndexOf(".")).toLowerCase();
-		//获取文件前缀
-		//String prefix = oldFileName.replace(suffix,"");
-		//新文件名
-		String newFileName = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + suffix;
-		//上传文件的路径
-		String path = request.getServletContext().getRealPath("uploads\\photo\\");
-		String dateFile = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		path = path + File.separator + dateFile;
-		File file = new File(path);
-//        logger.info("文件的上传路径是：{}", path);
-		//不存在则创建
-		if (!file.exists()) {
-			file.mkdirs();
-		}
-		//目标文件
-		File dest = new File(path + File.separator + newFileName);
-		//上传
-		try {
-			myFile.transferTo(dest);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-//		try {
-//			//输出文件后缀名称
-//			System.out.println(myFile.getOriginalFilename());
-//			DateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-//			//图片名称
-//			String name = df.format(new Date());
+//	@ApiOperation(value = "上传商品图片", notes = "上传商品图片")
+//    @RequiresPermissions("product:detail:create")
+//	@RequestMapping(value = "/upload/image")
+//	@ResponseBody
+//	public Map<String,Object> uploadPhoto(HttpServletRequest request, HttpServletResponse response, @RequestParam("myFile")MultipartFile myFile) {
+//		Map<String, Object> json = new HashMap<String, Object>();
 //
-//			Random r = new Random();
-//			for(int i = 0 ;i<3 ;i++){
-//				name += r.nextInt(10);
-//			}
-//			//
-//			String ext = FilenameUtils.getExtension(myFile.getOriginalFilename());
-//			//保存图片       File位置 （全路径）   /upload/fileName.jpg
-//			String url = request.getSession().getServletContext().getRealPath("uploads/photo/");
-//			//相对路径
-//			String path = name + "." + ext;
-//			File file = new File(url);
-//			if(!file.exists()){
-//				file.mkdirs();
-//			}
-//			myFile.transferTo(new File(url+"\\"+path));
-//			json.put("success", "uploads/photo/"+path);
-//		} catch (Exception e) {
+//		原文件名
+//		String oldFileName = myFile.getOriginalFilename();
+//		文件后缀
+//		String suffix = oldFileName.substring(oldFileName.lastIndexOf(".")).toLowerCase();
+//		获取文件前缀
+//		String prefix = oldFileName.replace(suffix,"");
+//		新文件名
+//		String df = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
+//		Random r = new Random();
+//		for (int i = 0;i<3;i++){
+//			df += r.nextInt(10);
+//		}
+//		String newFileName = df + suffix;
+//		上传文件的路径
+//		String path = request.getServletContext().getRealPath("uploads\\photo\\");
+//		String dateFile = new SimpleDateFormat("yyyyMMdd").format(new Date());
+//		path = path + File.separator + dateFile;
+//		File file = new File(path);
+//        logger.info("文件的上传路径是：{}", path);
+//		不存在则创建
+//		if (!file.exists()) {
+//			file.mkdirs();
+//		}
+//		目标文件
+//		File dest = new File(path + File.separator + newFileName);
+//		上传
+//		try {
+//			myFile.transferTo(dest);
+//			json.put("success","upload/photo/"+newFileName);
+//		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
-		return json ;
-
-
-	}
+//		return json ;
+//	}
 
 	/**
 	 * GET 分类管理页面

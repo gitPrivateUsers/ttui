@@ -174,7 +174,7 @@ public class ProductCategoryController extends BaseController {
 		for (Category ca : categoryList) {
 			categoryService.deleteById(ca.getCategoryId());
 		}
-	boolean b=  categoryService.deleteById(categoryId);
+	      boolean b=  categoryService.deleteById(categoryId);
 
 		return new CmsResult(CommonReturnCode.SUCCESS, b);
 	}
