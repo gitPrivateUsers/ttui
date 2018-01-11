@@ -118,11 +118,11 @@
 				<result column="remarks" property="remarks" />
 			</collection>
 	</resultMap>-->
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
         comment_id AS commentId, product_id AS productId, user_id AS userId, user_name AS userName, pic_img AS picImg, order_id AS orderId, star, content, good_count AS goodCount, status, type, create_time AS createTime, create_by AS createBy, update_time AS updateTime, update_by AS updateBy
     </sql>
-	
+
 	<!-- 根据商品ID、排序、分页查找评论列表 -->
 	<select id="listByProductId" resultType="org.pussinboots.morning.product.pojo.vo.CommentVO">
 		SELECT
@@ -169,7 +169,7 @@
 		os_comment a
 		LEFT JOIN os_order b ON (a.order_id = b.order_id)
 		LEFT JOIN os_product c ON (a.product_id = c.product_id)
-		<where>
+		<!--<where>
 			1=1
 			<if test="search != null">
 				AND (
@@ -180,6 +180,8 @@
 			<if test="pageInfo.sort != null">
 				ORDER BY ${pageInfo.sort} ${pageInfo.order}
 			</if>
-		</where>
+		</where>-->
+
+
 	</select>
 </mapper>
