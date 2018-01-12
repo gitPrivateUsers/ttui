@@ -9,6 +9,7 @@ import org.pussinboots.morning.cms.common.security.AuthorizingUser;
 import org.pussinboots.morning.cms.common.util.SingletonLoginUtils;
 import org.pussinboots.morning.common.base.BaseController;
 import org.pussinboots.morning.common.constant.CommonReturnCode;
+import org.pussinboots.morning.common.enums.StatusEnum;
 import org.pussinboots.morning.product.entity.ProductImage;
 import org.pussinboots.morning.product.service.IProductImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,6 @@ public class PicImgUploadController extends BaseController {
 		//文件后缀
 		String suffix = oldFileName.substring(oldFileName.lastIndexOf(".")).toLowerCase();
 	//	获取文件前缀
-		String prefix = oldFileName.replace(suffix,"");
 		//新文件名
 		String df = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
 		Random r = new Random();
@@ -57,8 +57,11 @@ public class PicImgUploadController extends BaseController {
 		String newFileName = df + suffix;
 		//上传文件的路径
 		String path = request.getServletContext().getRealPath("uploads\\photo\\");
+		//这是商品的id prefix
+		String prefix = oldFileName.replace(suffix,"");
 		String dateFile = new SimpleDateFormat("yyyyMMdd").format(new Date());
-		path = path + File.separator + dateFile;
+//		path = path + File.separator + dateFile;
+		path = path + File.separator + prefix;
 		File file = new File(path);
         logger.info("文件的上传路径是：{}", path);
 		//不存在则创建
@@ -70,18 +73,38 @@ public class PicImgUploadController extends BaseController {
 		//上传
 		try {
 			myFile.transferTo(dest);
-			json.put("success","upload/photo/"+newFileName);
+			json.put("success","upload/photo/"+suffix+ File.separator +newFileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return json ;
+
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if(authorizingUser != null){
+			ProductImage pi=new ProductImage();
+			pi.setStatus(StatusEnum.INVALID.getStatus());
+			pi.setPicImg(String.valueOf(json.get("success")));
+			pi.setProductId(Long.valueOf(prefix));
+			pi.setSort(0);
+		 productImageService.insertProductImage(pi,authorizingUser.getUserName());
+			return json;
+		}
+			return null;
 	}
+
+
+
 
 	@ApiOperation(value = "上传图片页面",notes = "上传图片页面")
 	@GetMapping(value = "/addImg/uploadPic/page")
 	public String getPicUploadPage(Model model){
 		return "/modules/product/upload/product_picupload_page";
 	}
+
+
+
+
+
+
 
 	@ApiOperation(value = "创建保存商品图片信息", notes = "创建保存商品图片信息")
 //	@RequiresPermissions("product:detail:create")
