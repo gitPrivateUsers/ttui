@@ -51,6 +51,9 @@ public class wxApiUserLoginService extends BaseController {
                 //   验证是否未注册
                 WxUserInfo wx1 = wxUserInfoService.getWxUserInfo(map.get("openid"));
                 if (wx1 != null) {
+                    wx1.setUpdateTime(new Date());
+                    wx1.setToken( WXAppletUserInfo.getAccessToken().get("access_token")+"");
+                    wxUserInfoService.updateById(wx1);
                     map.put("token", wx1.getToken());
                     map.put("uid", String.valueOf(wx1.getOsUserId()));
                     return new OsResult(CommonReturnCode.SUCCESS, map);

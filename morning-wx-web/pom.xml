@@ -179,6 +179,11 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.4.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.2.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -204,6 +209,8 @@
 						<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 						<!-- 重点是这个配置 -->
+
+						<!--<warName>ds-xcx</warName>-->
 						<warName>morning</warName>
 						<webResources>
 							<!-- 不同的环境，使用不同的配置文件 -->
