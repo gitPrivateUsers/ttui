@@ -202,7 +202,7 @@ public class ProductController extends BaseController {
 		}
 	}
 
-	@ApiOperation(value = "商品图片", notes = "创建商品图片")
+	@ApiOperation(value = "创建商品图片页面", notes = "创建商品图片")
 	@RequiresPermissions("product:detail:create")
 	@GetMapping(value = "/addImg/{productId}/page")
 	public String getInsertProductImagePage(Model model, @PathVariable("productId") Long productId) {
@@ -210,8 +210,16 @@ public class ProductController extends BaseController {
 		return "/modules/product/product_image_create";
 	}
 
+	@ApiOperation(value = "上传图片页面",notes = "上传图片页面")
+//	@RequiresPermissions("product:detail:create")
+	@GetMapping(value = "/addImg/uploadPic/page")
+//	@ResponseBody
+	public String getPicUploadPage(Model model){
+		return "modules/upload/product_picupload_page";
+	}
+
 	@ApiOperation(value = "创建保存商品图片信息", notes = "创建保存商品图片信息")
-	@RequiresPermissions("product:detail:create")
+//	@RequiresPermissions("product:detail:create")
 	@PostMapping(value = "/save/addImg")
 	@ResponseBody
 	public Object saveInsertProductImage(ProductImage productImage,@RequestParam(value = "status", defaultValue = "0") Integer status ) {
@@ -224,48 +232,6 @@ public class ProductController extends BaseController {
 			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
 		}
 	}
-
-//	@ApiOperation(value = "上传商品图片", notes = "上传商品图片")
-//    @RequiresPermissions("product:detail:create")
-//	@RequestMapping(value = "/upload/image")
-//	@ResponseBody
-//	public Map<String,Object> uploadPhoto(HttpServletRequest request, HttpServletResponse response, @RequestParam("myFile")MultipartFile myFile) {
-//		Map<String, Object> json = new HashMap<String, Object>();
-//
-//		原文件名
-//		String oldFileName = myFile.getOriginalFilename();
-//		文件后缀
-//		String suffix = oldFileName.substring(oldFileName.lastIndexOf(".")).toLowerCase();
-//		获取文件前缀
-//		String prefix = oldFileName.replace(suffix,"");
-//		新文件名
-//		String df = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
-//		Random r = new Random();
-//		for (int i = 0;i<3;i++){
-//			df += r.nextInt(10);
-//		}
-//		String newFileName = df + suffix;
-//		上传文件的路径
-//		String path = request.getServletContext().getRealPath("uploads\\photo\\");
-//		String dateFile = new SimpleDateFormat("yyyyMMdd").format(new Date());
-//		path = path + File.separator + dateFile;
-//		File file = new File(path);
-//        logger.info("文件的上传路径是：{}", path);
-//		不存在则创建
-//		if (!file.exists()) {
-//			file.mkdirs();
-//		}
-//		目标文件
-//		File dest = new File(path + File.separator + newFileName);
-//		上传
-//		try {
-//			myFile.transferTo(dest);
-//			json.put("success","upload/photo/"+newFileName);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return json ;
-//	}
 
 	/**
 	 * GET 分类管理页面
