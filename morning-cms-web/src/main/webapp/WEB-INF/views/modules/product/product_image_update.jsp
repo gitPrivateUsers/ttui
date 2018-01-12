@@ -37,13 +37,13 @@
                                 <input type="text" class="form-control" name="productId"  readonly="readonly" value="${productImage.productId}">
                             </div>
                         </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-xs-offset-1 control-label">图片：</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" name="picImg" value="${productImage.picImg}">
-                            </div>
-                        </div>
+                        <%--   <div class="hr-line-dashed"></div>
+                         <div class="form-group">
+                              <label class="col-sm-2 col-xs-offset-1 control-label">图片：</label>
+                              <div class="col-sm-7">
+                                  <input type="text" class="form-control" name="picImg" value="${productImage.picImg}">
+                              </div>
+                          </div>--%>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <label class="col-sm-2 col-xs-offset-1 control-label">排序：</label>

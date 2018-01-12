@@ -23,7 +23,7 @@
                 <div class="example">
                   <div id="toolbar" class="btn-group m-t-sm">
                     <shiro:hasPermission name="product:detail:create">
-                      <button type="button" class="btn btn-default"  title="添加商品图片地址" onclick="layer_show('添加商品图片地址','${ctx}/product/upload/addImg/uploadPic/page','1200','680')"> <i class="glyphicon glyphicon-plus"></i> </button>
+                      <button type="button" class="btn btn-default"  title="添加商品图片地址" onclick="layer_show('添加商品图片地址','${ctx}/product/upload/addImg/uploadPic/${productId}/page','1200','680')"> <i class="glyphicon glyphicon-plus"></i> </button>
                     </shiro:hasPermission>
                     <%--<button type="button" class="btn btn-default"  title="返回上一页" onclick="javascript:window.close();"> <i class="glyphicon glyphicon-circle-arrow-left"></i> </button>--%>
                   </div>
@@ -51,7 +51,7 @@
                     <tr>
                       <th data-field="picImgId" data-halign="center" data-align="center" data-sortable="true">商品图片编号</th>
                       <th data-field="productId" data-halign="center" data-align="center" data-sortable="true">商品ID</th>
-                      <th data-field="picImg" data-halign="center" data-align="center" data-sortable="true">图片</th>
+                      <th data-formatter="picFormatter"  data-field="picImg" data-halign="center" data-align="center" data-sortable="true">图片</th>
                       <th data-field="sort" data-halign="center" data-align="center" data-sortable="true">排序</th>
                       <th data-field="status" data-halign="center" data-align="center" data-formatter="statusFormatter"  data-sortable="true">状态</th>
                       <th data-field="createTime" data-halign="center" data-align="center" data-sortable="true">创建时间</th>

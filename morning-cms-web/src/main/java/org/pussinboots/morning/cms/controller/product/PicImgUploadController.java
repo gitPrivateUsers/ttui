@@ -38,9 +38,10 @@ public class PicImgUploadController extends BaseController {
 
 	@ApiOperation(value = "上传商品图片", notes = "上传商品图片")
 //    @RequiresPermissions("product:detail:create")
-	@RequestMapping(value = "/addImg/uploadPic/uploads")
+	@RequestMapping(value = "/addImg/uploadPic/{productId}/uploads")
 	@ResponseBody
-	public Map<String,Object> uploadPhoto(HttpServletRequest request, HttpServletResponse response, @RequestParam("myFile")MultipartFile myFile) {
+	public Map<String,Object> uploadPhoto(HttpServletRequest request, HttpServletResponse response,
+										  @RequestParam("myFile")MultipartFile myFile,@PathVariable("productId") Long productId) {
 		Map<String, Object> json = new HashMap<String, Object>();
 
 		//原文件名
@@ -59,9 +60,10 @@ public class PicImgUploadController extends BaseController {
 		String path = request.getServletContext().getRealPath("uploads\\photo\\");
 		//这是商品的id prefix
 		String prefix = oldFileName.replace(suffix,"");
-		String dateFile = new SimpleDateFormat("yyyyMMdd").format(new Date());
-//		path = path + File.separator + dateFile;
-		path = path + File.separator + prefix;
+		String dateFile = productId.toString();
+//		String dateFile = new SimpleDateFormat("yyyyMMdd").format(new Date());
+		path = path + File.separator + dateFile;
+//		path = path + File.separator + prefix;
 		File file = new File(path);
         logger.info("文件的上传路径是：{}", path);
 		//不存在则创建
@@ -73,7 +75,7 @@ public class PicImgUploadController extends BaseController {
 		//上传
 		try {
 			myFile.transferTo(dest);
-			json.put("success","upload/photo/"+suffix+ File.separator +newFileName);
+			json.put("success","upload/photo/"+ dateFile +"/" +newFileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -83,7 +85,7 @@ public class PicImgUploadController extends BaseController {
 			ProductImage pi=new ProductImage();
 			pi.setStatus(StatusEnum.INVALID.getStatus());
 			pi.setPicImg(String.valueOf(json.get("success")));
-			pi.setProductId(Long.valueOf(prefix));
+			pi.setProductId(productId);
 			pi.setSort(0);
 		 productImageService.insertProductImage(pi,authorizingUser.getUserName());
 			return json;
@@ -95,8 +97,9 @@ public class PicImgUploadController extends BaseController {
 
 
 	@ApiOperation(value = "上传图片页面",notes = "上传图片页面")
-	@GetMapping(value = "/addImg/uploadPic/page")
-	public String getPicUploadPage(Model model){
+	@GetMapping(value = "/addImg/uploadPic/{productId}/page")
+	public String getPicUploadPage(Model model,@PathVariable("productId") Long productId){
+		model.addAttribute("productId",productId);
 		return "/modules/product/upload/product_picupload_page";
 	}
 
@@ -106,20 +109,20 @@ public class PicImgUploadController extends BaseController {
 
 
 
-	@ApiOperation(value = "创建保存商品图片信息", notes = "创建保存商品图片信息")
+//	@ApiOperation(value = "创建保存商品图片信息", notes = "创建保存商品图片信息")
 //	@RequiresPermissions("product:detail:create")
-	@PostMapping(value = "/save/addImg")
-	@ResponseBody
-	public Object saveInsertProductImage(ProductImage productImage, @RequestParam(value = "status", defaultValue = "0") Integer status ) {
-		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
-		if(authorizingUser != null){
-			productImage.setStatus(status);
-			Integer count = productImageService.insertProductImage(productImage,authorizingUser.getUserName());
-			return new CmsResult(CommonReturnCode.SUCCESS,count);
-		}else {
-			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
-		}
-	}
+//	@PostMapping(value = "/save/addImg")
+//	@ResponseBody
+//	public Object saveInsertProductImage(ProductImage productImage, @RequestParam(value = "status", defaultValue = "0") Integer status ) {
+//		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+//		if(authorizingUser != null){
+//			productImage.setStatus(status);
+//			Integer count = productImageService.insertProductImage(productImage,authorizingUser.getUserName());
+//			return new CmsResult(CommonReturnCode.SUCCESS,count);
+//		}else {
+//			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+//		}
+//	}
 
 }
 

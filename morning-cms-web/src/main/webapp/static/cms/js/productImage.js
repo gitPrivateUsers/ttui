@@ -8,6 +8,23 @@ function statusFormatter(value) {
 		return '<span class="label label-danger">隐藏</span>'
 	}
 }
+//function imgFormatter(value,row,index){
+//	if('' != value && null != value){
+//		var strs = new Array(); //定义一数组
+//		if(value.substr(value.length-1,1)==","){
+//			value=value.substr(0,value.length-1)
+//		}
+//		strs = value.split(","); //字符分割
+//		var rvalue ="";
+//		for (i=0;i<strs.length ;i++ ){
+//			rvalue += "<img  style='width:66px;" +
+//				" height:60px;margin-left:3px;'" +
+//				" src='<%=path%>" + strs[i] + "' title='点击查看图片'/>";
+//		}
+//		return  rvalue;
+//	}
+//}
+
 function actionFormatter(value, row, index) {
 	if (row.status == 1) {
 		return [
