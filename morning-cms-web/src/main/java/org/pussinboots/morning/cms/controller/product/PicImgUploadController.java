@@ -4,15 +4,17 @@ package org.pussinboots.morning.cms.controller.product;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.pussinboots.morning.cms.common.result.CmsResult;
+import org.pussinboots.morning.cms.common.security.AuthorizingUser;
+import org.pussinboots.morning.cms.common.util.SingletonLoginUtils;
 import org.pussinboots.morning.common.base.BaseController;
+import org.pussinboots.morning.common.constant.CommonReturnCode;
+import org.pussinboots.morning.product.entity.ProductImage;
 import org.pussinboots.morning.product.service.IProductImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -75,6 +77,26 @@ public class PicImgUploadController extends BaseController {
 		return json ;
 	}
 
+	@ApiOperation(value = "上传图片页面",notes = "上传图片页面")
+	@GetMapping(value = "/addImg/uploadPic/page")
+	public String getPicUploadPage(Model model){
+		return "/modules/product/upload/product_picupload_page";
+	}
+
+	@ApiOperation(value = "创建保存商品图片信息", notes = "创建保存商品图片信息")
+//	@RequiresPermissions("product:detail:create")
+	@PostMapping(value = "/save/addImg")
+	@ResponseBody
+	public Object saveInsertProductImage(ProductImage productImage, @RequestParam(value = "status", defaultValue = "0") Integer status ) {
+		AuthorizingUser authorizingUser = SingletonLoginUtils.getUser();
+		if(authorizingUser != null){
+			productImage.setStatus(status);
+			Integer count = productImageService.insertProductImage(productImage,authorizingUser.getUserName());
+			return new CmsResult(CommonReturnCode.SUCCESS,count);
+		}else {
+			return new CmsResult(CommonReturnCode.UNAUTHORIZED);
+		}
+	}
 
 }
 

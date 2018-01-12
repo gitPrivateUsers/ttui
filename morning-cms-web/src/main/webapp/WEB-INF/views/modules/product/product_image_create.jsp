@@ -32,7 +32,7 @@
                         <div class="form-group m-t">
                             <label class="col-sm-2 col-xs-offset-1 control-label"></label>
                             <div class="col-sm-7">
-                                <button type="button" class="btn btn-warning"  title="点击上传" onclick="layer_show('上传窗口','${ctx}/product/detail/addImg/uploadPic/page','650','590')">上传图片</button>
+                                <button type="button" class="btn btn-warning"  title="点击上传" onclick="layer_show('上传窗口','${ctx}/product/upload/addImg/uploadPic/page','650','590')">上传图片</button>
                                 <input type="hidden" id="picPath" name="picImg" value="">
                             </div>
                         </div>
