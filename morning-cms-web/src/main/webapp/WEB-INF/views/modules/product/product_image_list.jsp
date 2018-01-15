@@ -54,7 +54,7 @@
                       <th data-formatter="picFormatter"  data-field="picImg" data-halign="center" data-align="center" data-sortable="true">图片</th>
                       <th data-field="sort" data-halign="center" data-align="center" data-sortable="true">排序</th>
                       <th data-field="status" data-halign="center" data-align="center" data-formatter="statusFormatter"  data-sortable="true">状态</th>
-                      <th data-field="createTime" data-halign="center" data-align="center" data-sortable="true">创建时间</th>
+                      <th data-formatter="timeFormatter"data-field="createTime" data-halign="center" data-align="center" data-sortable="true">创建时间</th>
                       <th data-field="createBy" data-halign="center" data-align="center" data-sortable="true">创建人</th>
                       <th data-formatter="actionFormatter" data-events="actionEvents" data-halign="center" data-align="center" data-sortable="true">操作</th>
                     </tr>

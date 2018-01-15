@@ -75,7 +75,8 @@ public class PicImgUploadController extends BaseController {
 		//上传
 		try {
 			myFile.transferTo(dest);
-			json.put("success","upload/photo/"+ dateFile +"/" +newFileName);
+			json.put("success","uploads/photo/"+ dateFile +"/" +newFileName);
+			//json.put("success",path+"\\"+newFileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

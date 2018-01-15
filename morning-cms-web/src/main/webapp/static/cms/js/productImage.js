@@ -8,22 +8,29 @@ function statusFormatter(value) {
 		return '<span class="label label-danger">隐藏</span>'
 	}
 }
-//function imgFormatter(value,row,index){
-//	if('' != value && null != value){
-//		var strs = new Array(); //定义一数组
-//		if(value.substr(value.length-1,1)==","){
-//			value=value.substr(0,value.length-1)
-//		}
-//		strs = value.split(","); //字符分割
-//		var rvalue ="";
-//		for (i=0;i<strs.length ;i++ ){
-//			rvalue += "<img  style='width:66px;" +
-//				" height:60px;margin-left:3px;'" +
-//				" src='<%=path%>" + strs[i] + "' title='点击查看图片'/>";
-//		}
-//		return  rvalue;
-//	}
-//}
+
+function timeFormatter(value) {
+	return new Date(value).Format("yyyy-MM-dd HH:mm:ss");
+}
+
+function picFormatter(value,row,index){
+	if('' != value && null != value){
+		var strs = new Array(); //定义一数组
+		if(value.substr(value.length-1,1)==","){
+			value=value.substr(0,value.length-1)
+		}
+		strs = value.split(","); //字符分割
+		//var path = request.getServletContext();
+		//alert(path);
+		var rvalue ="";
+		var baseurl = "http://localhost:8888/cms/";
+		for (i=0;i<strs.length ;i++ ){
+			//debugger;
+			rvalue += "<img src='"+baseurl+strs[i]+"' alt='图片加载中' title=''/>";
+		}
+		return  rvalue;
+	}
+}
 
 function actionFormatter(value, row, index) {
 	if (row.status == 1) {
@@ -78,7 +85,6 @@ function admin_delete(index, value, url) {
 	layer.confirm('确认要删除该商品的图片信息吗？', {
 		btn : [ '确定', '取消' ] //按钮
 	}, function() {
-		debugger
 		$.ajax({
 			type : 'delete',
 			dataType : 'json',

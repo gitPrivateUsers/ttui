@@ -164,7 +164,8 @@
 		a.good_count AS goodCount,
 		a.status AS status,
 		a.type AS type,
-		a.create_by AS createBy
+		a.create_by AS createBy,
+		a.create_time AS createTime
 		FROM
 		os_comment a
 		LEFT JOIN os_order b ON (a.order_id = b.order_id)

@@ -27,7 +27,7 @@
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <div class="col-sm-12 text-center">
-                            <button id="btnClose" type="button" value="" onClick="shut_down()" />关闭页面</button>
+                            <%--<button id="btnClose" type="button" value="" onclick="shut_down()" />关闭页面</button>--%>
                         </div>
                     </div>
 
@@ -47,6 +47,7 @@
         $("#myFile").fileinput({
             language : 'zh',
             uploadUrl : "${ctx}/product/upload/addImg/uploadPic/${productId}/uploads",
+            showUpload:true,
             autoReplace : true,
             maxFileCount : 1,
             allowedFileExtensions : [ "jpg", "png", "gif" ],
@@ -54,20 +55,18 @@
             previewFileIcon : "<i class='glyphicon glyphicon-king'></i>"
         }).on("fileuploaded",function(e,data){
             var res =data.response;
-            alert("上传已完成：",res.success);
-            //window.opener.document.getElementById('picPath').value = path// 赋值
-//            this.window.opener = null;
+            //alert("上传已完成：",res.success);
         })
 
         //关闭页面
- //       function shut_down(){
- //           if (confirm("您确定要关闭本页吗？")){
-//                window.opener=null;
-//                window.open('','_self');
- //               window.close();
- //           }
- //           else{}
-  //      }
+        // function shut_down(){
+//             this.element.close();
+//            layer.confirm('确认要删除该商品的图片信息吗？', {
+//                btn : [ '确定', '取消' ] //按钮
+//            },function(){
+//
+//            });
+//         }
 
     </script>
 </myfooter>
