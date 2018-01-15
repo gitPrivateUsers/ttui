@@ -23,10 +23,10 @@ function picFormatter(value,row,index){
 		//var path = request.getServletContext();
 		//alert(path);
 		var rvalue ="";
-		var baseurl = "http://localhost:8888/cms/";
+		var baseurl = "http://localhost:8888/cms/uploads/";
 		for (i=0;i<strs.length ;i++ ){
 			//debugger;
-			rvalue += "<img src='"+baseurl+strs[i]+"' alt='图片加载中' title=''/>";
+			rvalue += "<img style='width: 60px;height: 60px;' src='"+baseurl+strs[i]+"' alt='图片加载中' title=''/>";
 		}
 		return  rvalue;
 	}
