@@ -44,13 +44,13 @@ function styleFormatter(value) {
 
 function actionFormatter(value, row, index) {
 	 return [ 
-			'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="修改订单基本信息">',
-			'<i class="glyphicon glyphicon-edit"></i>',
-			'</a>',
-		    '<a class="updateShipment m-r-sm text-warning" href="javascript:void(0)" title="修改订单配送信息">',
-		    '<i class="glyphicon glyphicon-map-marker"></i>',
-		    '</a>',
-		    '<a class="cacelOrder m-r-sm text-warning" href="javascript:void(0)" title="取消订单">',
+            '<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="修改状态">',
+            '<i class="glyphicon glyphicon-edit"></i>',
+            '</a>',
+		    //'<a class="updateShipment m-r-sm text-warning" href="javascript:void(0)" title="修改订单配送信息">',
+		    //'<i class="glyphicon glyphicon-map-marker"></i>',
+		    //'</a>',
+		    '<a class="delComment m-r-sm text-warning" href="javascript:void(0)" title="强制删除">',
 		    '<i class="glyphicon glyphicon-remove-sign"></i>',
 		    '</a>',
 		].join('');
@@ -58,29 +58,29 @@ function actionFormatter(value, row, index) {
 
 window.actionEvents = { 
 	'click .edit' : function(e, value, row, index) {
-		 layer_show("修改订单基本信息", baselocation + '/system/order/' + row.orderId + '/edit', 900, 650)
+		 layer_show("修改评论状态", baselocation + '/system/order/comment/' + row.commentId + '/edit', 900, 650)
  	},
-	'click .updateShipment' : function(e, value, row, index) {
-		 layer_show("修改订单配送信息", baselocation + '/system/order/' + row.orderId + '/updateShipment', 900, 650)
- 	},
-	'click .cacelOrder' : function(e, value, row, index) {
+	//'click .updateShipment' : function(e, value, row, index) {
+	//	 layer_show("修改订单配送信息", baselocation + '/system/order/' + row.orderId + '/updateShipment', 900, 650)
+ 	//},
+	'click .delComment' : function(e, value, row, index) {
 		//debugger
-		 order_delete(index,row.orderNumber,row.orderId,row.orderStatus);
+		 comment_delete(index,row.commentId,row.status);
  	},
 };
 
 /**
  * 取消订单
  */
-function order_delete(index,value,orderId,stu) {
-	if(stu == 1 || stu == 3 || stu == 4) {
-		layer.confirm('确定要取消该订单吗？', {
+function comment_delete(index,value,stu) {
+	if(stu == 0) {
+		layer.confirm('确定要强制删除本条评论吗？', {
 			btn: ['确定', '取消'] //按钮
 		}, function () {
 			$.ajax({
 				type: 'put',
 				dataType: 'json',
-				url: baselocation + '/system/order/cancelOrder/' + orderId,
+				url: baselocation + '/system/order/comment/delete/' + value,
 				success: function (result) {
 					if (result.code == 1) {
 						layer.msg('订单取消成功!', {

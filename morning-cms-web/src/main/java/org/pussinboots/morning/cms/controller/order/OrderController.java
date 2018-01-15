@@ -16,6 +16,7 @@ import org.pussinboots.morning.order.entity.*;
 import org.pussinboots.morning.order.pojo.vo.OrderVO;
 import org.pussinboots.morning.order.service.*;
 import org.pussinboots.morning.product.common.enums.QuestionSortEnum;
+import org.pussinboots.morning.product.entity.Category;
 import org.pussinboots.morning.product.entity.Comment;
 import org.pussinboots.morning.product.pojo.vo.CommentVO;
 import org.pussinboots.morning.product.pojo.vo.CommentVOs;
@@ -26,6 +27,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -185,5 +187,39 @@ public class OrderController extends BaseController {
 
 		BasePageDTO<CommentVOs> basePageDTO = commentService.listCommentPage(pageInfo, search);
 		return new CmsPageResult(basePageDTO.getList(), basePageDTO.getPageInfo().getTotal());
+	}
+
+	/**
+	 * GET 评论更新页面
+	 * @return
+	 */
+	@ApiOperation(value = "商品评论更新", notes = "商品评论更新")
+//	@RequiresPermissions("order:list:view")
+	@GetMapping(value = "/comment/{commentId}/edit")
+	@ResponseBody
+	public String commentUpdatePage(Model model, @PathVariable("commentId") Long commentId) {
+
+		Comment comment = commentService.selectById(commentId);
+		model.addAttribute("comment",comment);
+		return "modules/comment/comment_update";
+	}
+
+	/**
+	 * PUT 强制删除评论
+	 * @return
+	 */
+	@ApiOperation(value = "强制删除评论", notes = "强制删除评论")
+//	@RequiresPermissions("product:category:edit")
+	@PutMapping(value = "/comment/delete/{commentId}")
+	@ResponseBody
+	public Object delete(@PathVariable("commentId") Long commentId) {
+//		List<Category> categoryList = categoryService.selectParentId(categoryId);
+//		for (Category ca : categoryList) {
+//			categoryService.deleteById(ca.getCategoryId());
+//		}
+//		boolean b=  categoryService.deleteById(categoryId);
+		boolean b = commentService.deleteById(commentId);
+
+		return new CmsResult(CommonReturnCode.SUCCESS, b);
 	}
 }
